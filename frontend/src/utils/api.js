@@ -1,7 +1,11 @@
 import axios from 'axios';
 
-// Use VITE_API_URL for production, fallback to '/' for dev (Vite proxy)
-const baseURL = import.meta.env.VITE_API_URL || '/';
+// Use VITE_API_URL for production, fallback to '' for dev (Vite proxy)
+// Dipakai juga oleh file-file yang masih memakai fetch() mentah, supaya
+// semua request (axios maupun fetch) konsisten menuju backend yang benar.
+export const API_BASE_URL = (import.meta.env.VITE_API_URL || '').replace(/\/+$/, '');
+
+const baseURL = API_BASE_URL || '/';
 
 // Create axios instance with default config
 const api = axios.create({

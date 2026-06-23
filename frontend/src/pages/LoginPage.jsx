@@ -94,6 +94,7 @@
 import React, { useState } from 'react';
 import './LoginPage.css'; // Pastikan file CSS ini ada dan berisi gaya yang diinginkan
 import { useNavigate } from 'react-router-dom';
+import api from '../utils/api';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -111,20 +112,15 @@ const LoginPage = () => {
 
     try {
       console.log('2. Mengirim request login ke backend...');
-      // Pastikan port sesuai dengan backend Anda (5050)
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      });
+      // `api` (dari utils/api.js) otomatis mengarah ke VITE_API_URL di
+      // production, dan ke proxy Vite (/api -> localhost:5050) saat dev.
+      const response = await api.post('/api/auth/login', { email, password });
+      const data = response.data;
 
       console.log('3. Mendapat response dari server. Status:', response.status);
-      const data = await response.json();
       console.log('4. Data respons dari server:', data);
 
-      if (response.ok && data.user && data.token) { // Pastikan ada data user DAN token
+      if (data.user && data.token) { // Pastikan ada data user DAN token
         console.log('Login berhasil! Menyimpan data dan mengarahkan...');
         localStorage.setItem('email', data.user.email);
         localStorage.setItem('name', data.user.name || '');
@@ -132,16 +128,15 @@ const LoginPage = () => {
         localStorage.setItem('token', data.token); // Simpan tokennya!
 
         console.log('5. Mengarahkan ke halaman /welcome...');
-        navigate('/welcome'); 
+        navigate('/welcome');
       } else {
         console.log('6. Login gagal. Pesan dari server:', data.message);
-        // Menggunakan alert untuk notifikasi ke pengguna
         alert(data.message || 'Email atau password salah');
       }
     } catch (err) {
       console.error('7. Terjadi kesalahan saat fetch atau koneksi:', err);
-      // Menggunakan alert untuk notifikasi ke pengguna
-      alert('Terjadi kesalahan saat login');
+      const serverMessage = err.response?.data?.message;
+      alert(serverMessage || 'Email atau password salah, atau server tidak dapat dihubungi');
     }
   };
 
