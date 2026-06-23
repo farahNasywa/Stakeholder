@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+.about-page {
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  padding-top: 60px; /* Tambahkan jarak dari navbar */
+  margin: 0;
+}
+
+
+.intro-section {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 60px 20px;
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-left-shape {
+  width: 350px;
+  height: 350px;
+  background: linear-gradient(135deg, #3575d1, #6cb0f7);
+  border-radius: 50% 30% 50% 30%;
+  flex-shrink: 0;
+  margin-right: 30px;
+}
+
+.intro-content {
+  flex: 1;
+  min-width: 280px;
+  max-width: 700px;
+}
+
+.intro-content h1 {
+  font-size: 28px;
+  font-weight: 800;
+  color: #2a2e94;
+  margin-bottom: 15px;
+}
+
+.intro-content p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  margin: 20px 0;
+}
+
+.buttons button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  background-color: #2a2e94;
+  color: white;
+  cursor: pointer;
+}
+
+.goal-desc {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.divider-banner {
+  background: #81b6f5;
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+  transform: rotate(-3deg);
+  text-align: center;
+  padding: 16px 0;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.divider-content {
+  overflow: hidden;
+  width: 100%;
+}
+
+.divider-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scrollDivider 20s linear infinite;
+}
+
+.divider-text {
+  display: inline-block;
+  margin: 0 40px;
+  position: relative;
+}
+
+.divider-text::before,
+.divider-text::after {
+  content: '';
+  display: inline-block;
+  width: 30px;
+  height: 4px;
+  background: white;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+@keyframes scrollDivider {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+.team-section {
+  padding: 40px 20px;
+  background-color: #f7faff;
+}
+
+.team-section h2 {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+.team-section h2 span {
+  color: #2a2e94;
+}
+
+.team-carousel {
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 16px;
+  animation: scrollTeam 40s linear infinite;
+}
+
+@keyframes scrollTeam {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.team-card {
+  flex: 0 0 auto;
+  width: 220px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  padding: 16px;
+}
+
+.team-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.team-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.team-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .intro-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .intro-left-shape {
+    margin: 0 0 30px 0;
+  }
+
+  .carousel-track {
+    animation: scrollTeam 25s linear infinite;
+  }
+
+  .team-card {
+    width: 180px;
+  }
+}
+body {
+  background-color: #ffffff;
+}
+
+.about-page {
+  background-color: #ffffff;
+}
