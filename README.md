@@ -44,3 +44,4 @@ Universitas Syiah Kuala
 ## Lisensi
 
 Proyek ini dikembangkan untuk keperluan akademik dan penelitian.
+```
