@@ -35,13 +35,3 @@ Sistem Informasi Stakeholder Mapping berbasis web yang dikembangkan untuk menduk
 * Railway
 ```
 
-## Pengembang
-
-**Farah Nasywa**
-Program Studi Informatika
-Universitas Syiah Kuala
-
-## Lisensi
-
-Proyek ini dikembangkan untuk keperluan akademik dan penelitian.
-```
