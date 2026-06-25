@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { API_BASE_URL } from "../utils/api";
 import Navbar from "../components/Navbar";
 import { FaEye, FaCheck, FaTimes, FaClock } from "react-icons/fa";
 import "./ValidationBPMA.css";
@@ -18,7 +19,7 @@ const ValidationBPMA = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        "/api/stakeholder-change-requests",
+        `${API_BASE_URL}/api/stakeholder-change-requests`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -55,7 +56,7 @@ const ValidationBPMA = () => {
     const token = localStorage.getItem("token");
     try {
       const res = await fetch(
-        `/api/stakeholder-change-requests/${requestId}/review`,
+        `${API_BASE_URL}/api/stakeholder-change-requests/${requestId}/review`,
         {
           method: "PUT",
           headers: {

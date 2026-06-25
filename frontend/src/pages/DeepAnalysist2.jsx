@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api, { API_BASE_URL } from "../utils/api";
 import Navbar from "../components/Navbar";
 
 // IMPORT SERVICE YANG SUDAH DIPISAH
@@ -42,7 +42,7 @@ export default function DeepAnalysist2() {
       setStatusLoading(true);
       const token = localStorage.getItem("token");
       const res = await fetch(
-        `/api/stakeholder-change-requests/latest-status?stakeholderId=${stakeholderId}`,
+        `${API_BASE_URL}/api/stakeholder-change-requests/latest-status?stakeholderId=${stakeholderId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -97,7 +97,7 @@ export default function DeepAnalysist2() {
   // Function untuk refresh stakeholder data (sama seperti di Deep Analysis 1)
   const refreshStakeholderData = useCallback(async () => {
     try {
-      const response = await axios.get(
+      const response = await api.get(
         `/api/stakeholders/${stakeholderId}`
       );
       setStakeholderData(response.data);
@@ -131,7 +131,7 @@ export default function DeepAnalysist2() {
     try {
       setLoading(true);
       if (stakeholderId) {
-        const res = await axios.get(
+        const res = await api.get(
           `/api/stakeholders/${stakeholderId}`
         );
         const data = res.data;
@@ -188,7 +188,7 @@ export default function DeepAnalysist2() {
         setStatusLoading(true);
         const token = localStorage.getItem("token");
         const res = await fetch(
-          `/api/stakeholder-change-requests/latest-status?stakeholderId=${stakeholderData._id}`,
+          `${API_BASE_URL}/api/stakeholder-change-requests/latest-status?stakeholderId=${stakeholderData._id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -253,7 +253,7 @@ export default function DeepAnalysist2() {
           }
         }
 
-        await axios.put(
+        await api.put(
           `/api/stakeholders/${stakeholderId}`,
           updateData
         );

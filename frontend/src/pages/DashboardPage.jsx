@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import axios from "axios";
+import api from "../utils/api";
 import "./DashboardPage.css";
 import Navbar from "../components/Navbar";
 import backgroundImage from "../assets/bg-card.jpg";
@@ -41,7 +41,7 @@ const DashboardPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(API_URL)
+    api.get(API_URL)
       .then((res) => {
         const stakeholders = res.data;
         const catCount = {};
@@ -70,7 +70,7 @@ const DashboardPage = () => {
     }
     setIsLoading(true);
     try {
-      const response = await axios.get(`${API_URL}/search?q=${query}`);
+      const response = await api.get(`${API_URL}/search?q=${query}`);
       setSearchResults(response.data);
       setShowSuggestion(response.data.length > 0);
       setShowStepCard(false);

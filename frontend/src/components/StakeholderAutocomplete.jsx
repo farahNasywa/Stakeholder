@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 
 const StakeholderAutocomplete = ({ 
   value, 
@@ -24,7 +24,7 @@ const StakeholderAutocomplete = ({
 
       setIsLoading(true);
       try {
-        const response = await axios.get(`/api/stakeholders/without-justification?q=${value}`);
+        const response = await api.get(`/api/stakeholders/without-justification?q=${value}`);
         setSuggestions(response.data);
         setShowSuggestions(response.data.length > 0);
       } catch (error) {

@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { API_BASE_URL } from "../utils/api";
 
 const questions = {
   authority: {
@@ -517,7 +518,7 @@ localStorage.setItem(
     }
     console.log('KIRIM PAYLOAD:', payload);
 
-    const res = await fetch(`/sheets/${SHEET_ID}/save`, {
+    const res = await fetch(`${API_BASE_URL}/sheets/${SHEET_ID}/save`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),

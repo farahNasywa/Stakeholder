@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { API_BASE_URL } from "../utils/api";
 import Navbar from "../components/Navbar";
 import { FaEye, FaClock, FaCheck, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -18,7 +19,7 @@ const ValidationKKKS = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        "/api/stakeholder-change-requests/my-requests",
+        `${API_BASE_URL}/api/stakeholder-change-requests/my-requests`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -45,7 +46,7 @@ const ValidationKKKS = () => {
     }
     try {
       const res = await fetch(
-        `/api/stakeholder-change-requests/${id}`,
+        `${API_BASE_URL}/api/stakeholder-change-requests/${id}`,
         {
           method: "DELETE",
           headers: {

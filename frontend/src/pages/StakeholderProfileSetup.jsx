@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import Navbar from "../components/Navbar";
 import StakeholderAutocomplete from "../components/StakeholderAutocomplete";
-import axios from "axios";
+import api from "../utils/api";
 
 export default function StakeholderProfileSetup() {
     const { id } = useParams();
@@ -79,9 +79,9 @@ export default function StakeholderProfileSetup() {
                 setLoading(true);
 
                 const [stakeholderRes, rolesRes, typesRes] = await Promise.all([
-                    id ? axios.get(`/api/stakeholders/${id}`) : Promise.resolve({ data: null }),
-                    axios.get("/api/roles"),
-                    axios.get("/api/stakeholder-types")
+                    id ? api.get(`/api/stakeholders/${id}`) : Promise.resolve({ data: null }),
+                    api.get("/api/roles"),
+                    api.get("/api/stakeholder-types")
                 ]);
 
                 if (stakeholderRes.data) {
@@ -261,7 +261,7 @@ export default function StakeholderProfileSetup() {
             };
 
 
-            const res = await axios.post(
+            const res = await api.post(
                 `/sheets/${spreadsheetId}/save-form`,
                 payload,
                 { headers: { Authorization: `Bearer ${token}` } }
@@ -312,7 +312,7 @@ export default function StakeholderProfileSetup() {
             // Get levels from Google Sheets (opsional, tidak blokir save)
             let sheetsData = {};
             try {
-                const res = await axios.get(`/sheets/1GV3WqppPH0kvUrLA0zrXfqawAsCM5RhnB_Yp_fVE44Q/levels`);
+                const res = await api.get(`/sheets/1GV3WqppPH0kvUrLA0zrXfqawAsCM5RhnB_Yp_fVE44Q/levels`);
                 console.log("Levels dari sheet:", res.data.data);
                 sheetsData = res.data.data || {};
             } catch (sheetsErr) {
@@ -333,13 +333,13 @@ export default function StakeholderProfileSetup() {
 
             let response;
             if (id) {
-                response = await axios.put(
+                response = await api.put(
                     `/api/stakeholders/${id}`,
                     payload,
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
             } else {
-                response = await axios.post(
+                response = await api.post(
                     "/api/stakeholders",
                     payload,
                     { headers: { Authorization: `Bearer ${token}` } }
@@ -352,7 +352,7 @@ export default function StakeholderProfileSetup() {
                 // clearAllLocalStorage();
                 setShowSuccessPopup(true);
                 try {
-                    await axios.post(
+                    await api.post(
                         `/sheets/1GV3WqppPH0kvUrLA0zrXfqawAsCM5RhnB_Yp_fVE44Q/save-justification`,
                         { stakeholderId: response.data._id },
                         { headers: { Authorization: `Bearer ${token}` } }
@@ -393,7 +393,7 @@ export default function StakeholderProfileSetup() {
 
                 // Ambil lagi stakeholder terbaru setelah disimpan
                 const savedForm = JSON.parse(localStorage.getItem("stakeholder-form-data") || "{}");
-                const res = await axios.get(`/api/stakeholders?name=${savedForm.name}`);
+                const res = await api.get(`/api/stakeholders?name=${savedForm.name}`);
                 if (res.data && res.data.length > 0) {
                     stakeholderId = res.data[0]._id;
                     setStakeholder(res.data[0]);
@@ -407,7 +407,7 @@ export default function StakeholderProfileSetup() {
 
             // Google Sheets opsional
             try {
-                await axios.post(
+                await api.post(
                     `/sheets/${spreadsheetId}/save-justification`,
                     { stakeholderId },
                     { headers: { Authorization: `Bearer ${token}` } }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../utils/api";
 
 export default function EngagementJustification() {
   const { id } = useParams();
@@ -26,7 +26,7 @@ export default function EngagementJustification() {
     const fetchStakeholderData = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`/api/stakeholders/${id}`);
+        const response = await api.get(`/api/stakeholders/${id}`);
         setStakeholder(response.data);
       } catch (err) {
         setError("Gagal memuat data stakeholder. Pastikan server API berjalan.");

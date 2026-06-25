@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import axios from "axios";
+import api from "../utils/api";
 import { FaSearch, FaUser, FaFileAlt, FaArrowRight, FaStar, FaBuilding, FaTrash, FaExclamationTriangle } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Toast from "../components/Toast";
@@ -40,7 +40,7 @@ const EngagementJustificationList = () => {
     setIsLoading(true);
     setError("");
     try {
-      const response = await axios.get(`${API_URL}/with-justification`);
+      const response = await api.get(`${API_URL}/with-justification`);
       setStakeholders(response.data);
       setFilteredStakeholders(response.data);
     } catch (error) {
@@ -79,7 +79,7 @@ const EngagementJustificationList = () => {
     
     setIsDeleting(true);
     try {
-      await axios.delete(`${API_URL}/${stakeholderToDelete._id}`);
+      await api.delete(`${API_URL}/${stakeholderToDelete._id}`);
       
       // Update stakeholders list by removing the deleted one
       const updatedStakeholders = stakeholders.filter(s => s._id !== stakeholderToDelete._id);

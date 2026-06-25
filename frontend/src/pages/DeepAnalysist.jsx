@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api, { API_BASE_URL } from "../utils/api";
 import Navbar from "../components/Navbar";
 
 const STRATEGY_DESCRIPTIONS = {
@@ -104,7 +104,7 @@ export default function DeepAnalysist() {
       setStatusLoading(true);
       const token = localStorage.getItem("token");
       const res = await fetch(
-        `/api/stakeholder-change-requests/latest-status?stakeholderId=${stakeholderId}`,
+        `${API_BASE_URL}/api/stakeholder-change-requests/latest-status?stakeholderId=${stakeholderId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -128,7 +128,7 @@ export default function DeepAnalysist() {
     if (!id) return;
     try {
       setLoading(true);
-      const stakeholderRes = await axios.get(
+      const stakeholderRes = await api.get(
         `/api/stakeholders/${id}`
       );
       setStakeholder(stakeholderRes.data || null);
@@ -164,7 +164,7 @@ export default function DeepAnalysist() {
   // Function untuk refresh data setelah ada perubahan
   const refreshStakeholderData = useCallback(async () => {
     try {
-      const response = await axios.get(
+      const response = await api.get(
         `/api/stakeholders/${id}`
       );
       setStakeholder(response.data);
@@ -212,7 +212,7 @@ export default function DeepAnalysist() {
 
    const fetchKeyConcerns = useCallback(async () => {
     try {
-      const keyConcernsRes = await axios.get(
+      const keyConcernsRes = await api.get(
         "/api/key-concerns"
       );
       setKeyConcerns(keyConcernsRes.data || []);
@@ -236,7 +236,7 @@ export default function DeepAnalysist() {
         setStatusLoading(true);
         const token = localStorage.getItem("token");
         const res = await fetch(
-          `/api/stakeholder-change-requests/latest-status?stakeholderId=${stakeholder._id}`,
+          `${API_BASE_URL}/api/stakeholder-change-requests/latest-status?stakeholderId=${stakeholder._id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../components/Navbar";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import api, { API_BASE_URL } from "../utils/api";
 import EditStakeholderModal from "../components/EditStakeholderModal.jsx";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal.jsx";
 import { FaEdit, FaTrash } from "react-icons/fa";
@@ -45,7 +45,7 @@ export default function EngagementPriority() {
         setStatusLoading(true);
         const token = localStorage.getItem("token");
         const res = await fetch(
-          `/api/stakeholder-change-requests/latest-status?stakeholderId=${stakeholder._id}`,
+          `${API_BASE_URL}/api/stakeholder-change-requests/latest-status?stakeholderId=${stakeholder._id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -85,12 +85,12 @@ export default function EngagementPriority() {
           frequenciesRes,
           locationsRes,
         ] = await Promise.all([
-          axios.get(`/api/stakeholders/${id}`),
-          axios.get("/api/roles"),
-          axios.get(`/api/stakeholder-types`),
-          axios.get("/api/engagement-strategies"),
-          axios.get("/api/engagement-frequencies"),
-          axios.get("/api/locations"),
+          api.get(`/api/stakeholders/${id}`),
+          api.get("/api/roles"),
+          api.get(`/api/stakeholder-types`),
+          api.get("/api/engagement-strategies"),
+          api.get("/api/engagement-frequencies"),
+          api.get("/api/locations"),
         ]);
         console.log(stakeholderRes);
         
@@ -185,7 +185,7 @@ export default function EngagementPriority() {
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(
-        `/api/stakeholder-change-requests/${stakeholderId}/request-change`,
+        `${API_BASE_URL}/api/stakeholder-change-requests/${stakeholderId}/request-change`,
         {
           method: "POST",
           headers: {
@@ -213,7 +213,7 @@ export default function EngagementPriority() {
 
   const fetchStakeholderData = async () => {
     try {
-      const response = await axios.get(
+      const response = await api.get(
         `/api/stakeholders/${id}`
       );
       setStakeholder(response.data);
@@ -263,7 +263,7 @@ export default function EngagementPriority() {
       }
 
       // Direct update for admin
-      const response = await axios.put(
+      const response = await api.put(
         `/api/stakeholders/${updatedData._id}`,
         updatedData
       );
@@ -295,7 +295,7 @@ export default function EngagementPriority() {
     const token = localStorage.getItem("token");
     try {
       const response = await fetch(
-        `/api/stakeholder-change-requests/${stakeholderId}/request-deletion`,
+        `${API_BASE_URL}/api/stakeholder-change-requests/${stakeholderId}/request-deletion`,
         {
           method: "POST",
           headers: {
@@ -357,7 +357,7 @@ export default function EngagementPriority() {
       }
 
       // Direct delete for BPMA
-      const response = await axios.delete(
+      const response = await api.delete(
         `/api/stakeholders/${stakeholder._id}`,
         {
           headers: {
