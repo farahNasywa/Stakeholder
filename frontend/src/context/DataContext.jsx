@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 
 export const DataContext = createContext();
 
@@ -12,7 +12,7 @@ export const DataProvider = ({ children }) => {
     const fetchStakeholders = async () => {
       try {
         console.log('DataContext: Fetching stakeholders from API');
-        const response = await axios.get('/api/stakeholders');
+        const response = await api.get('/api/stakeholders');
         const dataWithIds = response.data.map(item => ({
           ...item,
           id: item.id || item._id
