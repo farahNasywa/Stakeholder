@@ -125,6 +125,12 @@
     },
     "loadingText": "Loading validation requests...",
     "headerTitle": "Validation Stakeholder Changes - BPMA",
+    "newStakeholdersTitle": "New Stakeholders Pending Approval",
+    "newStakeholdersEmpty": "No new stakeholders are pending approval.",
+    "approveNewFailedAlert": "Failed to approve the new stakeholder",
+    "rejectNewFailedAlert": "Failed to reject the new stakeholder",
+    "approveNewSuccessAlert": "New stakeholder approved successfully!",
+    "rejectNewSuccessAlert": "New stakeholder rejected.",
     "noPendingTitle": "No Pending Requests",
     "noPendingSubtitle": "All changes have been validated.",
     "table": {
@@ -356,6 +362,61 @@
       "updatedSuccess": "Stakeholder data updated successfully!",
       "redirecting": "Redirecting to stakeholder list..."
     }
+  },
+  "stakeholderForm": {
+    "labels": {
+      "name": "Stakeholder Name",
+      "role": "Role/Position",
+      "province": "Province",
+      "city": "City",
+      "district": "District",
+      "contact": "Contact",
+      "stakeholderType": "Stakeholder Type",
+      "engagementCategory": "Engagement Category",
+      "influence": "Influence",
+      "interest": "Interest",
+      "riskLevel": "Risk Level",
+      "opportunity": "Opportunity",
+      "benefit": "Benefit",
+      "engagementStrategy": "Engagement Strategy",
+      "engagementFrequency": "Engagement Frequency"
+    },
+    "placeholders": {
+      "selectRole": "Select Role",
+      "selectProvince": "Select Province",
+      "selectCity": "Select City",
+      "selectDistrict": "Select District",
+      "contact": "Email or phone number",
+      "selectStakeholderType": "Select Stakeholder Type",
+      "selectCategory": "Select Category",
+      "selectInfluence": "Select Influence",
+      "selectInterest": "Select Interest",
+      "selectRiskLevel": "Select Risk Level",
+      "selectOpportunity": "Select Opportunity",
+      "selectBenefit": "Select Benefit",
+      "selectStrategy": "Select Strategy",
+      "selectFrequency": "Select Frequency"
+    },
+    "categoryOptions": {
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "tertiary": "Tertiary"
+    },
+    "levelOptions": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "currentStatus": "Current Status",
+    "cancel": "Cancel",
+    "processing": "Processing...",
+    "saveChanges": "Save Changes",
+    "submitForApproval": "Submit for Approval",
+    "editTitle": "Edit Stakeholder",
+    "addTitle": "Add New Stakeholder",
+    "addSubtitle": "Complete the details below to add a new Stakeholder to the system",
+    "addButton": "Add Stakeholder",
+    "adding": "Adding Stakeholder..."
   },
   "stakeholderProfileSetup": {
     "loading": "Loading...",

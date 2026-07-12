@@ -234,24 +234,29 @@ h1 {
 /* Language Toggle */
 .lang-toggle {
   display: flex;
-  border-radius: 20px;
-  border: 1px solid #ccc;
-  overflow: hidden;
+  align-items: center;
+  gap: 6px;
 }
 
 .lang-toggle button {
   background: none;
   border: none;
-  padding: 4px 12px;
+  padding: 2px 4px;
   font-weight: 600;
-  color: #265BA1;
+  font-size: 14px;
+  color: #6b7280;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .lang-toggle button.active {
-  background-color: #265BA1;
-  color: white;
+  color: #265BA1;
+}
+
+.lang-toggle-divider {
+  color: #d1d5db;
+  font-size: 14px;
+  user-select: none;
 }
 
 /* Profile */

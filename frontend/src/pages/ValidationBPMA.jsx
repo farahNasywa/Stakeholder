@@ -8,13 +8,74 @@ import "./ValidationBPMA.css";
 const ValidationBPMA = () => {
   const { t } = useTranslation();
   const [requests, setRequests] = useState([]);
+  const [pendingStakeholders, setPendingStakeholders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
 
   useEffect(() => {
     fetchPendingRequests();
+    fetchPendingStakeholders();
   }, []);
+
+  // Stakeholder BARU (belum pernah divalidasi) berstatus "Pending" secara
+  // langsung pada dokumennya, terpisah dari mekanisme change-request yang
+  // dipakai untuk EDIT data Stakeholder yang sudah ada.
+  const fetchPendingStakeholders = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/stakeholders`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) throw new Error("Failed to fetch stakeholders");
+      const data = await res.json();
+      setPendingStakeholders(data.filter((s) => s.status === "Pending"));
+    } catch (error) {
+      console.error("Failed to fetch pending stakeholders:", error);
+    }
+  };
+
+  const handleApproveNew = async (stakeholderId) => {
+    if (!window.confirm(t("validationBpma.confirmApprove"))) return;
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/stakeholders/${stakeholderId}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: "Approved" }),
+      });
+      if (!res.ok) throw new Error("Failed to approve");
+      alert(t("validationBpma.approveNewSuccessAlert"));
+      fetchPendingStakeholders();
+    } catch (error) {
+      console.error("Failed to approve new stakeholder:", error);
+      alert(t("validationBpma.approveNewFailedAlert"));
+    }
+  };
+
+  const handleRejectNew = async (stakeholderId) => {
+    if (!window.confirm(t("validationBpma.confirmApprove"))) return;
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/stakeholders/${stakeholderId}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: "Rejected" }),
+      });
+      if (!res.ok) throw new Error("Failed to reject");
+      alert(t("validationBpma.rejectNewSuccessAlert"));
+      fetchPendingStakeholders();
+    } catch (error) {
+      console.error("Failed to reject new stakeholder:", error);
+      alert(t("validationBpma.rejectNewFailedAlert"));
+    }
+  };
 
   const fetchPendingRequests = async () => {
     const token = localStorage.getItem("token");
@@ -297,6 +358,100 @@ const ValidationBPMA = () => {
                         >
                           <FaTimes /> {t("validationBpma.buttons.reject")}
                         </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
+
+        {/* Stakeholder Baru Menunggu Persetujuan */}
+        <div
+          style={{
+            backgroundColor: "white",
+            borderRadius: "16px",
+            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+            overflow: "hidden",
+            marginTop: "30px",
+          }}
+        >
+          <div
+            style={{
+              background: "linear-gradient(to right, #F59E0B, #D97706)",
+              color: "white",
+              padding: "20px 30px",
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+            }}
+          >
+            <FaClock size={24} />
+            <h2 style={{ margin: 0, fontSize: "24px", fontWeight: "bold" }}>
+              {t("validationBpma.newStakeholdersTitle")}
+            </h2>
+          </div>
+          <div style={{ padding: "30px" }}>
+            {pendingStakeholders.length === 0 ? (
+              <div style={{ textAlign: "center", padding: "40px 20px", color: "#6B7280" }}>
+                <p style={{ margin: 0, fontSize: "14px" }}>
+                  {t("validationBpma.newStakeholdersEmpty")}
+                </p>
+              </div>
+            ) : (
+              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
+                <thead>
+                  <tr style={{ backgroundColor: "#F3F4F6" }}>
+                    <th style={{ padding: "14px 16px", textAlign: "left", color: "#6B7280", fontWeight: "600", width: "35%" }}>{t("validationBpma.table.stakeholder")}</th>
+                    <th style={{ padding: "14px 16px", textAlign: "center", color: "#6B7280", fontWeight: "600", width: "20%" }}>{t("validationBpma.table.status")}</th>
+                    <th style={{ padding: "14px 16px", textAlign: "center", color: "#6B7280", fontWeight: "600", width: "25%" }}>{t("validationBpma.table.submittedDate")}</th>
+                    <th style={{ padding: "14px 16px", textAlign: "center", color: "#6B7280", fontWeight: "600", width: "20%" }}>{t("validationBpma.table.action")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pendingStakeholders.map((sh) => (
+                    <tr key={sh._id} style={{ borderBottom: "1px solid #E5E7EB" }}>
+                      <td style={{ padding: "14px 16px", verticalAlign: "middle", textAlign: "left" }}>
+                        {sh.name}
+                      </td>
+                      <td style={{ padding: "14px 16px", verticalAlign: "middle", textAlign: "center" }}>
+                        {getStatusBadge(sh.status)}
+                      </td>
+                      <td style={{ padding: "14px 16px", verticalAlign: "middle", textAlign: "center" }}>
+                        {new Date(sh.createdAt).toLocaleDateString()}
+                      </td>
+                      <td style={{ padding: "14px 16px", verticalAlign: "middle", textAlign: "center" }}>
+                        <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
+                          <button
+                            onClick={() => handleApproveNew(sh._id)}
+                            style={{
+                              padding: "8px 12px",
+                              border: "none",
+                              borderRadius: "8px",
+                              backgroundColor: "#D1FAE5",
+                              color: "#047857",
+                              cursor: "pointer",
+                              display: "flex", alignItems: "center", gap: 4,
+                            }}
+                          >
+                            <FaCheck /> {t("validationBpma.buttons.approve")}
+                          </button>
+                          <button
+                            onClick={() => handleRejectNew(sh._id)}
+                            style={{
+                              padding: "8px 12px",
+                              border: "none",
+                              borderRadius: "8px",
+                              backgroundColor: "#FEE2E2",
+                              color: "#DC2626",
+                              cursor: "pointer",
+                              display: "flex", alignItems: "center", gap: 4,
+                            }}
+                          >
+                            <FaTimes /> {t("validationBpma.buttons.reject")}
+                          </button>
                         </div>
                       </td>
                     </tr>

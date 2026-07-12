@@ -121,6 +121,7 @@ export const createStakeholder = async (req, res) => {
       engagementRelevance,
       relevance,
       engagementFrequency,
+      engagementStrategy,
       reengagementTriggers,
       status,
       createdBy,
@@ -159,6 +160,18 @@ export const createStakeholder = async (req, res) => {
     let analysis = null;
     let strategyDoc = null;
 
+    // Jika user memilih Engagement Strategy secara eksplisit lewat dropdown
+    // (form Add/Edit Stakeholder), gunakan pilihan itu apa adanya dan JANGAN
+    // ditimpa oleh hasil kalkulasi otomatis.
+    if (engagementStrategy) {
+      strategyDoc = await EngagementStrategy.findById(engagementStrategy);
+      if (!strategyDoc) {
+        return res.status(400).json({
+          message: `Engagement strategy with id ${engagementStrategy} not found`,
+        });
+      }
+    }
+
     if (mappedInfluence && mappedInterest) {
       analysis = calculateCompleteEngagementAnalysis({
         influence: mappedInfluence,
@@ -168,15 +181,18 @@ export const createStakeholder = async (req, res) => {
         benefit: mappedBenefit,
       });
 
-      // 🔹 Find matching strategy in database
-      const engagementStrategyResult = analysis.engagementStrategy.result;
-      strategyDoc = await EngagementStrategy.findOne({
-        strategy: new RegExp(engagementStrategyResult, "i"), // case-insensitive
-      });
-
+      // Hanya isi otomatis dari hasil kalkulasi jika user TIDAK memilih
+      // Engagement Strategy secara manual di form.
       if (!strategyDoc) {
-        console.warn(`Engagement strategy "${engagementStrategyResult}" not found in database`);
-        // Jangan fail, lanjut aja
+        const engagementStrategyResult = analysis.engagementStrategy.result;
+        strategyDoc = await EngagementStrategy.findOne({
+          strategy: new RegExp(engagementStrategyResult, "i"), // case-insensitive
+        });
+
+        if (!strategyDoc) {
+          console.warn(`Engagement strategy "${engagementStrategyResult}" not found in database`);
+          // Jangan fail, lanjut aja
+        }
       }
     }
 
@@ -198,7 +214,7 @@ export const createStakeholder = async (req, res) => {
       engagementFrequency,
       engagementStrategy: strategyDoc?._id,
       reengagementTriggers,
-      status: status || "Approved", // Default to Approved
+      status: status || "Pending", // Data baru selalu Pending sampai divalidasi BPMA
       createdBy,
       updatedBy,
     });

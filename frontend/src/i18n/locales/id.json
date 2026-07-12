@@ -125,6 +125,12 @@
     },
     "loadingText": "Memuat permintaan validasi...",
     "headerTitle": "Validasi Perubahan Stakeholder - BPMA",
+    "newStakeholdersTitle": "Stakeholder Baru Menunggu Persetujuan",
+    "newStakeholdersEmpty": "Tidak ada Stakeholder baru yang menunggu persetujuan.",
+    "approveNewFailedAlert": "Gagal menyetujui Stakeholder baru",
+    "rejectNewFailedAlert": "Gagal menolak Stakeholder baru",
+    "approveNewSuccessAlert": "Stakeholder baru berhasil disetujui!",
+    "rejectNewSuccessAlert": "Stakeholder baru berhasil ditolak.",
     "noPendingTitle": "Tidak Ada Permintaan Tertunda",
     "noPendingSubtitle": "Semua perubahan telah divalidasi.",
     "table": {
@@ -356,6 +362,61 @@
       "updatedSuccess": "Data Stakeholder berhasil diperbarui!",
       "redirecting": "Mengalihkan ke daftar Stakeholder..."
     }
+  },
+  "stakeholderForm": {
+    "labels": {
+      "name": "Nama Stakeholder",
+      "role": "Peran/Jabatan",
+      "province": "Provinsi",
+      "city": "Kota",
+      "district": "Kecamatan",
+      "contact": "Kontak",
+      "stakeholderType": "Tipe Stakeholder",
+      "engagementCategory": "Kategori Keterlibatan",
+      "influence": "Pengaruh",
+      "interest": "Kepentingan",
+      "riskLevel": "Tingkat Risiko",
+      "opportunity": "Peluang",
+      "benefit": "Manfaat",
+      "engagementStrategy": "Strategi Keterlibatan",
+      "engagementFrequency": "Frekuensi Keterlibatan"
+    },
+    "placeholders": {
+      "selectRole": "Pilih Peran",
+      "selectProvince": "Pilih Provinsi",
+      "selectCity": "Pilih Kota",
+      "selectDistrict": "Pilih Kecamatan",
+      "contact": "Email atau nomor telepon",
+      "selectStakeholderType": "Pilih Tipe Stakeholder",
+      "selectCategory": "Pilih Kategori",
+      "selectInfluence": "Pilih Tingkat Pengaruh",
+      "selectInterest": "Pilih Tingkat Kepentingan",
+      "selectRiskLevel": "Pilih Tingkat Risiko",
+      "selectOpportunity": "Pilih Tingkat Peluang",
+      "selectBenefit": "Pilih Tingkat Manfaat",
+      "selectStrategy": "Pilih Strategi",
+      "selectFrequency": "Pilih Frekuensi"
+    },
+    "categoryOptions": {
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "tertiary": "Tertiary"
+    },
+    "levelOptions": {
+      "low": "Rendah",
+      "medium": "Sedang",
+      "high": "Tinggi"
+    },
+    "currentStatus": "Status Saat Ini",
+    "cancel": "Batal",
+    "processing": "Memproses...",
+    "saveChanges": "Simpan Perubahan",
+    "submitForApproval": "Kirim untuk Persetujuan",
+    "editTitle": "Ubah Stakeholder",
+    "addTitle": "Tambah Stakeholder Baru",
+    "addSubtitle": "Lengkapi data di bawah untuk menambahkan Stakeholder baru ke sistem",
+    "addButton": "Tambah Stakeholder",
+    "adding": "Menambahkan Stakeholder..."
   },
   "stakeholderProfileSetup": {
     "loading": "Memuat...",

@@ -211,14 +211,15 @@ const Navbar = () => {
                 className={i18n.language === "id" ? "active" : ""}
                 onClick={() => changeLanguage("id")}
               >
-                🇮🇩 {t("language.indonesian")}
+                ID
               </button>
+              <span className="lang-toggle-divider">|</span>
               <button
                 type="button"
                 className={i18n.language === "en" ? "active" : ""}
                 onClick={() => changeLanguage("en")}
               >
-                🇬🇧 {t("language.english")}
+                EN
               </button>
             </div>
           )}
