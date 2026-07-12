@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Navbar from "../components/Navbar";
 import StakeholderAutocomplete from "../components/StakeholderAutocomplete";
 import api from "../utils/api";
 
 export default function StakeholderProfileSetup() {
+    const { t } = useTranslation();
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -110,7 +112,7 @@ export default function StakeholderProfileSetup() {
                 setRoles(rolesRes.data);
                 setStakeholderTypes(typesRes.data);
             } catch (err) {
-                setError("Gagal memuat data. Pastikan server API berjalan.");
+                setError(t("stakeholderProfileSetup.loadError"));
                 console.error("Error fetching data:", err);
             } finally {
                 setLoading(false);
@@ -277,7 +279,7 @@ export default function StakeholderProfileSetup() {
 
     const handleSaveStakeholder = async () => {
         if (!stakeholderName.trim()) {
-            alert("Nama stakeholder harus diisi!");
+            alert(t("stakeholderProfileSetup.nameRequiredAlert"));
             return;
         }
         try {
@@ -369,9 +371,9 @@ export default function StakeholderProfileSetup() {
             if (error.response) {
                 console.error("Server Error:", error.response.data);
             } else if (error.request) {
-                alert("Network error. Please check your connection and try again.");
+                alert(t("stakeholderProfileSetup.networkErrorAlert"));
             } else {
-                alert("Gagal menyimpan data stakeholder. Silakan coba lagi.");
+                alert(t("stakeholderProfileSetup.saveErrorAlert"));
             }
         } finally {
             setIsUpdatingData(false);
@@ -401,7 +403,7 @@ export default function StakeholderProfileSetup() {
             }
 
             if (!stakeholderId) {
-                alert("Stakeholder tetap tidak ditemukan setelah save!");
+                alert(t("stakeholderProfileSetup.notFoundAlert"));
                 return;
             }
 
@@ -519,7 +521,7 @@ export default function StakeholderProfileSetup() {
                     disabled
                     className="text-white bg-gray-400 rounded-lg p-2 font-medium cursor-not-allowed"
                 >
-                    Complete the Assessment First
+                    {t("stakeholderProfileSetup.clusterStatus.completeAssessmentFirst")}
                 </button>
             );
         }
@@ -532,7 +534,7 @@ export default function StakeholderProfileSetup() {
                     disabled
                     className="text-white bg-gray-400 rounded-lg p-2 font-medium cursor-not-allowed"
                 >
-                    Complete the Assessment First
+                    {t("stakeholderProfileSetup.clusterStatus.completeAssessmentFirst")}
                 </button>
             );
         }
@@ -544,14 +546,14 @@ export default function StakeholderProfileSetup() {
                     to={assessmentPath}
                     className="text-white bg-green-500 rounded-lg p-2 font-medium"
                 >
-                    Complete
+                    {t("stakeholderProfileSetup.clusterStatus.complete")}
                 </Link>
             ) : (
                 <Link
                     to={assessmentPath}
                     className="text-white bg-red-500 rounded-lg p-2 font-medium"
                 >
-                    Complate the Assessment!
+                    {t("stakeholderProfileSetup.clusterStatus.completeThisAssessment")}
                 </Link>
             );
         }
@@ -566,7 +568,7 @@ export default function StakeholderProfileSetup() {
                     disabled
                     className="text-white bg-gray-400 rounded-lg p-2 font-medium cursor-not-allowed"
                 >
-                    Complate the previous Assessment
+                    {t("stakeholderProfileSetup.clusterStatus.completePreviousAssessment")}
                 </button>
             );
         }
@@ -577,14 +579,14 @@ export default function StakeholderProfileSetup() {
                 to={assessmentPath}
                 className="text-white bg-green-500 rounded-lg p-2 font-medium"
             >
-                Complete
+                {t("stakeholderProfileSetup.clusterStatus.complete")}
             </Link>
         ) : (
             <Link
                 to={assessmentPath}
                 className="text-white bg-red-500 rounded-lg p-2 font-medium"
             >
-                Complate the Assessment!
+                {t("stakeholderProfileSetup.clusterStatus.completeThisAssessment")}
             </Link>
         );
     };
@@ -637,7 +639,7 @@ export default function StakeholderProfileSetup() {
         return (
             <div className="min-h-screen flex justify-center items-center text-2xl text-gray-600">
                 <Navbar />
-                Loading...
+                {t("stakeholderProfileSetup.loading")}
             </div>
         );
     }
@@ -652,41 +654,41 @@ export default function StakeholderProfileSetup() {
                     className="flex-1 m-5 p-4 rounded-xl flex flex-col gap-5"
                 >
                     <div>
-                        <h1 className="text-white font-bold text-xl">Overview</h1>
+                        <h1 className="text-white font-bold text-xl">{t("stakeholderProfileSetup.overviewTitle")}</h1>
                         <p className="text-white">
-                            Collects and manages stakeholder information to support effective coordination, communication, and decision making.
+                            {t("stakeholderProfileSetup.overviewText")}
                         </p>
                     </div>
 
                     <div>
-                        <h1 className="text-white font-bold text-xl">Objective</h1>
+                        <h1 className="text-white font-bold text-xl">{t("stakeholderProfileSetup.objectiveTitle")}</h1>
                         <p className="text-white">
-                            The objective of this page is to collect and manage stakeholder profile information systematically to support effective communication, personalized services, and data-driven decision making.
+                            {t("stakeholderProfileSetup.objectiveText")}
                         </p>
                     </div>
 
                     <div>
                         <h1 className="mb-2 text-white font-semibold text-lg">
-                            Stakeholder Name
-                            {isFormSaved && <span className="ml-2 text-green-400 text-sm">(Saved ✓)</span>}
+                            {t("stakeholderProfileSetup.nameLabel")}
+                            {isFormSaved && <span className="ml-2 text-green-400 text-sm">{t("stakeholderProfileSetup.savedBadge")}</span>}
                         </h1>
                         <StakeholderAutocomplete
                             value={stakeholderName}
                             onChange={handleNameChange}
                             onSelect={handleStakeholderSelect}
-                            placeholder="Type Name of Stakeholder (suggestions will appear)"
+                            placeholder={t("stakeholderProfileSetup.namePlaceholder")}
                         />
                     </div>
 
                     <div>
-                        <h1 className="mb-2 font-semibold text-lg text-white">Stakeholder Roles</h1>
+                        <h1 className="mb-2 font-semibold text-lg text-white">{t("stakeholderProfileSetup.rolesLabel")}</h1>
                         <div className="relative w-full">
                             <select
                                 className="w-full h-12 rounded-lg border-2 border-gray-400 shadow px-4 font-semibold text-black bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400"
                                 value={selectedRole}
                                 onChange={handleRoleChange}
                             >
-                                <option value="">Select Role</option>
+                                <option value="">{t("stakeholderProfileSetup.selectRole")}</option>
                                 {roles.map((role) => (
                                     <option key={role._id} value={role._id}>
                                         {role.name}
@@ -710,14 +712,14 @@ export default function StakeholderProfileSetup() {
                         </div>
                     </div>
                     <div>
-                        <h1 className="mb-2 font-semibold text-lg text-white">Stakeholder Type</h1>
+                        <h1 className="mb-2 font-semibold text-lg text-white">{t("stakeholderProfileSetup.typeLabel")}</h1>
                         <div className="relative w-full">
                             <select
                                 className="w-full h-12 rounded-lg border-2 border-gray-400 shadow px-4 font-semibold text-black bg-white"
                                 value={selectedType}
                                 onChange={handleTypeChange}
                             >
-                                <option value="">Select Stakeholder Type</option>
+                                <option value="">{t("stakeholderProfileSetup.selectType")}</option>
                                 {stakeholderTypes.map((type) => (
                                     <option key={type._id} value={type._id}>
                                         {type.name}
@@ -729,7 +731,7 @@ export default function StakeholderProfileSetup() {
 
                     <div className="flex gap-5">
                         <div className="flex-1">
-                            <h1 className="mb-2 font-semibold text-lg text-white">Category</h1>
+                            <h1 className="mb-2 font-semibold text-lg text-white">{t("stakeholderProfileSetup.categoryLabel")}</h1>
                             <input
                                 type="text"
                                 value={selectedCategory || ""}
@@ -744,7 +746,7 @@ export default function StakeholderProfileSetup() {
                         </div>
 
                         <div className="flex-1">
-                            <h1 className="mb-2 font-semibold text-lg text-white">Relevance</h1>
+                            <h1 className="mb-2 font-semibold text-lg text-white">{t("stakeholderProfileSetup.relevanceLabel")}</h1>
                             <input
                                 type="text"
                                 value={selectedRelevance || ""}
@@ -773,8 +775,8 @@ export default function StakeholderProfileSetup() {
                             }`}
                     >
                         {isUpdatingData
-                            ? "Menyimpan..."
-                            : (id ? "Update Stakeholder Profile" : "Complete the Assessment First")}
+                            ? t("stakeholderProfileSetup.saving")
+                            : (id ? t("stakeholderProfileSetup.updateProfileButton") : t("stakeholderProfileSetup.completeAssessmentFirstButton"))}
                     </button>
 
                     <div className="mt-2">
@@ -786,7 +788,7 @@ export default function StakeholderProfileSetup() {
                                 : 'bg-green-600 hover:bg-green-700 shadow-lg'
                                 }`}
                         >
-                            {isUpdatingData ? "Processing..." : "Save All Data & Assessment"}
+                            {isUpdatingData ? t("stakeholderProfileSetup.processing") : t("stakeholderProfileSetup.saveAllButton")}
                         </button>
                     </div>
                 </section>
@@ -797,59 +799,59 @@ export default function StakeholderProfileSetup() {
                     className="flex-1 m-5 p-4 rounded-xl flex flex-col gap-4"
                 >
                     <div className="mb-4">
-                        <h2 className="text-white font-bold text-xl mb-2">Assessment Clusters</h2>
+                        <h2 className="text-white font-bold text-xl mb-2">{t("stakeholderProfileSetup.assessmentClustersTitle")}</h2>
                         <p className="text-white text-sm">
-                            Complete all assessments to generate stakeholder justification
+                            {t("stakeholderProfileSetup.assessmentClustersSubtitle")}
                         </p>
                     </div>
 
                     <div className="flex justify-between items-center bg-white rounded-lg shadow p-3">
-                        <span className="font-medium">Authority / Legitimasi</span>
+                        <span className="font-medium">{t("stakeholderProfileSetup.clusters.authority")}</span>
                         {renderLink("authority", "/cluster/authority", 0)}
                     </div>
 
                     <div className="flex justify-between items-center bg-white rounded-lg shadow p-3">
-                        <span className="font-medium">Influence on Project</span>
+                        <span className="font-medium">{t("stakeholderProfileSetup.clusters.influence")}</span>
                         {renderLink("influence", "/cluster/influence", 1)}
                     </div>
 
                     <div className="flex justify-between items-center bg-white rounded-lg shadow p-3">
-                        <span className="font-medium">Interest</span>
+                        <span className="font-medium">{t("stakeholderProfileSetup.clusters.interest")}</span>
                         {renderLink("interest", "/cluster/interest", 2)}
                     </div>
 
                     <div className="flex justify-between items-center bg-white rounded-lg shadow p-3">
-                        <span className="font-medium">Impacted by Project</span>
+                        <span className="font-medium">{t("stakeholderProfileSetup.clusters.impactedbyproject")}</span>
                         {renderLink("impactedbyproject", "/cluster/impactedbyproject", 3)}
                     </div>
 
                     <div className="flex justify-between items-center bg-white rounded-lg shadow p-3">
-                        <span className="font-medium">Dependency</span>
+                        <span className="font-medium">{t("stakeholderProfileSetup.clusters.dependency")}</span>
                         {renderLink("dependency", "/cluster/dependency", 4)}
                     </div>
 
                     <div className="flex justify-between items-center bg-white rounded-lg shadow p-3">
-                        <span className="font-medium">Alignment / Policy Role</span>
+                        <span className="font-medium">{t("stakeholderProfileSetup.clusters.alignment")}</span>
                         {renderLink("alignment", "/cluster/alignment", 5)}
                     </div>
 
                     <div className="flex justify-between items-center bg-white rounded-lg shadow p-3">
-                        <span className="font-medium">Opportunity Potential</span>
+                        <span className="font-medium">{t("stakeholderProfileSetup.clusters.opportunity")}</span>
                         {renderLink("opportunity", "/cluster/opportunity", 6)}
                     </div>
 
                     <div className="flex justify-between items-center bg-white rounded-lg shadow p-3">
-                        <span className="font-medium">Risk Potential</span>
+                        <span className="font-medium">{t("stakeholderProfileSetup.clusters.risk")}</span>
                         {renderLink("risk", "/cluster/risk", 7)}
                     </div>
 
                     <div className="flex justify-between items-center bg-white rounded-lg shadow p-3">
-                        <span className="font-medium">Benefit Analysis</span>
+                        <span className="font-medium">{t("stakeholderProfileSetup.clusters.benefit")}</span>
                         {renderLink("benefit", "/cluster/benefit", 8)}
                     </div>
 
                     <div className="flex justify-between items-center bg-white rounded-lg shadow p-3">
-                        <span className="font-medium">Category</span>
+                        <span className="font-medium">{t("stakeholderProfileSetup.clusters.category")}</span>
                         {renderLink("category", "/cluster/category", 9)}
                     </div>
 
@@ -862,7 +864,7 @@ export default function StakeholderProfileSetup() {
                                 : 'bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-lg transform hover:scale-105'
                                 }`}
                         >
-                            {isUpdatingData ? "Processing..." : "🎉 Complete & Generate Justification"}
+                            {isUpdatingData ? t("stakeholderProfileSetup.processing") : t("stakeholderProfileSetup.generateJustificationButton")}
                         </button>
                     )}
 
@@ -878,11 +880,11 @@ export default function StakeholderProfileSetup() {
                             className="w-12 h-12"
                         />
                         <div className="text-center">
-                            <h3 className="text-lg font-bold text-gray-800">Success!</h3>
+                            <h3 className="text-lg font-bold text-gray-800">{t("stakeholderProfileSetup.successPopup.title")}</h3>
                             <p className="text-gray-600">
                                 {allAssessmentsCompleted
-                                    ? "Clustering results saved! All data cleared. Redirecting to justification page..."
-                                    : "Stakeholder data saved to database, Google Sheets, and localStorage!"
+                                    ? t("stakeholderProfileSetup.successPopup.clusteringDone")
+                                    : t("stakeholderProfileSetup.successPopup.profileSaved")
                                 }
                             </p>
                         </div>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import api from "../utils/api";
 
 export default function EngagementJustification() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const [stakeholder, setStakeholder] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -29,7 +31,7 @@ export default function EngagementJustification() {
         const response = await api.get(`/api/stakeholders/${id}`);
         setStakeholder(response.data);
       } catch (err) {
-        setError("Gagal memuat data stakeholder. Pastikan server API berjalan.");
+        setError(t("engagementJustification.loadError"));
         console.error("Error fetching stakeholder data:", err);
       } finally {
         setLoading(false);
@@ -39,7 +41,7 @@ export default function EngagementJustification() {
     if (id) {
       fetchStakeholderData();
     } else {
-      setError("ID Stakeholder tidak ditemukan di URL.");
+      setError(t("engagementJustification.idMissingError"));
       setLoading(false);
     }
   }, [id]);
@@ -48,7 +50,7 @@ export default function EngagementJustification() {
     return (
       <div style={{ minHeight: "100vh", display: "flex", justifyContent: "center", alignItems: "center", fontSize: 20, color: "#374151" }}>
         <Navbar />
-        Loading data stakeholder...
+        {t("engagementJustification.loadingText")}
       </div>
     );
   }
@@ -57,8 +59,8 @@ export default function EngagementJustification() {
     return (
       <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", color: "#dc2626", textAlign: "center", padding: 20 }}>
         <Navbar />
-        <div>Error: {error}</div>
-        <p style={{ fontSize: 14, marginTop: 8 }}>Pastikan server backend berjalan dan ID stakeholder valid.</p>
+        <div>{t("engagementJustification.errorPrefix")}: {error}</div>
+        <p style={{ fontSize: 14, marginTop: 8 }}>{t("engagementJustification.errorHint")}</p>
       </div>
     );
   }
@@ -67,7 +69,7 @@ export default function EngagementJustification() {
     return (
       <div style={{ minHeight: "100vh", display: "flex", justifyContent: "center", alignItems: "center", fontSize: 20, color: "#374151" }}>
         <Navbar />
-        Data stakeholder tidak ditemukan.
+        {t("engagementJustification.notFound")}
       </div>
     );
   }
@@ -142,7 +144,9 @@ export default function EngagementJustification() {
                       textAlign: "left",
                     }}
                   >
-                    <span style={{ fontWeight: 600, color: "#6b7280", fontSize: 13 }}>{label}</span>
+                    <span style={{ fontWeight: 600, color: "#6b7280", fontSize: 13 }}>
+                      {label === "Location" ? t("engagementJustification.fields.location") : t("engagementJustification.fields.contact")}
+                    </span>
                     <div style={{ marginTop: 2, color: "#1E3A8A", fontSize: 14 }}>
                       {label === "Location"
                         ? stakeholder.location?.city || stakeholder.location?.province?.name || "-"
@@ -154,10 +158,10 @@ export default function EngagementJustification() {
             </div>
 
             {[
-              { label: "Stakeholder Type", value: stakeholder.stakeholderType?.name || "-", bg: "#E9F7DF", color: "#065f46" },
-              { label: "Engagement Category", value: stakeholder.engagementCategory || "-", bg: "#D2E3EB", color: "#374151" },
-              { label: "Influence Level", value: cap(stakeholder.influenceLevel), bg: "#EDE9FE", color: "#4C1D95" },
-              { label: "Interest Level", value: cap(stakeholder.interestLevel), bg: "#FEF3C7", color: "#78350F" },
+              { label: t("engagementJustification.fields.stakeholderType"), value: stakeholder.stakeholderType?.name || "-", bg: "#E9F7DF", color: "#065f46" },
+              { label: t("engagementJustification.fields.engagementCategory"), value: stakeholder.engagementCategory || "-", bg: "#D2E3EB", color: "#374151" },
+              { label: t("engagementJustification.fields.influenceLevel"), value: cap(stakeholder.influenceLevel), bg: "#EDE9FE", color: "#4C1D95" },
+              { label: t("engagementJustification.fields.interestLevel"), value: cap(stakeholder.interestLevel), bg: "#FEF3C7", color: "#78350F" },
             ].map(({ label, value, bg, color }) => (
               <div
                 key={label}
@@ -224,7 +228,7 @@ export default function EngagementJustification() {
                 flexShrink: 0,
               }}
             >
-              Engagement Justification
+              {t("engagementJustification.title")}
               <img
                 src="/icons/Information.png"
                 alt="Info"
@@ -281,7 +285,7 @@ export default function EngagementJustification() {
                   </ol>
                 ) : (
                   <div style={{ textAlign: "center", color: "#6b7280", fontStyle: "italic", marginTop: 40, fontSize: 15 }}>
-                    Justification data tidak tersedia untuk stakeholder ini.
+                    {t("engagementJustification.noData")}
                   </div>
                 )}
               </div>

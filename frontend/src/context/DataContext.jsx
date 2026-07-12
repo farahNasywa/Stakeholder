@@ -37,11 +37,41 @@ export const DataProvider = ({ children }) => {
     );
   };
 
+  // Menambahkan Stakeholder baru ke API, lalu langsung memasukkan hasilnya
+  // ke dalam state global. Karena DashboardPage, Search Bar, dan halaman lain
+  // membaca stakeholderData dari context ini, Stakeholder baru otomatis
+  // muncul di seluruh aplikasi tanpa perlu refresh browser.
+  const addStakeholder = async (payload) => {
+    const response = await api.post('/api/stakeholders', payload);
+    const created = response.data?.stakeholder || response.data?.data || response.data;
+    const normalized = {
+      ...created,
+      id: created.id || created._id,
+    };
+    setStakeholderData(prevData => [normalized, ...prevData]);
+    return normalized;
+  };
+
+  const refreshStakeholders = async () => {
+    try {
+      const response = await api.get('/api/stakeholders');
+      const dataWithIds = response.data.map(item => ({
+        ...item,
+        id: item.id || item._id,
+      }));
+      setStakeholderData(dataWithIds);
+    } catch (err) {
+      console.error('DataContext: Failed to refresh stakeholders:', err);
+    }
+  };
+
   const contextValue = {
     stakeholderData,
     loading,
     error,
     updateStakeholderStatus,
+    addStakeholder,
+    refreshStakeholders,
   };
 
   return (

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import api from "../utils/api";
 import "./DashboardPage.css";
 import Navbar from "../components/Navbar";
@@ -30,6 +31,7 @@ const CATEGORY_COLORS = { Primary: "#3B82F6", Secondary: "#10B981", Tertiary: "#
 const STATUS_COLORS = { Approved: "#22C55E", Pending: "#EAB308", Rejected: "#EF4444" };
 
 const DashboardPage = () => {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showSuggestion, setShowSuggestion] = useState(false);
@@ -124,47 +126,47 @@ const DashboardPage = () => {
   const handleDeepAnalysisClick = () => navigate('/stakeholderprofilesetup');
   const handleJustificationClick = () => navigate('/engagementjustification');
 
-  const needsId = () => alert("Silakan cari dan pilih stakeholder terlebih dahulu.");
+  const needsId = () => alert(t("dashboard.search.needsSelection"));
 
   const steps = [
     {
-      title: "Open Main Dashboard",
-      desc: "Make sure you are on the main page of the application.",
+      title: t("dashboard.steps.step1Title"),
+      desc: t("dashboard.steps.step1Desc"),
       onClick: () => navigate('/dashboard'),
     },
     {
-      title: "Search Name",
-      desc: "Type the name you want to find in the search bar.",
+      title: t("dashboard.steps.step2Title"),
+      desc: t("dashboard.steps.step2Desc"),
       onClick: () => searchInputRef.current?.focus(),
     },
     {
-      title: "Check Engagement Priority",
-      desc: "Decide whether to proceed to Engagement Priority or not.",
+      title: t("dashboard.steps.step3Title"),
+      desc: t("dashboard.steps.step3Desc"),
       onClick: needsId,
     },
     {
-      title: "Go to Engagement Priority",
-      desc: "If needed, click YES to open the Engagement Priority Page and click Next.",
+      title: t("dashboard.steps.step4Title"),
+      desc: t("dashboard.steps.step4Desc"),
       onClick: needsId,
     },
     {
-      title: "Stakeholder Setup Profile",
-      desc: "If not needed, stay on the Deep Analysis Page to view detailed data.",
+      title: t("dashboard.steps.step5Title"),
+      desc: t("dashboard.steps.step5Desc"),
       onClick: needsId,
     },
     {
-      title: "Engagement Justification",
-      desc: "Delivers smart insights on whether and why to engage each stakeholder.",
+      title: t("dashboard.steps.step6Title"),
+      desc: t("dashboard.steps.step6Desc"),
       onClick: needsId,
     },
     {
-      title: "Fill in Data",
-      desc: "Select a form, then fill in the Reengagement Status & Trigger Reason.",
+      title: t("dashboard.steps.step7Title"),
+      desc: t("dashboard.steps.step7Desc"),
       onClick: needsId,
     },
     {
-      title: "Restart to Beginning",
-      desc: "Click the three-line (menu) button in the top corner, select Main Dashboard to start over.",
+      title: t("dashboard.steps.step8Title"),
+      desc: t("dashboard.steps.step8Desc"),
       onClick: () => navigate('/dashboard'),
     },
   ];
@@ -196,13 +198,13 @@ const DashboardPage = () => {
                 <img src={handshakeImage} alt="Handshake" className="stakeholder-image" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               <div className="stakeholder-content" style={{ flex: 1, padding: 0, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                <h2 className="stakeholder-title">Stakeholders</h2>
-                <h3 className="stakeholder-subtitle">Managed Engagement Protocol</h3>
+                <h2 className="stakeholder-title">{t("dashboard.card.title")}</h2>
+                <h3 className="stakeholder-subtitle">{t("dashboard.card.subtitle")}</h3>
                 <p className="stakeholder-desc">
-                  Stakeholders who are moderately influential or affected by the project.
+                  {t("dashboard.card.desc")}
                 </p>
                 <p className="stakeholder-text">
-                  They may support, regulate, advise, or observe, but do not hold decisive power or experience direct impact on core operations. Engagement is routine or issue-based, not continuous.
+                  {t("dashboard.card.text")}
                 </p>
               </div>
             </div>
@@ -217,7 +219,7 @@ const DashboardPage = () => {
             >
               <img
                 src={petaBpma}
-                alt="Peta Wilayah Kewenangan BPMA"
+                alt={t("dashboard.card.mapAlt")}
                 style={{ width: "100%", height: "auto", display: "block" }}
               />
             </a>
@@ -244,11 +246,11 @@ const DashboardPage = () => {
                   }}
                 >
                   <h4 style={{ textAlign: "center", fontWeight: "bold", color: "#fff", marginBottom: 2, fontSize: 12 }}>
-                    Stakeholder Overview
+                    {t("dashboard.card.overviewTitle")}
                   </h4>
                   <div style={{ display: "flex", gap: 8, flex: 1 }}>
                     <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-                      <p style={{ textAlign: "center", fontSize: 10, color: "rgba(255,255,255,0.8)", marginBottom: 0 }}>By Category</p>
+                      <p style={{ textAlign: "center", fontSize: 10, color: "rgba(255,255,255,0.8)", marginBottom: 0 }}>{t("dashboard.card.byCategory")}</p>
                       <ResponsiveContainer width="100%" height={150}>
                         <PieChart>
                           <Pie
@@ -272,7 +274,7 @@ const DashboardPage = () => {
                       </ResponsiveContainer>
                     </div>
                     <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-                      <p style={{ textAlign: "center", fontSize: 10, color: "rgba(255,255,255,0.8)", marginBottom: 0 }}>By Status</p>
+                      <p style={{ textAlign: "center", fontSize: 10, color: "rgba(255,255,255,0.8)", marginBottom: 0 }}>{t("dashboard.card.byStatus")}</p>
                       <ResponsiveContainer width="100%" height={150}>
                         <PieChart>
                           <Pie
@@ -313,7 +315,7 @@ const DashboardPage = () => {
                 ref={searchInputRef}
                 type="text"
                 className="search-input"
-                placeholder="Search Stakeholder By Name . . ."
+                placeholder={t("dashboard.search.placeholder")}
                 value={searchTerm}
                 onChange={handleSearchChange}
               />
@@ -322,7 +324,7 @@ const DashboardPage = () => {
               </div>
             </div>
 
-            {isLoading && <div className="loading-message">Mencari data...</div>}
+            {isLoading && <div className="loading-message">{t("dashboard.search.loading")}</div>}
 
             {showSuggestion && searchResults.length > 0 && !selectedStakeholder && (
               <div className="search-dropdown">
@@ -333,6 +335,7 @@ const DashboardPage = () => {
                     onClick={() => handleStakeholderClick(stakeholder)}
                   >
                     {stakeholder.name} ({stakeholder.role ? stakeholder.role.name : "-"})
+                    {/* i18n: nama role diambil langsung dari database, tidak diterjemahkan */}
                   </div>
                 ))}
               </div>
@@ -341,10 +344,10 @@ const DashboardPage = () => {
             {selectedStakeholder && (
               <div className="search-result-table">
                 <div className="header-row">
-                  <div>Stakeholder Name</div>
-                  <div>Role</div>
-                  <div>Stakeholder Type</div>
-                  <div>Category</div>
+                  <div>{t("dashboard.search.tableName")}</div>
+                  <div>{t("dashboard.search.tableRole")}</div>
+                  <div>{t("dashboard.search.tableType")}</div>
+                  <div>{t("dashboard.search.tableCategory")}</div>
                 </div>
                 <div key={selectedStakeholder._id} className="data-row">
                   <div>{selectedStakeholder.name}</div>
@@ -353,17 +356,17 @@ const DashboardPage = () => {
                   <div>{selectedStakeholder.engagementCategory}</div>
                 </div>
                 <div className="engagement-popup">
-                  <div className="popup-title">Continue to Engagement Priority</div>
+                  <div className="popup-title">{t("dashboard.search.continuePrompt")}</div>
                   <div className="popup-buttons">
-                    <button className="yes-btn" onClick={handleContinueClick}>Yes</button>
-                    <button className="no-btn" onClick={handleNoClick}>NO</button>
+                    <button className="yes-btn" onClick={handleContinueClick}>{t("dashboard.search.yes")}</button>
+                    <button className="no-btn" onClick={handleNoClick}>{t("dashboard.search.no")}</button>
                   </div>
                 </div>
               </div>
             )}
 
             {showSuggestion && searchResults.length === 0 && !isLoading && (
-              <div className="no-results-message">Tidak ada data yang ditemukan.</div>
+              <div className="no-results-message">{t("dashboard.search.noResults")}</div>
             )}
           </div>
 
@@ -371,7 +374,7 @@ const DashboardPage = () => {
             <div className="step-card" style={{ flex: 1, minHeight: 0 }}>
               <div className="step-header">
                 <h3 className="flex flex-row justify-center items-center">
-                  <FaTasks style={{ marginRight: 8 }} /> User Navigation Steps
+                  <FaTasks style={{ marginRight: 8 }} /> {t("dashboard.steps.sectionTitle")}
                 </h3>
               </div>
               <div className="step-grid">

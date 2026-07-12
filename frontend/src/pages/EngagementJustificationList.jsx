@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import api from "../utils/api";
 import { FaSearch, FaUser, FaFileAlt, FaArrowRight, FaStar, FaBuilding, FaTrash, FaExclamationTriangle } from "react-icons/fa";
 import Navbar from "../components/Navbar";
@@ -9,6 +10,7 @@ import Toast from "../components/Toast";
 const API_URL = "/api/stakeholders";
 
 const EngagementJustificationList = () => {
+  const { t } = useTranslation();
   const [stakeholders, setStakeholders] = useState([]);
   const [filteredStakeholders, setFilteredStakeholders] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -45,7 +47,7 @@ const EngagementJustificationList = () => {
       setFilteredStakeholders(response.data);
     } catch (error) {
       console.error("Error fetching stakeholders with justification:", error);
-      setError("Failed to load stakeholders with justification");
+      setError(t("engagementJustificationList.loadError"));
     } finally {
       setIsLoading(false);
     }
@@ -88,7 +90,7 @@ const EngagementJustificationList = () => {
       
       setToast({
         show: true,
-        message: `${stakeholderToDelete.name} has been successfully deleted`,
+        message: t("engagementJustificationList.deletedSuccess", { name: stakeholderToDelete.name }),
         type: "success"
       });
       
@@ -98,7 +100,7 @@ const EngagementJustificationList = () => {
       console.error("Error deleting stakeholder:", error);
       setToast({
         show: true,
-        message: "Failed to delete stakeholder. Please try again.",
+        message: t("engagementJustificationList.deleteFailedAlert"),
         type: "error"
       });
     } finally {
@@ -148,7 +150,7 @@ const EngagementJustificationList = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              Engagement Justifications
+              {t("engagementJustificationList.headerTitle")}
             </motion.h1>
             
             <motion.p 
@@ -157,7 +159,7 @@ const EngagementJustificationList = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              Comprehensive stakeholder engagement analysis with detailed justifications and strategic recommendations
+              {t("engagementJustificationList.headerSubtitle")}
             </motion.p>
           </div>
 
@@ -175,7 +177,7 @@ const EngagementJustificationList = () => {
               <input
                 type="text"
                 className="w-full pl-12 pr-6 py-4 text-lg border-2 border-border rounded-2xl bg-card text-foreground placeholder-muted-foreground focus:outline-none focus:ring-4 focus:ring-primary/20 focus:border-primary transition-all duration-300 shadow-md hover:shadow-lg"
-                placeholder="Search stakeholders or roles..."
+                placeholder={t("engagementJustificationList.searchPlaceholder")}
                 value={searchTerm}
                 onChange={handleSearchChange}
               />
@@ -192,7 +194,7 @@ const EngagementJustificationList = () => {
                 <div className="w-12 h-12 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
                 <div className="absolute inset-0 w-12 h-12 border-4 border-transparent border-r-primary/60 rounded-full animate-spin animate-pulse"></div>
               </div>
-              <span className="mt-4 text-lg font-medium text-muted-foreground">Loading stakeholders...</span>
+              <span className="mt-4 text-lg font-medium text-muted-foreground">{t("engagementJustificationList.loadingText")}</span>
             </div>
           )}
 
@@ -248,7 +250,7 @@ const EngagementJustificationList = () => {
                           <div className="flex items-center mt-1">
                             <FaBuilding className="text-sm text-muted-foreground mr-2" />
                             <p className="text-sm font-medium text-muted-foreground">
-                              {stakeholder.role ? stakeholder.role.name : "No Role"}
+                              {stakeholder.role ? stakeholder.role.name : t("engagementJustificationList.noRole")}
                             </p>
                           </div>
                         </div>
@@ -259,7 +261,7 @@ const EngagementJustificationList = () => {
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={(e) => handleDeleteClick(e, stakeholder)}
-                          title="Delete stakeholder"
+                          title={t("engagementJustificationList.deleteTooltip")}
                         >
                           <FaTrash className="text-sm group-hover/delete:animate-bounce" />
                         </motion.button>
@@ -278,14 +280,14 @@ const EngagementJustificationList = () => {
                       <div className="flex items-center justify-between">
                         <div className="inline-flex items-center px-3 py-1.5 bg-secondary rounded-lg border border-border/50">
                           <span className="text-xs font-semibold text-secondary-foreground">
-                            {stakeholder.stakeholderType ? stakeholder.stakeholderType.name : "N/A"}
+                            {stakeholder.stakeholderType ? stakeholder.stakeholderType.name : t("engagementJustificationList.notAvailable")}
                           </span>
                         </div>
                         
                         {/* Engagement Category Badge */}
                         <div className={`inline-flex items-center px-3 py-1.5 rounded-lg border text-xs font-semibold ${getEngagementBadgeColor(stakeholder.engagementCategory)}`}>
                           <FaStar className="mr-1.5" size={10} />
-                          {stakeholder.engagementCategory || "N/A"}
+                          {stakeholder.engagementCategory || t("engagementJustificationList.notAvailable")}
                         </div>
                       </div>
 
@@ -297,7 +299,7 @@ const EngagementJustificationList = () => {
                               <div className="w-8 h-8 bg-primary/15 rounded-lg flex items-center justify-center mr-3">
                                 <FaFileAlt className="text-primary text-sm" />
                               </div>
-                              <span className="text-sm font-semibold text-foreground">Justification Preview</span>
+                              <span className="text-sm font-semibold text-foreground">{t("engagementJustificationList.justificationPreviewLabel")}</span>
                             </div>
                             <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
                               {stakeholder.justificationPreview}
@@ -306,7 +308,7 @@ const EngagementJustificationList = () => {
                             {/* Read more indicator */}
                             <div className="flex items-center justify-end mt-3">
                               <span className="text-xs text-primary font-medium group-hover:underline">
-                                Read full analysis →
+                                {t("engagementJustificationList.readFullAnalysis")}
                               </span>
                             </div>
                           </div>
@@ -329,12 +331,12 @@ const EngagementJustificationList = () => {
                       <FaFileAlt className="text-3xl text-primary-foreground" />
                     </div>
                     <h3 className="text-2xl font-poppins font-bold text-foreground mb-3">
-                      {searchTerm ? "No matching stakeholders found" : "No justifications available"}
+                      {searchTerm ? t("engagementJustificationList.noMatchTitle") : t("engagementJustificationList.noJustificationsTitle")}
                     </h3>
                     <p className="text-lg text-muted-foreground max-w-md mx-auto">
                       {searchTerm 
-                        ? "Try adjusting your search criteria to find relevant stakeholders" 
-                        : "Start by creating engagement justifications for your stakeholders"
+                        ? t("engagementJustificationList.noMatchSubtitle")
+                        : t("engagementJustificationList.noJustificationsSubtitle")
                       }
                     </p>
                   </motion.div>
@@ -360,11 +362,11 @@ const EngagementJustificationList = () => {
               </div>
               
               <h3 className="text-2xl font-bold text-foreground mb-4">
-                Confirm Deletion
+                {t("engagementJustificationList.deleteModal.title")}
               </h3>
               
               <p className="text-muted-foreground mb-2">
-                Are you sure you want to delete stakeholder:
+                {t("engagementJustificationList.deleteModal.confirmText")}
               </p>
               
               <p className="text-lg font-semibold text-foreground mb-6">
@@ -372,7 +374,7 @@ const EngagementJustificationList = () => {
               </p>
               
               <p className="text-sm text-muted-foreground mb-8">
-                This action cannot be undone. All associated data will be permanently removed.
+                {t("engagementJustificationList.deleteModal.warning")}
               </p>
               
               <div className="flex gap-4">
@@ -381,7 +383,7 @@ const EngagementJustificationList = () => {
                   disabled={isDeleting}
                   className="flex-1 px-6 py-3 bg-muted text-muted-foreground rounded-xl font-semibold hover:bg-border hover:text-foreground transition-colors duration-200 disabled:opacity-50"
                 >
-                  Cancel
+                  {t("engagementJustificationList.deleteModal.cancel")}
                 </button>
                 <button
                   onClick={handleDeleteConfirm}
@@ -391,10 +393,10 @@ const EngagementJustificationList = () => {
                   {isDeleting ? (
                     <>
                       <div className="w-4 h-4 border-2 border-destructive-foreground/30 border-t-destructive-foreground rounded-full animate-spin mr-2"></div>
-                      Deleting...
+                      {t("engagementJustificationList.deleteModal.deleting")}
                     </>
                   ) : (
-                    "Delete"
+                    t("engagementJustificationList.deleteModal.delete")
                   )}
                 </button>
               </div>

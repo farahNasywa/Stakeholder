@@ -5,6 +5,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import LoginPage from './pages/LoginPage';
 import WelcomePage from './pages/WelcomePage';
 import DashboardPage from './pages/DashboardPage';
+import AddStakeholderPage from './pages/AddStakeholderPage';
 import AboutPage from './pages/AboutPage';
 import FAQPage from './pages/FAQPage';
 import StakeholderProfileSetup from './pages/StakeholderProfileSetup';
@@ -48,6 +49,12 @@ function App() {
                 </ProtectedRoute>
               } />
               
+              <Route path="/add-stakeholder" element={
+                <ProtectedRoute>
+                  <PageTransition><AddStakeholderPage /></PageTransition>
+                </ProtectedRoute>
+              } />
+
               <Route path="/about" element={
                 <ProtectedRoute>
                   <PageTransition><AboutPage /></PageTransition>

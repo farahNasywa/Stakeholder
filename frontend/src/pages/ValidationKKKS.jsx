@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { API_BASE_URL } from "../utils/api";
 import Navbar from "../components/Navbar";
+import { useTranslation } from "react-i18next";
 import { FaEye, FaClock, FaCheck, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ValidationKKKS = () => {
+  const { t } = useTranslation();
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedRequest, setSelectedRequest] = useState(null);
@@ -33,7 +35,7 @@ const ValidationKKKS = () => {
       setRequests(data);
     } catch (error) {
       console.error("Failed to fetch change requests:", error);
-      alert("Gagal mengambil data change request");
+      alert(t("validationKkks.fetchFailedAlert"));
     } finally {
       setLoading(false);
     }
@@ -41,7 +43,7 @@ const ValidationKKKS = () => {
 
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
-    if (!window.confirm("Apakah Anda yakin ingin menghapus validation ini?")) {
+    if (!window.confirm(t("validationKkks.confirmDelete"))) {
       return;
     }
     try {
@@ -57,19 +59,19 @@ const ValidationKKKS = () => {
       if (!res.ok) {
         throw new Error("Failed to delete validation request");
       }
-      alert("Validation request berhasil dihapus");
+      alert(t("validationKkks.deletedAlert"));
       fetchPendingRequests(); // refresh data setelah hapus
     } catch (error) {
       console.error("Failed to delete validation request:", error);
-      alert("Gagal menghapus validation request");
+      alert(t("validationKkks.deleteFailedAlert"));
     }
   };
 
   const getStatusBadge = (status) => {
     const styles = {
-      Pending: { bg: "#FEF3C7", color: "#92400E", text: "Pending" },
-      Approved: { bg: "#D1FAE5", color: "#047857", text: "Approved" },
-      Rejected: { bg: "#FEE2E2", color: "#DC2626", text: "Rejected" },
+      Pending: { bg: "#FEF3C7", color: "#92400E", text: t("validationKkks.status.pending") },
+      Approved: { bg: "#D1FAE5", color: "#047857", text: t("validationKkks.status.approved") },
+      Rejected: { bg: "#FEE2E2", color: "#DC2626", text: t("validationKkks.status.rejected") },
     };
     const style = styles[status] || styles.Pending;
 
@@ -136,7 +138,7 @@ const ValidationKKKS = () => {
             paddingTop: "80px",
           }}
         >
-          Loading validation requests...
+          {t("validationKkks.loadingText")}
         </div>
       </>
     );
@@ -173,7 +175,7 @@ const ValidationKKKS = () => {
           >
             <FaClock size={24} />
             <h2 style={{ margin: 0, fontSize: "24px", fontWeight: "bold" }}>
-              My Change Request History
+              {t("validationKkks.headerTitle")}
             </h2>
           </div>
           <div style={{ padding: "30px" }}>
@@ -190,10 +192,10 @@ const ValidationKKKS = () => {
                   style={{ marginBottom: "16px", opacity: 0.3 }}
                 />
                 <h3 style={{ margin: "0 0 8px 0", fontSize: "18px" }}>
-                  No Change Requests Submitted
+                  {t("validationKkks.noRequestsTitle")}
                 </h3>
                 <p style={{ margin: 0, fontSize: "14px" }}>
-                  Anda belum mengajukan perubahan stakeholder.
+                  {t("validationKkks.noRequestsSubtitle")}
                 </p>
               </div>
             ) : (
@@ -209,7 +211,7 @@ const ValidationKKKS = () => {
                         fontWeight: "600",
                       }}
                     >
-                      Stakeholder
+                      {t("validationKkks.table.stakeholder")}
                     </th>
                     <th
                       style={{
@@ -220,7 +222,7 @@ const ValidationKKKS = () => {
                         fontWeight: "600",
                       }}
                     >
-                      Change Submitted On
+                      {t("validationKkks.table.submittedOn")}
                     </th>
                     <th
                       style={{
@@ -231,7 +233,7 @@ const ValidationKKKS = () => {
                         fontWeight: "600",
                       }}
                     >
-                      Status
+                      {t("validationKkks.table.status")}
                     </th>
                     <th
                       style={{
@@ -242,7 +244,7 @@ const ValidationKKKS = () => {
                         fontWeight: "600",
                       }}
                     >
-                      Actions
+                      {t("validationKkks.table.actions")}
                     </th>
                   </tr>
                 </thead>
@@ -295,7 +297,7 @@ const ValidationKKKS = () => {
                             }}
                             aria-label={`Show detail for request ${req._id}`}
                           >
-                            <FaEye /> Detail
+                            <FaEye /> {t("validationKkks.buttons.detail")}
                           </button>
                           <button
                             onClick={() => handleDelete(req._id)}
@@ -314,7 +316,7 @@ const ValidationKKKS = () => {
                             }}
                             aria-label={`Delete request ${req._id}`}
                           >
-                            <FaTrash /> Hapus
+                            <FaTrash /> {t("validationKkks.buttons.delete")}
                           </button>
                         </div>
                       </td>
@@ -363,7 +365,7 @@ const ValidationKKKS = () => {
           >
             <button
               onClick={() => setShowDetailModal(false)}
-              aria-label="Close modal"
+              aria-label={t("validationKkks.modal.closeLabel")}
               style={{
                 position: "absolute",
                 top: 12,
@@ -378,7 +380,7 @@ const ValidationKKKS = () => {
               &times;
             </button>
             <h2 style={{ marginTop: 0, fontWeight: "bold", fontSize: 22 }}>
-              Detail Perubahan Data
+              {t("validationKkks.modal.title")}
             </h2>
 
             <div style={{ display: "flex", gap: 24 }}>
@@ -391,74 +393,74 @@ const ValidationKKKS = () => {
                   }}
                 >
                   {renderComparisonRow(
-                    "Nama",
+                    t("validationKkks.modal.fields.name"),
                     selectedRequest.stakeholderId.name,
                     selectedRequest.changeData.name
                   )}
                   {renderComparisonRow(
-                    "Role",
+                    t("validationKkks.modal.fields.role"),
                     selectedRequest.stakeholderId?.role?.name,
                     selectedRequest.changeData.role?.name
                   )}
                   {renderComparisonRow(
-                    "Tipe Stakeholder",
+                    t("validationKkks.modal.fields.stakeholderType"),
                     selectedRequest.stakeholderId?.stakeholderType?.name,
                     selectedRequest.changeData.stakeholderType?.name
                   )}
                   {renderComparisonRow(
-                    "Kategori Engagement",
+                    t("validationKkks.modal.fields.engagementCategory"),
                     selectedRequest.stakeholderId.engagementCategory,
                     selectedRequest.changeData.engagementCategory
                   )}
                   {renderComparisonRow(
-                    "Lokasi",
+                    t("validationKkks.modal.fields.location"),
                     selectedRequest.stakeholderId.location?.city,
                     selectedRequest.changeData.location?.city
                   )}
                   {renderComparisonRow(
-                    "Kontak",
+                    t("validationKkks.modal.fields.contact"),
                     selectedRequest.stakeholderId.contact,
                     selectedRequest.changeData.contact
                   )}
                   {renderComparisonRow(
-                    "Frekuensi Engagement",
+                    t("validationKkks.modal.fields.engagementFrequency"),
                     selectedRequest.stakeholderId.engagementFrequency?.name,
                     selectedRequest.changeData.engagementFrequency?.name
                   )}
                   {renderComparisonRow(
-                    "Strategi Engagement",
+                    t("validationKkks.modal.fields.engagementStrategy"),
                     selectedRequest.stakeholderId.engagementStrategy?.strategy,
                     selectedRequest.changeData.engagementStrategy?.strategy
                   )}
                   {renderComparisonRow(
-                    "Focal Point",
+                    t("validationKkks.modal.fields.focalPoint"),
                     selectedRequest.stakeholderId.focalPoints
                       ?.recommendedFocalpoint,
                     selectedRequest.changeData.focalPoints
                       ?.recommendedFocalpoint
                   )}
                   {renderComparisonRow(
-                    "Tingkat Pengaruh",
+                    t("validationKkks.modal.fields.influenceLevel"),
                     cap(selectedRequest.stakeholderId.influence),
                     cap(selectedRequest.changeData.influence)
                   )}
                   {renderComparisonRow(
-                    "Tingkat Minat",
+                    t("validationKkks.modal.fields.interestLevel"),
                     cap(selectedRequest.stakeholderId.interest),
                     cap(selectedRequest.changeData.interest)
                   )}
                   {renderComparisonRow(
-                    "Tingkat Risiko",
+                    t("validationKkks.modal.fields.riskLevel"),
                     cap(selectedRequest.stakeholderId.riskLevel),
                     cap(selectedRequest.changeData.riskLevel)
                   )}
                   {renderComparisonRow(
-                    "Tingkat Peluang",
+                    t("validationKkks.modal.fields.opportunityLevel"),
                     cap(selectedRequest.stakeholderId.opportunity),
                     cap(selectedRequest.changeData.opportunity)
                   )}
                   {renderComparisonRow(
-                    "Tingkat Manfaat",
+                    t("validationKkks.modal.fields.benefitLevel"),
                     cap(selectedRequest.stakeholderId.benefit),
                     cap(selectedRequest.changeData.benefit)
                   )}

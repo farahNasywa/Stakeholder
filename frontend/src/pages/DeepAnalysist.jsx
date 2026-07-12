@@ -1,18 +1,22 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import api, { API_BASE_URL } from "../utils/api";
 import Navbar from "../components/Navbar";
+import i18n from "../i18n/config.js";
 
-const STRATEGY_DESCRIPTIONS = {
-  "Key Player": "Actively engage and involve in key decisions. Collaborate closely to align goals, maintain strong relationships, and ensure continued support.",
-  "Keep Satisfied": "Manage expectations and ensure interests are addressed. Provide updates on major developments without over-involving in day-to-day activities.",
-  "Keep Informed": "Provide regular communication and project updates. Ensure they are aware of developments relevant to their area of interest.",
-  "Monitor": "Track engagement needs and monitor for changes. Minimal engagement required — respond promptly if concerns arise.",
-  "Check Input": "Verify stakeholder level data to generate an accurate engagement strategy recommendation.",
-};
+// Deskripsi strategi mengikuti bahasa aktif (ID/EN) melalui i18n.
+const getStrategyDescriptions = () => ({
+  "Key Player": i18n.t("deepAnalysist.strategyDescriptions.keyPlayer"),
+  "Keep Satisfied": i18n.t("deepAnalysist.strategyDescriptions.keepSatisfied"),
+  "Keep Informed": i18n.t("deepAnalysist.strategyDescriptions.keepInformed"),
+  "Monitor": i18n.t("deepAnalysist.strategyDescriptions.monitor"),
+  "Check Input": i18n.t("deepAnalysist.strategyDescriptions.checkInput"),
+});
 
 // A simple modal component for the success message
 const SuccessModal = ({ isOpen, onClose, message }) => {
+  const { t } = useTranslation();
   if (!isOpen) return null;
 
   return (
@@ -75,7 +79,7 @@ const SuccessModal = ({ isOpen, onClose, message }) => {
             fontSize: "16px",
           }}
         >
-          OK
+          {t("deepAnalysist.modalOk")}
         </button>
       </div>
     </div>
@@ -83,6 +87,7 @@ const SuccessModal = ({ isOpen, onClose, message }) => {
 };
 
 export default function DeepAnalysist() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const [stakeholder, setStakeholder] = useState(null);
@@ -137,7 +142,7 @@ export default function DeepAnalysist() {
       await fetchValidationStatus(id);
     } catch (err) {
       setError(
-        "Gagal memuat data. Pastikan server API berjalan di  dan ID valid."
+        t("deepAnalysist.loadError")
       );
       console.error("Error fetching data for Deep Analysist:", err);
     } finally {
@@ -151,12 +156,12 @@ export default function DeepAnalysist() {
     if (validationStatus && validationStatus !== stakeholder?.status) {
       return validationStatus;
     }
-    return stakeholder?.status || "Unknown";
+    return stakeholder?.status || t("deepAnalysist.unknown");
   };
 
   const getStatusDisplay = () => {
     if (statusLoading) {
-      return "Loading...";
+      return t("deepAnalysist.loading");
     }
     return getCurrentStatus();
   };
@@ -192,7 +197,7 @@ export default function DeepAnalysist() {
     if (id) {
       fetchStakeholderData();
     } else {
-      setError("ID Stakeholder tidak ditemukan di URL.");
+      setError(t("deepAnalysist.idMissingError"));
       setLoading(false);
     }
   }, [id, fetchStakeholderData]);
@@ -267,7 +272,7 @@ export default function DeepAnalysist() {
   // Fungsi navigasi yang sudah diperbaiki
   const handleTriggerClick = () => {
     if (!selectedKeyConcern) {
-      setSuccessMessage("Pilih Key Concern terlebih dahulu untuk melanjutkan.");
+      setSuccessMessage(t("deepAnalysist.selectKeyConcernFirst"));
       setShowSuccessModal(true);
       return;
     }
@@ -280,7 +285,7 @@ export default function DeepAnalysist() {
       backUp: stakeholder.focalPoints?.backupSupportFocalpoint || "-",
       engagementStrategy:
          stakeholder.engagementStrategy?.strategy ||
-  STRATEGY_DESCRIPTIONS[stakeholder.calculatedEngagementStrategy] ||
+  getStrategyDescriptions()[stakeholder.calculatedEngagementStrategy] ||
   stakeholder.calculatedEngagementStrategy,
       engagementFrequency: stakeholder.engagementFrequency?.name || "-",
       triggerReason: `Moderate concerns; Medium Risk;\nPlan timely engagement.`, // Placeholder
@@ -305,7 +310,7 @@ export default function DeepAnalysist() {
           color: "#374151",
         }}
       >
-        Memuat data analisis mendalam...
+        {t("deepAnalysist.loadingText")}
       </div>
     );
   }
@@ -328,7 +333,7 @@ export default function DeepAnalysist() {
       >
         Error: {error}
         <p style={{ fontSize: "16px", marginTop: "10px" }}>
-          Pastikan server backend berjalan dan ID stakeholder valid.
+          {t("deepAnalysist.errorHint")}
         </p>
       </div>
     );
@@ -347,7 +352,7 @@ export default function DeepAnalysist() {
           color: "#374151",
         }}
       >
-        Data stakeholder tidak ditemukan untuk analisis mendalam.
+        {t("deepAnalysist.notFound")}
       </div>
     );
   }
@@ -363,7 +368,7 @@ export default function DeepAnalysist() {
     if (location?.province?.name) {
       parts.push(location.province.name);
     }
-    return parts.join(", ") || "[Lokasi Tidak Tersedia]";
+    return parts.join(", ") || t("deepAnalysist.locationUnavailable");
   };
 
   return (
@@ -449,7 +454,7 @@ export default function DeepAnalysist() {
                         boxSizing: "border-box",
                       }}
                     >
-                      {label}:{" "}
+                      {label === "Location" ? t("deepAnalysist.fields.location") : t("deepAnalysist.fields.contact")}:{" "}
                       {label === "Location"
                         ? formatLocation(stakeholder.location)
                         : stakeholder.contact || "-"}
@@ -478,7 +483,7 @@ export default function DeepAnalysist() {
                   }}
                 >
                   <div style={{ fontWeight: "bold", color: "#000" }}>
-                    Stakeholder Type:
+                    {t("deepAnalysist.fields.stakeholderType")}:
                   </div>
                   <div
                     style={{
@@ -516,7 +521,7 @@ export default function DeepAnalysist() {
                   }}
                 >
                   <div style={{ fontWeight: "bold", color: "#000" }}>
-                    Engagement Category:
+                    {t("deepAnalysist.fields.engagementCategory")}:
                   </div>
                   <div
                     style={{
@@ -560,7 +565,7 @@ export default function DeepAnalysist() {
                       fontSize: "20px",
                     }}
                   >
-                    Status:
+                    {t("deepAnalysist.fields.status")}:
                   </div>
                   <div
                     style={{
@@ -582,13 +587,13 @@ export default function DeepAnalysist() {
 
               {/* Semua baris pakai struktur sama: flex:1 label + flex:2 value */}
               {[
-                { label: "Engagement Strategy", value: stakeholder.calculatedEngagementStrategy || "-", valueStyle: { background: "linear-gradient(to right, #F5FFEF 0%, #B8F580 100%)", color: "black" } },
-                { label: "Influence", value: stakeholder.influenceLevel ? stakeholder.influenceLevel.charAt(0).toUpperCase() + stakeholder.influenceLevel.slice(1) : "-" },
-                { label: "Interest", value: stakeholder.interestLevel ? stakeholder.interestLevel.charAt(0).toUpperCase() + stakeholder.interestLevel.slice(1) : "-" },
-                { label: "Engagement Intensity", value: stakeholder.engagementIntensity ? stakeholder.engagementIntensity.charAt(0).toUpperCase() + stakeholder.engagementIntensity.slice(1) : "-", valueStyle: { backgroundColor: getIntensityColor(stakeholder.engagementIntensity), color: "black" } },
-                { label: "Risk Level", value: stakeholder.riskLevel ? stakeholder.riskLevel.charAt(0).toUpperCase() + stakeholder.riskLevel.slice(1) : "-" },
-                { label: "Opportunity", value: stakeholder.opportunityLevel ? stakeholder.opportunityLevel.charAt(0).toUpperCase() + stakeholder.opportunityLevel.slice(1) : "-" },
-                { label: "Benefit", value: stakeholder.benefitLevel ? stakeholder.benefitLevel.charAt(0).toUpperCase() + stakeholder.benefitLevel.slice(1) : "-" },
+                { label: t("deepAnalysist.fields.engagementStrategy"), value: stakeholder.calculatedEngagementStrategy || "-", valueStyle: { background: "linear-gradient(to right, #F5FFEF 0%, #B8F580 100%)", color: "black" } },
+                { label: t("deepAnalysist.fields.influence"), value: stakeholder.influenceLevel ? stakeholder.influenceLevel.charAt(0).toUpperCase() + stakeholder.influenceLevel.slice(1) : "-" },
+                { label: t("deepAnalysist.fields.interest"), value: stakeholder.interestLevel ? stakeholder.interestLevel.charAt(0).toUpperCase() + stakeholder.interestLevel.slice(1) : "-" },
+                { label: t("deepAnalysist.fields.engagementIntensity"), value: stakeholder.engagementIntensity ? stakeholder.engagementIntensity.charAt(0).toUpperCase() + stakeholder.engagementIntensity.slice(1) : "-", valueStyle: { backgroundColor: getIntensityColor(stakeholder.engagementIntensity), color: "black" } },
+                { label: t("deepAnalysist.fields.riskLevel"), value: stakeholder.riskLevel ? stakeholder.riskLevel.charAt(0).toUpperCase() + stakeholder.riskLevel.slice(1) : "-" },
+                { label: t("deepAnalysist.fields.opportunity"), value: stakeholder.opportunityLevel ? stakeholder.opportunityLevel.charAt(0).toUpperCase() + stakeholder.opportunityLevel.slice(1) : "-" },
+                { label: t("deepAnalysist.fields.benefit"), value: stakeholder.benefitLevel ? stakeholder.benefitLevel.charAt(0).toUpperCase() + stakeholder.benefitLevel.slice(1) : "-" },
               ].map(({ label, value, valueStyle }) => (
                 <div key={label} style={{ display: "flex", gap: 12, marginBottom: 6, marginTop: 6 }}>
                   <div style={{ flex: 1, padding: 3, borderRadius: 16, background: "linear-gradient(to right, #6C6DCB, #204C92)" }}>
@@ -626,7 +631,7 @@ export default function DeepAnalysist() {
                     textAlign: "center",
                   }}
                 >
-                  Final Recommendation
+                  {t("deepAnalysist.finalRecommendationTitle")}
                 </h3>
                 <div
                   style={{
@@ -638,10 +643,10 @@ export default function DeepAnalysist() {
                 >
                   {[
                     stakeholder.finalRecommendations?.engagementPriority ||
-                      "Maintain engagement & respond to issues",
+                      t("deepAnalysist.defaultRecommendationMain"),
                     stakeholder.finalRecommendations
                       ?.engagementPriorityDescription ||
-                      "Continue communication and respond to stakeholder feedback and concerns as needed.",
+                      t("deepAnalysist.defaultRecommendationDetail"),
                   ].map((text, index) => (
                     <div
                       key={index}
@@ -711,7 +716,7 @@ export default function DeepAnalysist() {
                     border: "1px solid #1976D2",
                   }}
                 >
-                  Key Concern
+                  {t("deepAnalysist.keyConcernLabel")}
                 </div>
 
                 {/* Trigger Dropdown */}
@@ -736,7 +741,7 @@ export default function DeepAnalysist() {
                   <span style={{ flex: 1 }}>
                     {selectedKeyConcern
                       ? selectedKeyConcern.key_concern
-                      : "Please choose the key concern to be processed"}
+                      : t("deepAnalysist.keyConcernPlaceholder")}
                   </span>
                   <svg
                     width="16"
@@ -816,7 +821,7 @@ export default function DeepAnalysist() {
                     border: "1px solid #1976D2",
                   }}
                 >
-                  Engagement Strategy
+                  {t("deepAnalysist.engagementStrategyLabel")}
                 </div>
                 <div
                   style={{
@@ -830,7 +835,7 @@ export default function DeepAnalysist() {
                   }}
                 >
                   {stakeholder.engagementStrategy?.strategy ||
-                    STRATEGY_DESCRIPTIONS[stakeholder.calculatedEngagementStrategy] ||
+                    getStrategyDescriptions()[stakeholder.calculatedEngagementStrategy] ||
                     "-"}
                 </div>
               </div>
@@ -853,11 +858,11 @@ export default function DeepAnalysist() {
                 }}
               >
                 <div style={{ fontWeight: "bold", fontSize: 17 }}>
-                  Engagement Frequency
+                  {t("deepAnalysist.engagementFrequencyLabel")}
                 </div>
                 <div style={{ textAlign: "center" }}>
                   <div style={{ fontWeight: "bold", fontSize: 17 }}>
-                    {stakeholder.engagementFrequency?.name || "Monthly"}
+                    {stakeholder.engagementFrequency?.name || t("deepAnalysist.defaultFrequency")}
                   </div>
                   <div
                     style={{
@@ -867,7 +872,7 @@ export default function DeepAnalysist() {
                     }}
                   >
                     {stakeholder.engagementFrequency?.description ||
-                      "H-M/ Standard for local government, impacted communities, and labor groups."}
+                      t("deepAnalysist.defaultFrequencyDescription")}
                   </div>
                 </div>
               </div>
@@ -891,7 +896,7 @@ export default function DeepAnalysist() {
                   margin: "0 0 20px 0",
                 }}
               >
-                Recommendation
+                {t("deepAnalysist.recommendationTitle")}
               </h3>
 
               <div
@@ -925,7 +930,7 @@ export default function DeepAnalysist() {
                       textAlign: "center",
                     }}
                   >
-                    Mitigation Plan
+                    {t("deepAnalysist.mitigationPlanTitle")}
                   </h4>
                   <div
                     style={{
@@ -939,7 +944,7 @@ export default function DeepAnalysist() {
                     }}
                   >
                     {selectedKeyConcern?.mitigation_plan ||
-                      "Pilih Key Concern untuk melihat Mitigation Plan"}
+                      t("deepAnalysist.mitigationPlanPlaceholder")}
                   </div>
                 </div>
 
@@ -966,7 +971,7 @@ export default function DeepAnalysist() {
                       textAlign: "center",
                     }}
                   >
-                    Objective
+                    {t("deepAnalysist.objectiveTitle")}
                   </h4>
                   <div
                     style={{
@@ -979,7 +984,7 @@ export default function DeepAnalysist() {
                     }}
                   >
                     {selectedKeyConcern?.objective ||
-                      "Pilih Key Concern untuk melihat Objective"}
+                      t("deepAnalysist.objectivePlaceholder")}
                   </div>
                 </div>
               </div>
@@ -1014,7 +1019,7 @@ export default function DeepAnalysist() {
                       textAlign: "center",
                     }}
                   >
-                    Focal Point
+                    {t("deepAnalysist.focalPointTitle")}
                   </h4>
                   <div
                     style={{
@@ -1029,7 +1034,7 @@ export default function DeepAnalysist() {
                   >
                     {selectedKeyConcern
                       ? stakeholder.focalPoints?.recommendedFocalpoint || "-"
-                      : "Pilih Key Concern untuk melihat Focal Point"}
+                      : t("deepAnalysist.focalPointPlaceholder")}
                   </div>
                 </div>
 
@@ -1056,7 +1061,7 @@ export default function DeepAnalysist() {
                       textAlign: "center",
                     }}
                   >
-                    Back up
+                    {t("deepAnalysist.backupTitle")}
                   </h4>
                   <div
                     style={{
@@ -1071,7 +1076,7 @@ export default function DeepAnalysist() {
                   >
                     {selectedKeyConcern
                       ? stakeholder.focalPoints?.backupSupportFocalpoint || "-"
-                      : "Pilih Key Concern untuk melihat Backup Support"}
+                      : t("deepAnalysist.backupPlaceholder")}
                   </div>
                 </div>
               </div>
@@ -1105,11 +1110,11 @@ export default function DeepAnalysist() {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <span style={{ fontSize: 18, fontWeight: "bold" }}>Trigger</span>
+              <span style={{ fontSize: 18, fontWeight: "bold" }}>{t("deepAnalysist.triggerButton")}</span>
               <img src="/icons/nextyellow.png" alt="next" style={{ width: 36, height: 28 }} />
             </div>
             <span style={{ fontSize: 12, fontWeight: "normal", opacity: 0.9 }}>
-              Click the trigger button if re-engagement is needed
+              {t("deepAnalysist.triggerButtonSubtitle")}
             </span>
           </button>
         </div>

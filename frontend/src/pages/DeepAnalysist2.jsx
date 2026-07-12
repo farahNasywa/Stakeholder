@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import api, { API_BASE_URL } from "../utils/api";
 import Navbar from "../components/Navbar";
 
@@ -7,6 +8,7 @@ import Navbar from "../components/Navbar";
 import { calculateCompleteReengagementAnalysis } from "../services/reengagementCalculationService.js";
 
 export default function DeepAnalysist2() {
+  const { t } = useTranslation();
   const { id: stakeholderId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -84,12 +86,12 @@ export default function DeepAnalysist2() {
     if (validationStatus && validationStatus !== stakeholderData?.status) {
       return validationStatus;
     }
-    return stakeholderData?.status || "Unknown";
+    return stakeholderData?.status || t("deepAnalysist2.unknown");
   };
 
   const getStatusDisplay = () => {
     if (statusLoading) {
-      return "Loading...";
+      return t("deepAnalysist2.loading");
     }
     return getCurrentStatus();
   };
@@ -156,7 +158,7 @@ export default function DeepAnalysist2() {
       }
     } catch (err) {
       setError(
-        "Gagal memuat data stakeholder. Pastikan server API berjalan di ."
+        t("deepAnalysist2.loadError")
       );
     } finally {
       setLoading(false);
@@ -272,16 +274,17 @@ export default function DeepAnalysist2() {
       } catch (err) {
         // Jika error di kalkulasi, reset UI
         if (err.message && !err.response) {
-          setReengagementStatus("Error dalam perhitungan");
+          setReengagementStatus(t("deepAnalysist2.calcErrorStatus"));
           setReengagementReason(
-            "Terjadi kesalahan dalam perhitungan: " + err.message
+            `${t("deepAnalysist2.calcErrorReasonPrefix")} ${err.message}`
           );
-          setError("Error dalam perhitungan: " + err.message);
+          setError(`${t("deepAnalysist2.calcErrorStatus")}: ${err.message}`);
         } else {
           // Jika error di backend tapi kalkulasi berhasil, tetap tampilkan hasil
           setError(
-            "Hasil sudah ditampilkan, tapi gagal simpan ke database: " +
-              (err.response?.data?.message || err.message)
+            `${t("deepAnalysist2.saveFailedPrefix")} ${
+              err.response?.data?.message || err.message
+            }`
           );
         }
       }
@@ -304,7 +307,7 @@ export default function DeepAnalysist2() {
     if (location?.province?.name) {
       parts.push(location.province.name);
     }
-    return parts.join(", ") || "[Lokasi Tidak Tersedia]";
+    return parts.join(", ") || t("deepAnalysist2.locationUnavailable");
   };
 
   // Komponen untuk styling
@@ -367,7 +370,7 @@ export default function DeepAnalysist2() {
           color: "#374151",
         }}
       >
-        Loading stakeholder data...
+        {t("deepAnalysist2.loadingStakeholder")}
       </div>
     );
   }
@@ -382,7 +385,7 @@ export default function DeepAnalysist2() {
           color: "red",
         }}
       >
-        ⚠️ Error: {error}
+        ⚠️ {t("deepAnalysist2.errorPrefix")}: {error}
       </div>
     );
   }
@@ -397,19 +400,18 @@ export default function DeepAnalysist2() {
           color: "red",
         }}
       >
-        ⚠️ Data rekomendasi tidak ditemukan. Silakan kembali ke halaman
-        sebelumnya dan pilih "Key Concern" lalu klik "Trigger".
+        {t("deepAnalysist2.recommendationNotFound")}
       </div>
     );
   }
 
   const flagLabels = {
-    "Issue Escalation Flag": "issueEscalation",
-    "Project Milestone Impact": "projectMilestoneImpact",
-    "Stakeholder Request": "stakeholderRequest",
-    "Regulatory Change Alert": "regulatoryChangeAlert",
-    "Media Coverage Alert": "mediaCoverageAlert",
-    "Community Feedback Received": "communityFeedbackReceived",
+    [t("deepAnalysist2.flagLabels.issueEscalation")]: "issueEscalation",
+    [t("deepAnalysist2.flagLabels.projectMilestoneImpact")]: "projectMilestoneImpact",
+    [t("deepAnalysist2.flagLabels.stakeholderRequest")]: "stakeholderRequest",
+    [t("deepAnalysist2.flagLabels.regulatoryChangeAlert")]: "regulatoryChangeAlert",
+    [t("deepAnalysist2.flagLabels.mediaCoverageAlert")]: "mediaCoverageAlert",
+    [t("deepAnalysist2.flagLabels.communityFeedbackReceived")]: "communityFeedbackReceived",
   };
 
   return (
@@ -478,7 +480,7 @@ export default function DeepAnalysist2() {
                   />
                   <div>
                     <h2 style={{ fontSize: 26, fontWeight: "bold", color: "white", margin: "0 0 4px 0", textAlign: "left" }}>
-                      {stakeholderData?.name || "N/A"}
+                      {stakeholderData?.name || t("deepAnalysist2.notAvailable")}
                     </h2>
                     <p style={{ fontSize: 14, color: "white", margin: 0, opacity: 0.85, textAlign: "left" }}>
                       {stakeholderData?.role?.name || ""}
@@ -509,7 +511,7 @@ export default function DeepAnalysist2() {
                         boxSizing: "border-box",
                       }}
                     >
-                      {label}:{" "}
+                      {label === "Location" ? t("deepAnalysist2.fields.location") : t("deepAnalysist2.fields.contact")}:{" "}
                       {label === "Location"
                         ? formatLocation(stakeholderData?.location)
                         : stakeholderData?.contact || "-"}
@@ -535,7 +537,7 @@ export default function DeepAnalysist2() {
                     alignItems: "center",
                   }}
                 >
-                  <div style={{ fontWeight: "bold" }}>Stakeholder Type:</div>
+                  <div style={{ fontWeight: "bold" }}>{t("deepAnalysist2.fields.stakeholderType")}:</div>
                   <div
                     style={{
                       backgroundColor: "#E9F7DF",
@@ -547,7 +549,7 @@ export default function DeepAnalysist2() {
                       textAlign: "center",
                     }}
                   >
-                    {stakeholderData?.stakeholderType?.name || "N/A"}
+                    {stakeholderData?.stakeholderType?.name || t("deepAnalysist2.notAvailable")}
                   </div>
                 </div>
               </div>
@@ -569,7 +571,7 @@ export default function DeepAnalysist2() {
                     alignItems: "center",
                   }}
                 >
-                  <div style={{ fontWeight: "bold" }}>Engagement Category:</div>
+                  <div style={{ fontWeight: "bold" }}>{t("deepAnalysist2.fields.engagementCategory")}:</div>
                   <div
                     style={{
                       backgroundColor: "#D2E3EB",
@@ -581,7 +583,7 @@ export default function DeepAnalysist2() {
                       textAlign: "center",
                     }}
                   >
-                    {stakeholderData?.engagementCategory || "N/A"}
+                    {stakeholderData?.engagementCategory || t("deepAnalysist2.notAvailable")}
                   </div>
                 </div>
               </div>
@@ -606,7 +608,7 @@ export default function DeepAnalysist2() {
                   }}
                 >
                   <div style={{ fontWeight: "bold", color: "#ffffff" }}>
-                    Status:
+                    {t("deepAnalysist2.fields.status")}:
                   </div>
                   <div
                     style={{
@@ -645,7 +647,7 @@ export default function DeepAnalysist2() {
                   margin: "0 0 20px 0",
                 }}
               >
-                Previous Recommendation
+                {t("deepAnalysist2.previousRecommendationTitle")}
               </h3>
 
               <div
@@ -675,7 +677,7 @@ export default function DeepAnalysist2() {
                     border: "1px solid #1976D2",
                   }}
                 >
-                  Key Concern
+                  {t("deepAnalysist2.keyConcernLabel")}
                 </div>
                 <div
                   style={{
@@ -703,13 +705,13 @@ export default function DeepAnalysist2() {
                 }}
               >
                 <GlassCard>
-                  <CardTitle>Mitigation Plan</CardTitle>
+                  <CardTitle>{t("deepAnalysist2.mitigationPlanTitle")}</CardTitle>
                   <CardContent style={{ minHeight: "50px", fontSize: 16 }}>
                     {recommendationData?.mitigationPlan || "-"}
                   </CardContent>
                 </GlassCard>
                 <GlassCard>
-                  <CardTitle>Objective</CardTitle>
+                  <CardTitle>{t("deepAnalysist2.objectiveTitle")}</CardTitle>
                   <CardContent style={{ minHeight: "50px", fontSize: 16 }}>
                     {recommendationData?.objective || "-"}
                   </CardContent>
@@ -723,7 +725,7 @@ export default function DeepAnalysist2() {
                 }}
               >
                 <GlassCard>
-                  <CardTitle>Focal Point</CardTitle>
+                  <CardTitle>{t("deepAnalysist2.focalPointTitle")}</CardTitle>
                   <CardContent
                     style={{
                       minHeight: "50px",
@@ -737,7 +739,7 @@ export default function DeepAnalysist2() {
                   </CardContent>
                 </GlassCard>
                 <GlassCard>
-                  <CardTitle>Back up</CardTitle>
+                  <CardTitle>{t("deepAnalysist2.backupTitle")}</CardTitle>
                   <CardContent
                     style={{
                       minHeight: "50px",
@@ -792,7 +794,7 @@ export default function DeepAnalysist2() {
                     borderRadius: "12px",
                   }}
                 >
-                  Engagement Strategy
+                  {t("deepAnalysist2.engagementStrategyLabel")}
                 </div>
                 <div
                   style={{
@@ -825,7 +827,7 @@ export default function DeepAnalysist2() {
                 }}
               >
                 <div style={{ fontWeight: "bold", fontSize: 17 }}>
-                  Engagement Frequency
+                  {t("deepAnalysist2.engagementFrequencyLabel")}
                 </div>
                 <div style={{ textAlign: "center" }}>
                   <div style={{ fontWeight: "bold", fontSize: 17 }}>
@@ -840,8 +842,7 @@ export default function DeepAnalysist2() {
                       maxWidth: "250px",
                     }}
                   >
-                    H-M/ Standard for local government, impacted communities,
-                    and labor groups.
+                    {t("deepAnalysist2.defaultFrequencyDescription")}
                   </div>
                 </div>
               </div>
@@ -900,7 +901,7 @@ export default function DeepAnalysist2() {
                               checked={reengagementFlags[flagKey] === true}
                               onChange={() => handleFlagChange(flagKey, true)}
                             />
-                            Yes
+                            {t("deepAnalysist2.yes")}
                           </label>
                           <label
                             style={{
@@ -917,7 +918,7 @@ export default function DeepAnalysist2() {
                               checked={reengagementFlags[flagKey] === false}
                               onChange={() => handleFlagChange(flagKey, false)}
                             />
-                            No
+                            {t("deepAnalysist2.no")}
                           </label>
                         </div>
                       </div>
@@ -954,7 +955,7 @@ export default function DeepAnalysist2() {
                   }}
                 >
                   <span style={{ fontSize: "18px", fontWeight: "600" }}>
-                    Re-engagement Status:
+                    {t("deepAnalysist2.reengagementStatusLabel")}
                   </span>
                   <div
                     style={{
@@ -1001,7 +1002,7 @@ export default function DeepAnalysist2() {
                           width: "calc(100% - 40px)",
                         }}
                       >
-                        Trigger Reason
+                        {t("deepAnalysist2.triggerReasonTitle")}
                       </div>
                       <div
                         style={{
@@ -1041,7 +1042,7 @@ export default function DeepAnalysist2() {
             cursor: "pointer",
           }}
         >
-          <span style={{ fontSize: 18, fontWeight: "bold" }}>NEXT</span>
+          <span style={{ fontSize: 18, fontWeight: "bold" }}>{t("deepAnalysist2.nextButton")}</span>
           <img src="/icons/next.png" alt="next" style={{ width: 36, height: 28 }} />
         </button>
       </div>

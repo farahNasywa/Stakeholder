@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { AnimatePresence, motion } from "framer-motion";
 import "./Navbar.css";
 import logo from "../assets/logo1.jpg";
 
 const Navbar = () => {
+  const { t, i18n } = useTranslation();
   const [showDropdown, setShowDropdown] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -40,6 +43,10 @@ const Navbar = () => {
     navigate(-1);
   };
 
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (
@@ -70,104 +77,80 @@ const Navbar = () => {
 
   const getPageTitle = () => {
     const path = location.pathname;
+    const titles = t("navbar.titles", { returnObjects: true });
 
-    console.log("Current Path :", path);
-
-    // Stakeholder Profile Setup
     if (path.startsWith("/stakeholderprofilesetup")) {
-      return "Stakeholder Setup Profile";
+      return titles.stakeholderProfileSetup;
     }
-
-    // Dashboard
     if (path.startsWith("/dashboard")) {
-      return "Stakeholder Analysis System";
+      return titles.dashboard;
     }
-
-    // Engagement Justification
+    if (path.startsWith("/add-stakeholder")) {
+      return titles.addStakeholder;
+    }
     if (path.startsWith("/engagementjustification")) {
-      return "Engagement Justification";
+      return titles.engagementJustification;
     }
-
-     // Deep Analysis 2
     if (path.startsWith("/deep-analysist2")) {
-      return "Deep Analysis 2";
+      return titles.deepAnalysis2;
     }
-
-    // Deep Analysis
-    if (
-      path.startsWith("/deepanalyst") ||
-      path.startsWith("/deep-analysist")
-    ) {
-      return "Deep Analysis";
+    if (path.startsWith("/deepanalyst") || path.startsWith("/deep-analysist")) {
+      return titles.deepAnalysis;
     }
-
-    // Engagement Priority
     if (path.startsWith("/engagement-priority")) {
-      return "Engagement Priority";
+      return titles.engagementPriority;
     }
-
-    // FAQ
     if (path.startsWith("/faq")) {
-      return "Frequently Asked Questions";
+      return titles.faq;
     }
-
-    // About
     if (path.startsWith("/about")) {
-      return "About Us";
+      return titles.about;
     }
-
-    // Validation
     if (path.startsWith("/validation-bpma")) {
-      return "Validation BPMA";
+      return titles.validationBpma;
     }
-
     if (path.startsWith("/validation-kkks")) {
-      return "My Validation";
+      return titles.myValidation;
     }
-
-    // Cluster
     if (path.startsWith("/cluster/authority")) {
       return "Authority / Legitimacy";
     }
-
     if (path.startsWith("/cluster/influence")) {
       return "Influence on Project";
     }
-
     if (path.startsWith("/cluster/interest")) {
       return "Interest";
     }
-
     if (path.startsWith("/cluster/impactedbyproject")) {
       return "Impacted by Project";
     }
-
     if (path.startsWith("/cluster/dependency")) {
       return "Dependency";
     }
-
     if (path.startsWith("/cluster/alignment")) {
       return "Alignment / Policy Role";
     }
-
     if (path.startsWith("/cluster/opportunity")) {
       return "Opportunity Potential";
     }
-
     if (path.startsWith("/cluster/risk")) {
       return "Risk Potential";
     }
-
     if (path.startsWith("/cluster/benefit")) {
       return "Benefit Analysis";
     }
-
     if (path.startsWith("/cluster/category")) {
       return "Category";
     }
 
-    return "Stakeholder System";
+    return titles.default;
   };
+
+  // Halaman yang TIDAK menampilkan language switcher
+  const hideLanguageSwitcherPaths = ["/", "/login", "/welcome"];
+  const showLanguageSwitcher = !hideLanguageSwitcherPaths.includes(
+    location.pathname
+  );
 
   return (
     <>
@@ -207,23 +190,43 @@ const Navbar = () => {
           />
 
           <h1
-  style={{
-    fontWeight: "bold",
-    fontSize: "24px",
-    color: "#204D93",
-    marginLeft: "12px",
-  }}
->
-  {getPageTitle()}
-</h1>
+            style={{
+              fontWeight: "bold",
+              fontSize: "24px",
+              color: "#204D93",
+              marginLeft: "12px",
+            }}
+          >
+            {getPageTitle()}
+          </h1>
 
         </div>
 
         <div className="navbar-right">
 
+          {showLanguageSwitcher && (
+            <div className="lang-toggle" role="group" aria-label="Language switcher">
+              <button
+                type="button"
+                className={i18n.language === "id" ? "active" : ""}
+                onClick={() => changeLanguage("id")}
+              >
+                🇮🇩 {t("language.indonesian")}
+              </button>
+              <button
+                type="button"
+                className={i18n.language === "en" ? "active" : ""}
+                onClick={() => changeLanguage("en")}
+              >
+                🇬🇧 {t("language.english")}
+              </button>
+            </div>
+          )}
+
           <button
             className="icon-circle"
             onClick={() => navigate("/faq")}
+            title={t("navbar.help")}
           >
             <img
               src="https://cdn-icons-png.flaticon.com/512/3156/3156280.png"
@@ -239,6 +242,7 @@ const Navbar = () => {
             <button
               className="icon-circle"
               onClick={toggleDropdown}
+              title={t("navbar.profile")}
             >
               <img
                 src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png"
@@ -246,42 +250,56 @@ const Navbar = () => {
               />
             </button>
 
-            {showDropdown && (
-              <div className="dropdown-menu">
-
-                <div className="user-info">
-                  <strong>
-                    {currentUser.name}
-                  </strong>
-
-                  <small>
-                    {currentUser.email}
-                  </small>
-                </div>
-
-                <hr />
-
-                <button
-                  className="logout-btn"
-                  onClick={handleLogout}
+            <AnimatePresence>
+              {showDropdown && (
+                <motion.div
+                  className="dropdown-menu"
+                  initial={{ opacity: 0, y: -8, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.97 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
                 >
-                  Keluar
-                </button>
 
-              </div>
-            )}
+                  <div className="user-info">
+                    <strong>
+                      {currentUser.name}
+                    </strong>
+
+                    <small>
+                      {currentUser.email}
+                    </small>
+                  </div>
+
+                  <hr />
+
+                  <button
+                    className="logout-btn"
+                    onClick={handleLogout}
+                  >
+                    {t("navbar.logout")}
+                  </button>
+
+                </motion.div>
+              )}
+            </AnimatePresence>
 
           </div>
 
         </div>
       </header>
 
-      {showSidebar && (
-        <div
-          className="sidebar-overlay"
-          onClick={toggleSidebar}
-        ></div>
-      )}
+      <AnimatePresence>
+        {showSidebar && (
+          <motion.div
+            className="sidebar-overlay"
+            onClick={toggleSidebar}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          ></motion.div>
+        )}
+      </AnimatePresence>
 
       <div
         className={`modern-sidebar ${
@@ -293,7 +311,7 @@ const Navbar = () => {
         <div className="sidebar-header">
 
           <h2 className="sidebar-title">
-            Stakeholder System
+            {t("sidebar.title")}
           </h2>
 
           <button
@@ -315,7 +333,18 @@ const Navbar = () => {
                 : ""
             }`}
           >
-            <span>Main Dashboard</span>
+            <span>{t("sidebar.mainDashboard")}</span>
+          </Link>
+
+          <Link
+            to="/add-stakeholder"
+            className={`sidebar-item ${
+              location.pathname.startsWith("/add-stakeholder")
+                ? "active"
+                : ""
+            }`}
+          >
+            <span>+ {t("sidebar.addStakeholder")}</span>
           </Link>
 
           <Link
@@ -326,7 +355,7 @@ const Navbar = () => {
                 : ""
             }`}
           >
-            <span>FAQ</span>
+            <span>{t("sidebar.faq")}</span>
           </Link>
 
           {currentUser.role === "bpma" && (
@@ -340,7 +369,7 @@ const Navbar = () => {
                   : ""
               }`}
             >
-              <span>Validation</span>
+              <span>{t("sidebar.validation")}</span>
             </Link>
           )}
 
@@ -355,7 +384,7 @@ const Navbar = () => {
                   : ""
               }`}
             >
-              <span>Validation</span>
+              <span>{t("sidebar.validation")}</span>
             </Link>
           )}
 

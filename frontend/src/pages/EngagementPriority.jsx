@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../components/Navbar";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import api, { API_BASE_URL } from "../utils/api";
 import EditStakeholderModal from "../components/EditStakeholderModal.jsx";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal.jsx";
@@ -8,6 +9,7 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 import { DataContext } from "../context/DataContext";
 
 export default function EngagementPriority() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const { updateStakeholderStatus } = useContext(DataContext);
 
@@ -101,7 +103,7 @@ export default function EngagementPriority() {
         setFrequencies(frequenciesRes.data);
         setLocations(locationsRes.data);
       } catch (err) {
-        setError("Gagal memuat data. Pastikan server API berjalan.");
+        setError(t("engagementPriority.loadError"));
         console.error("Error fetching data:", err);
       } finally {
         setLoading(false);
@@ -111,7 +113,7 @@ export default function EngagementPriority() {
     if (id) {
       fetchData();
     } else {
-      setError("ID Stakeholder tidak ditemukan di URL.");
+      setError(t("engagementPriority.idMissingError"));
       setLoading(false);
     }
   }, [id]);
@@ -122,12 +124,12 @@ export default function EngagementPriority() {
     if (validationStatus && validationStatus !== stakeholder?.status) {
       return validationStatus;
     }
-    return stakeholder?.status || "Unknown";
+    return stakeholder?.status || t("engagementPriority.unknown");
   };
 
   const getStatusDisplay = () => {
     if (statusLoading) {
-      return "Loading...";
+      return t("engagementPriority.loading");
     }
     if (validationStatus) {
       const formattedDate = validationDate
@@ -139,9 +141,9 @@ export default function EngagementPriority() {
           minute: "2-digit",
         })
         : "";
-      return `${validationStatus} On ${formattedDate}`;
+      return `${validationStatus} ${t("engagementPriority.onDate")} ${formattedDate}`;
     }
-    return `Unknown`;
+    return t("engagementPriority.unknown");
   };
 
   const getIntensityStyle = (intensity) => {
@@ -173,7 +175,7 @@ export default function EngagementPriority() {
       setShowEditForm(true);
       setShowMenu(false);
     } else {
-      alert("Data stakeholder belum dimuat. Tidak bisa mengedit.");
+      alert(t("engagementPriority.editModalNotLoadedAlert"));
     }
   };
 
@@ -206,7 +208,7 @@ export default function EngagementPriority() {
       return true;
     } catch (error) {
       console.error("Failed to submit change request:", error);
-      alert(`Failed to submit change request: ${error.message}`);
+      alert(`${t("engagementPriority.changeRequestFailedAlert")}: ${error.message}`);
       return false;
     }
   };
@@ -286,7 +288,7 @@ export default function EngagementPriority() {
       console.error("Gagal update stakeholder:", error);
       const errorMessage =
         error.response?.data?.message ||
-        "Gagal update stakeholder. Silakan coba lagi.";
+        t("engagementPriority.updateFailedError");
       setError(errorMessage);
       // JANGAN tutup modal jika ada error, biar user bisa coba lagi
     }
@@ -317,7 +319,7 @@ export default function EngagementPriority() {
       return true;
     } catch (error) {
       console.error("Failed to submit deletion request:", error);
-      alert(`Failed to submit deletion request: ${error.message}`);
+      alert(`${t("engagementPriority.deletionRequestFailedAlert")}: ${error.message}`);
       return false;
     }
   };
@@ -333,7 +335,7 @@ export default function EngagementPriority() {
 
   const handleConfirmDelete = async () => {
     if (!stakeholder || !stakeholder._id) {
-      alert("Stakeholder ID is missing.");
+      alert(t("engagementPriority.stakeholderIdMissingAlert"));
       return;
     }
 
@@ -341,7 +343,7 @@ export default function EngagementPriority() {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        alert("Sesi Anda berakhir. Silakan login kembali.");
+        alert(t("engagementPriority.sessionExpiredAlert"));
         return;
       }
 
@@ -383,7 +385,7 @@ export default function EngagementPriority() {
       console.error("Gagal menghapus stakeholder:", error);
       const errorMessage =
         error.response?.data?.message ||
-        "Gagal menghapus stakeholder. Silakan coba lagi.";
+        t("engagementPriority.deleteFailedAlert");
       setError(errorMessage);
       alert(errorMessage);
       setShowDeleteModal(false); // Tutup modal meskipun gagal
@@ -413,7 +415,7 @@ export default function EngagementPriority() {
           color: "#374151",
         }}
       >
-        Loading data stakeholder...
+        {t("engagementPriority.loadingText")}
       </div>
     );
   }
@@ -436,7 +438,7 @@ export default function EngagementPriority() {
       >
         Error: {error}
         <p style={{ fontSize: "16px", marginTop: "10px" }}>
-          Pastikan server backend berjalan dan ID stakeholder valid.
+          {t("engagementPriority.errorHint")}
         </p>
       </div>
     );
@@ -455,7 +457,7 @@ export default function EngagementPriority() {
           color: "#374151",
         }}
       >
-        Data stakeholder tidak ditemukan.
+        {t("engagementPriority.notFound")}
       </div>
     );
   }
@@ -586,7 +588,7 @@ export default function EngagementPriority() {
                       }}
                     >
                       <FaEdit size={20} color="#3B82F6" />
-                      Edit
+                      {t("engagementPriority.menu.edit")}
                     </div>
 
                     {/* Delete */}
@@ -607,7 +609,7 @@ export default function EngagementPriority() {
                       }}
                     >
                       <FaTrash size={20} />
-                      Delete
+                      {t("engagementPriority.menu.delete")}
                     </div>
                   </div>
                 )}
@@ -635,7 +637,7 @@ export default function EngagementPriority() {
                       textAlign: "left",
                     }}
                   >
-                    {label}:{" "}
+                    {label === "Location" ? t("engagementPriority.fields.location") : t("engagementPriority.fields.contact")}:{" "}
                     {label === "Location"
                       ? stakeholder.location?.city || "[Lokasi]"
                       : stakeholder.contact || "-"}
@@ -662,7 +664,7 @@ export default function EngagementPriority() {
                   alignItems: "center",
                 }}
               >
-                <div style={{ fontWeight: "bold" }}>Stakeholder Type:</div>
+                <div style={{ fontWeight: "bold" }}>{t("engagementPriority.fields.stakeholderType")}:</div>
                 <div
                   style={{
                     backgroundColor: "#E9F7DF",
@@ -697,7 +699,7 @@ export default function EngagementPriority() {
                   alignItems: "center",
                 }}
               >
-                <div style={{ fontWeight: "bold" }}>Engagement Category:</div>
+                <div style={{ fontWeight: "bold" }}>{t("engagementPriority.fields.engagementCategory")}:</div>
                 <div
                   style={{
                     backgroundColor: "#D2E3EB",
@@ -734,7 +736,7 @@ export default function EngagementPriority() {
                 }}
               >
                 <div style={{ fontWeight: "bold", color: "#ffffff" }}>
-                  Database Status:
+                  {t("engagementPriority.fields.databaseStatus")}:
                 </div>
                 <div
                   style={{
@@ -770,13 +772,13 @@ export default function EngagementPriority() {
             }}
           >
             {[
-                { label: "Engagement Strategy", value: stakeholder.calculatedEngagementStrategy || "-", valueStyle: getIntensityStyle(stakeholder.calculatedEngagementStrategy), hasInfo: true, infoText: "Quadrant-based engagement strategy derived from influence and interest levels", noBadgeWrapper: true },
-                { label: "Influence", value: stakeholder.influenceLevel ? stakeholder.influenceLevel.charAt(0).toUpperCase() + stakeholder.influenceLevel.slice(1) : "-" },
-                { label: "Interest", value: stakeholder.interestLevel ? stakeholder.interestLevel.charAt(0).toUpperCase() + stakeholder.interestLevel.slice(1) : "-" },
-                { label: "Engagement Intensity", value: stakeholder.engagementIntensity ? stakeholder.engagementIntensity.charAt(0).toUpperCase() + stakeholder.engagementIntensity.slice(1) : (stakeholder.calculatedEngagementStrategy || "-"), valueStyle: getIntensityStyle(stakeholder.engagementIntensity || stakeholder.calculatedEngagementStrategy), hasInfo: true, infoText: "Level of engagement effort required based on stakeholder priority", noBadgeWrapper: true },
-                { label: "Risk Level", value: stakeholder.riskLevel ? stakeholder.riskLevel.charAt(0).toUpperCase() + stakeholder.riskLevel.slice(1) : "-" },
-                { label: "Opportunity", value: stakeholder.opportunityLevel ? stakeholder.opportunityLevel.charAt(0).toUpperCase() + stakeholder.opportunityLevel.slice(1) : "-" },
-                { label: "Benefit", value: stakeholder.benefitLevel ? stakeholder.benefitLevel.charAt(0).toUpperCase() + stakeholder.benefitLevel.slice(1) : "-" },
+                { label: t("engagementPriority.fields.engagementStrategy"), value: stakeholder.calculatedEngagementStrategy || "-", valueStyle: getIntensityStyle(stakeholder.calculatedEngagementStrategy), hasInfo: true, infoText: t("engagementPriority.engagementStrategyInfo"), noBadgeWrapper: true },
+                { label: t("engagementPriority.fields.influence"), value: stakeholder.influenceLevel ? stakeholder.influenceLevel.charAt(0).toUpperCase() + stakeholder.influenceLevel.slice(1) : "-" },
+                { label: t("engagementPriority.fields.interest"), value: stakeholder.interestLevel ? stakeholder.interestLevel.charAt(0).toUpperCase() + stakeholder.interestLevel.slice(1) : "-" },
+                { label: t("engagementPriority.fields.engagementIntensity"), value: stakeholder.engagementIntensity ? stakeholder.engagementIntensity.charAt(0).toUpperCase() + stakeholder.engagementIntensity.slice(1) : (stakeholder.calculatedEngagementStrategy || "-"), valueStyle: getIntensityStyle(stakeholder.engagementIntensity || stakeholder.calculatedEngagementStrategy), hasInfo: true, infoText: t("engagementPriority.engagementIntensityInfo"), noBadgeWrapper: true },
+                { label: t("engagementPriority.fields.riskLevel"), value: stakeholder.riskLevel ? stakeholder.riskLevel.charAt(0).toUpperCase() + stakeholder.riskLevel.slice(1) : "-" },
+                { label: t("engagementPriority.fields.opportunity"), value: stakeholder.opportunityLevel ? stakeholder.opportunityLevel.charAt(0).toUpperCase() + stakeholder.opportunityLevel.slice(1) : "-" },
+                { label: t("engagementPriority.fields.benefit"), value: stakeholder.benefitLevel ? stakeholder.benefitLevel.charAt(0).toUpperCase() + stakeholder.benefitLevel.slice(1) : "-" },
               ].map(({ label, value, valueStyle, hasInfo, infoText, noBadgeWrapper }) => (
                 <div key={label} style={{ display: "flex", gap: 12, marginBottom: 6, marginTop: 6 }}>
                   {noBadgeWrapper ? (
@@ -843,7 +845,7 @@ export default function EngagementPriority() {
                   textAlign: "center",
                 }}
               >
-                Final Recommendation
+                {t("engagementPriority.finalRecommendationTitle")}
               </h3>
               <div
                 style={{
@@ -855,9 +857,9 @@ export default function EngagementPriority() {
               >
                 {[
                   stakeholder.finalRecommendations?.engagementPriority ||
-                  "[Rekomendasi Utama]",
+                  t("engagementPriority.defaultMainRecommendation"),
                   stakeholder.finalRecommendations
-                    ?.engagementPriorityDescription || "[Detail Rekomendasi]",
+                    ?.engagementPriorityDescription || t("engagementPriority.defaultDetailRecommendation"),
                 ].map((text, index) => (
                   <div
                     key={index}
@@ -907,11 +909,11 @@ export default function EngagementPriority() {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-              <span style={{ fontSize: 18, fontWeight: "bold" }}>NEXT</span>
+              <span style={{ fontSize: 18, fontWeight: "bold" }}>{t("engagementPriority.nextButton")}</span>
               <img src="/icons/next.png" alt="next" style={{ width: 36, height: 28 }} />
             </div>
             <span style={{ fontSize: 12, fontWeight: "normal", opacity: 0.9 }}>
-              Mitigation plan based on key concern
+              {t("engagementPriority.nextButtonSubtitle")}
             </span>
           </button>
         </div>
@@ -972,23 +974,23 @@ export default function EngagementPriority() {
           {currentUserRole !== "bpma" ? (
             <>
               {selectedStakeholder
-                ? "Permintaan hapus stakeholder berhasil disubmit!"
-                : "Change request berhasil disubmit!"}
+                ? t("engagementPriority.successPopup.deleteRequestSubmitted")
+                : t("engagementPriority.successPopup.changeRequestSubmitted")}
               <br />
               <small style={{ fontSize: "14px", color: "#666" }}>
-                Status: {validationStatus || "Pending Review"}
+                {t("engagementPriority.successPopup.statusLabel")}: {validationStatus || t("engagementPriority.successPopup.pendingReview")}
               </small>
             </>
           ) : (
             <>
               {selectedStakeholder
-                ? "Stakeholder berhasil dihapus!"
-                : "Data stakeholder berhasil diperbarui!"}
+                ? t("engagementPriority.successPopup.deletedSuccess")
+                : t("engagementPriority.successPopup.updatedSuccess")}
               <br />
               <small style={{ fontSize: "14px", color: "#666" }}>
                 {selectedStakeholder
-                  ? "Mengalihkan ke daftar stakeholder..."
-                  : `Status: ${getCurrentStatus()}`}
+                  ? t("engagementPriority.successPopup.redirecting")
+                  : `${t("engagementPriority.successPopup.statusLabel")}: ${getCurrentStatus()}`}
               </small>
             </>
           )}
