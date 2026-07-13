@@ -383,6 +383,20 @@ const ValidationKKKS = () => {
               {t("validationKkks.modal.title")}
             </h2>
 
+            {selectedRequest.isDeletionRequest ? (
+              <div style={{ textAlign: "center", padding: "24px 8px" }}>
+                <h3 style={{ fontSize: 20, fontWeight: "bold", marginBottom: 12, color: "#DC2626" }}>
+                  {t("validationKkks.deletionTitle")}
+                </h3>
+                <p style={{ fontSize: 16, color: "#374151" }}>
+                  <strong>{selectedRequest.stakeholderId?.name || "-"}</strong>{" "}
+                  {t("validationKkks.deletionText1")}
+                </p>
+                <p style={{ marginTop: 16, fontSize: 14, color: "#6B7280" }}>
+                  {t("validationKkks.deletionText2")}
+                </p>
+              </div>
+            ) : (
             <div style={{ display: "flex", gap: 24 }}>
               <div style={{ flex: 1 }}>
                 <div
@@ -394,79 +408,80 @@ const ValidationKKKS = () => {
                 >
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.name"),
-                    selectedRequest.stakeholderId.name,
-                    selectedRequest.changeData.name
+                    selectedRequest.stakeholderId?.name,
+                    selectedRequest.changeData?.name
                   )}
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.role"),
                     selectedRequest.stakeholderId?.role?.name,
-                    selectedRequest.changeData.role?.name
+                    selectedRequest.changeData?.role?.name
                   )}
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.stakeholderType"),
                     selectedRequest.stakeholderId?.stakeholderType?.name,
-                    selectedRequest.changeData.stakeholderType?.name
+                    selectedRequest.changeData?.stakeholderType?.name
                   )}
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.engagementCategory"),
-                    selectedRequest.stakeholderId.engagementCategory,
-                    selectedRequest.changeData.engagementCategory
+                    selectedRequest.stakeholderId?.engagementCategory,
+                    selectedRequest.changeData?.engagementCategory
                   )}
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.location"),
-                    selectedRequest.stakeholderId.location?.city,
-                    selectedRequest.changeData.location?.city
+                    selectedRequest.stakeholderId?.location?.city,
+                    selectedRequest.changeData?.location?.city
                   )}
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.contact"),
-                    selectedRequest.stakeholderId.contact,
-                    selectedRequest.changeData.contact
+                    selectedRequest.stakeholderId?.contact,
+                    selectedRequest.changeData?.contact
                   )}
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.engagementFrequency"),
-                    selectedRequest.stakeholderId.engagementFrequency?.name,
-                    selectedRequest.changeData.engagementFrequency?.name
+                    selectedRequest.stakeholderId?.engagementFrequency?.name,
+                    selectedRequest.changeData?.engagementFrequency?.name
                   )}
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.engagementStrategy"),
-                    selectedRequest.stakeholderId.engagementStrategy?.strategy,
-                    selectedRequest.changeData.engagementStrategy?.strategy
+                    selectedRequest.stakeholderId?.engagementStrategy?.strategy,
+                    selectedRequest.changeData?.engagementStrategy?.strategy
                   )}
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.focalPoint"),
-                    selectedRequest.stakeholderId.focalPoints
+                    selectedRequest.stakeholderId?.focalPoints
                       ?.recommendedFocalpoint,
-                    selectedRequest.changeData.focalPoints
+                    selectedRequest.changeData?.focalPoints
                       ?.recommendedFocalpoint
                   )}
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.influenceLevel"),
-                    cap(selectedRequest.stakeholderId.influence),
-                    cap(selectedRequest.changeData.influence)
+                    cap(selectedRequest.stakeholderId?.influence),
+                    cap(selectedRequest.changeData?.influence)
                   )}
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.interestLevel"),
-                    cap(selectedRequest.stakeholderId.interest),
-                    cap(selectedRequest.changeData.interest)
+                    cap(selectedRequest.stakeholderId?.interest),
+                    cap(selectedRequest.changeData?.interest)
                   )}
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.riskLevel"),
-                    cap(selectedRequest.stakeholderId.riskLevel),
-                    cap(selectedRequest.changeData.riskLevel)
+                    cap(selectedRequest.stakeholderId?.riskLevel),
+                    cap(selectedRequest.changeData?.riskLevel)
                   )}
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.opportunityLevel"),
-                    cap(selectedRequest.stakeholderId.opportunity),
-                    cap(selectedRequest.changeData.opportunity)
+                    cap(selectedRequest.stakeholderId?.opportunity),
+                    cap(selectedRequest.changeData?.opportunity)
                   )}
                   {renderComparisonRow(
                     t("validationKkks.modal.fields.benefitLevel"),
-                    cap(selectedRequest.stakeholderId.benefit),
-                    cap(selectedRequest.changeData.benefit)
+                    cap(selectedRequest.stakeholderId?.benefit),
+                    cap(selectedRequest.changeData?.benefit)
                   )}
                 </div>
               </div>
             </div>
+            )}
           </div>
         </div>
       )}

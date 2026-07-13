@@ -78,6 +78,9 @@
     "headerTitle": "My Change Request History",
     "noRequestsTitle": "No Change Requests Submitted",
     "noRequestsSubtitle": "You have not submitted any Stakeholder changes.",
+    "deletionTitle": "Stakeholder Deletion Request",
+    "deletionText1": "was submitted for deletion by you.",
+    "deletionText2": "This Stakeholder's data will be permanently deleted from the system if this request is approved by BPMA.",
     "table": {
       "stakeholder": "Stakeholder",
       "submittedOn": "Change Submitted On",

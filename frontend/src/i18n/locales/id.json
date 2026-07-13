@@ -78,6 +78,9 @@
     "headerTitle": "Riwayat Perubahan Saya",
     "noRequestsTitle": "Belum Ada Perubahan Diajukan",
     "noRequestsSubtitle": "Anda belum mengajukan perubahan Stakeholder.",
+    "deletionTitle": "Permintaan Penghapusan Stakeholder",
+    "deletionText1": "diajukan untuk dihapus oleh Anda.",
+    "deletionText2": "Data Stakeholder ini akan dihapus permanen dari sistem jika permintaan ini disetujui oleh BPMA.",
     "table": {
       "stakeholder": "Stakeholder",
       "submittedOn": "Diajukan Pada",
