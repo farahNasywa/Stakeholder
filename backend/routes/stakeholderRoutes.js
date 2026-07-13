@@ -1,6 +1,7 @@
 // stakeholderRoutes.js
 import express from "express";
 import authMiddleware from "../middlewares/authMiddleware.js";
+import requireBpma from "../middlewares/requireBpma.js";
 import {
   getAllStakeholders,
   getSingleStakeholder,
@@ -22,10 +23,12 @@ router.get("/with-justification", getAllStakeholdersWithJustification);
 router.get("/without-justification", getStakeholdersWithoutJustification);
 router.get("/search", searchStakeholders);
 router.get("/", getAllStakeholders);
-router.post("/", createStakeholder);
-router.put("/:id", updateStakeholder);
+router.post("/", authMiddleware, createStakeholder); // Status ditentukan server-side berdasarkan role (lihat controller)
+// Update langsung ke data Stakeholder HANYA untuk BPMA. Role lain (KKKS dsb)
+// wajib memakai /:id/request-change agar melalui alur validasi BPMA.
+router.put("/:id", authMiddleware, requireBpma, updateStakeholder);
 router.get('/:id', getSingleStakeholder); 
 router.delete("/:id/request-delete", authMiddleware, submitDeleteRequest); // KKKS submit request
-router.delete("/:id", authMiddleware, deleteStakeholder); // BPMA/Admin langsung hapus
+router.delete("/:id", authMiddleware, requireBpma, deleteStakeholder); // Hanya BPMA yang boleh hapus langsung
 
 export default router;

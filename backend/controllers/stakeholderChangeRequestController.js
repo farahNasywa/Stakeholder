@@ -23,6 +23,7 @@ export const createChangeRequest = async (req, res) => {
       stakeholderId,
       requestedBy: userId,
       changeData,
+      requestType: "Edit",
     });
 
     await newRequest.save();
@@ -114,11 +115,24 @@ export const reviewChangeRequest = async (req, res) => {
 
     if (status === "Approved") {
       // 2. Logika untuk permintaan penghapusan (isDeletionRequest)
-      if (request.isDeletionRequest) {
+      if (request.isDeletionRequest || request.requestType === "Delete") {
         const deletedStakeholder = await Stakeholder.findByIdAndDelete(request.stakeholderId);
         
         if (!deletedStakeholder) {
           return res.status(404).json({ message: "Stakeholder to be deleted not found." });
+        }
+      } else if (request.requestType === "Create") {
+        // 2b. Permintaan Tambah Stakeholder baru: dokumen Stakeholder sudah
+        // dibuat sejak awal dengan status "Pending" (supaya tetap muncul di
+        // Search/Engagement Priority selama menunggu), jadi di sini cukup
+        // menaikkan statusnya menjadi resmi/Approved tanpa menimpa field lain.
+        const approvedStakeholder = await Stakeholder.findByIdAndUpdate(
+          request.stakeholderId,
+          { status: "Approved" },
+          { new: true }
+        );
+        if (!approvedStakeholder) {
+          return res.status(404).json({ message: "Stakeholder to be approved not found." });
         }
       } else {
         // 3. Logika untuk permintaan perubahan data
@@ -266,12 +280,20 @@ export const reviewChangeRequest = async (req, res) => {
         }
       }
     } else if (status === "Rejected") {
-      // Update status stakeholder menjadi Rejected
-      await Stakeholder.findByIdAndUpdate(
-        request.stakeholderId,
-        { status: "Rejected" },
-        { new: true }
-      );
+      // PENTING: saat permintaan EDIT maupun DELETE ditolak, data Stakeholder
+      // yang sudah ada TIDAK disentuh sama sekali — data lama tetap dipakai
+      // persis seperti sebelumnya.
+      //
+      // Untuk permintaan CREATE (Stakeholder baru) yang ditolak, stakeholder
+      // stub yang tadinya dibuat berstatus "Pending" ditandai "Rejected"
+      // supaya tidak lagi dianggap data resmi / tidak dipakai di sistem.
+      if (request.requestType === "Create") {
+        await Stakeholder.findByIdAndUpdate(
+          request.stakeholderId,
+          { status: "Rejected" },
+          { new: true }
+        );
+      }
     }
 
     // 4. Update status permintaan perubahan itu sendiri
@@ -384,6 +406,7 @@ export const createDeletionRequest = async (req, res) => {
       // changeData tidak diperlukan untuk permintaan hapus
       changeData: {},
       isDeletionRequest: true,
+      requestType: "Delete",
     });
 
     await newRequest.save();

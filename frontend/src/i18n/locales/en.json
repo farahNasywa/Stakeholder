@@ -129,6 +129,12 @@
     "loadingText": "Loading validation requests...",
     "headerTitle": "Validation Stakeholder Changes - BPMA",
     "newStakeholdersTitle": "New Stakeholders Pending Approval",
+    "requestTypes": {
+      "create": "Add",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "newStakeholderDataTitle": "Submitted New Stakeholder Data",
     "newStakeholdersEmpty": "No new stakeholders are pending approval.",
     "approveNewFailedAlert": "Failed to approve the new stakeholder",
     "rejectNewFailedAlert": "Failed to reject the new stakeholder",
@@ -139,6 +145,7 @@
     "table": {
       "stakeholder": "Stakeholder",
       "kkks": "KKKS",
+      "requestType": "Request Type",
       "status": "Status",
       "submittedDate": "Submission Date",
       "action": "Action"

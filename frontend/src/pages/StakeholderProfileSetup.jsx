@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { FaCheckCircle } from 'react-icons/fa';
 import Navbar from "../components/Navbar";
 import StakeholderAutocomplete from "../components/StakeholderAutocomplete";
 import api from "../utils/api";
@@ -874,10 +875,10 @@ export default function StakeholderProfileSetup() {
             {
                 showSuccessPopup && (
                     <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-xl shadow-2xl z-50 flex flex-col items-center gap-4">
-                        <img
-                            src="/icons/success_check.png"
-                            alt="Success"
-                            className="w-12 h-12"
+                        <FaCheckCircle
+                            size={48}
+                            color="#22C55E"
+                            style={{ flexShrink: 0 }}
                         />
                         <div className="text-center">
                             <h3 className="text-lg font-bold text-gray-800">{t("stakeholderProfileSetup.successPopup.title")}</h3>

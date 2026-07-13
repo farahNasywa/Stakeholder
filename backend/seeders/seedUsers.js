@@ -8,11 +8,11 @@ const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/stakeholde
 
 const users = [
   {name: "BPMA Admin", email: "bpma@gmail.com", password: "123456", role: "bpma" },
-  {name: "Medco KKKS", email: "medco@gmail.com", password: "123456", role: "kkks" },
-  {name: "Triangle KKKS", email: "triangle@gmail.com", password: "123456", role: "kkks" },
-  {name: "Conrad KKKS", email: "conrad@gmail.com", password: "123456", role: "kkks" },
-  {name: "Pema KKKS", email: "pema@gmail.com", password: "123456", role: "kkks" },
-  {name: "Aceh Energy KKKS", email: "aceh.energy@gmail.com", password: "123456", role: "kkks" },
+  {name: "Medco E&P Malaka", email: "medco@gmail.com", password: "123456", role: "kkks" },
+  {name: "Triangle Pase Inc.", email: "triangle@gmail.com", password: "123456", role: "kkks" },
+  {name: "Zaratex", email: "zaratex@gmail.com", password: "123456", role: "kkks" },
+  {name: "Pema Global Energi", email: "pema@gmail.com", password: "123456", role: "kkks" },
+  {name: "Aceh Energy", email: "aceh.energy@gmail.com", password: "123456", role: "kkks" },
 ];
 
 mongoose.connect(MONGO_URI, {

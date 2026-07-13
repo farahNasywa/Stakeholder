@@ -129,6 +129,12 @@
     "loadingText": "Memuat permintaan validasi...",
     "headerTitle": "Validasi Perubahan Stakeholder - BPMA",
     "newStakeholdersTitle": "Stakeholder Baru Menunggu Persetujuan",
+    "requestTypes": {
+      "create": "Tambah",
+      "edit": "Ubah",
+      "delete": "Hapus"
+    },
+    "newStakeholderDataTitle": "Data Stakeholder Baru yang Diajukan",
     "newStakeholdersEmpty": "Tidak ada Stakeholder baru yang menunggu persetujuan.",
     "approveNewFailedAlert": "Gagal menyetujui Stakeholder baru",
     "rejectNewFailedAlert": "Gagal menolak Stakeholder baru",
@@ -139,6 +145,7 @@
     "table": {
       "stakeholder": "Stakeholder",
       "kkks": "KKKS",
+      "requestType": "Jenis Request",
       "status": "Status",
       "submittedDate": "Tanggal Pengajuan",
       "action": "Aksi"

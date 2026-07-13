@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import api, { API_BASE_URL } from "../utils/api";
 import EditStakeholderModal from "../components/EditStakeholderModal.jsx";
 import DeleteConfirmationModal from "../components/DeleteConfirmationModal.jsx";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash, FaCheckCircle } from "react-icons/fa";
 import { DataContext } from "../context/DataContext";
 
 export default function EngagementPriority() {
@@ -966,11 +966,7 @@ export default function EngagementPriority() {
             maxWidth: "400px",
           }}
         >
-          <img
-            src="/icons/success_check.png"
-            alt="Success"
-            style={{ width: 40, height: 40 }}
-          />
+          <FaCheckCircle size={40} color="#22C55E" />
           {currentUserRole !== "bpma" ? (
             <>
               {selectedStakeholder

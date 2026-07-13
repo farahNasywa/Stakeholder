@@ -3,7 +3,15 @@ import mongoose from "mongoose";
 const stakeholderChangeRequestSchema = new mongoose.Schema({
   stakeholderId: { type: mongoose.Schema.Types.ObjectId, ref: "Stakeholder", required: true },
   requestedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  changeData: { type: Object}, // Data yang diajukan perubahan
+  changeData: { type: Object}, // Data yang diajukan perubahan (atau data Stakeholder baru untuk requestType "Create")
+  // requestType menandai jenis permintaan: penambahan Stakeholder baru,
+  // perubahan data, atau penghapusan. isDeletionRequest tetap dipertahankan
+  // untuk kompatibilitas dengan kode lama yang sudah memakainya.
+  requestType: {
+    type: String,
+    enum: ["Create", "Edit", "Delete"],
+    default: "Edit",
+  },
   isDeletionRequest: {
     type: Boolean,
     default: false,

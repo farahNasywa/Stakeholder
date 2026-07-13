@@ -91,6 +91,30 @@ const ValidationKKKS = () => {
     );
   };
 
+  const getRequestTypeBadge = (req) => {
+    const type = req.requestType || (req.isDeletionRequest ? "Delete" : "Edit");
+    const styles = {
+      Create: { bg: "#DBEAFE", color: "#1D4ED8", text: t("validationBpma.requestTypes.create") },
+      Edit: { bg: "#FEF3C7", color: "#92400E", text: t("validationBpma.requestTypes.edit") },
+      Delete: { bg: "#FEE2E2", color: "#DC2626", text: t("validationBpma.requestTypes.delete") },
+    };
+    const style = styles[type] || styles.Edit;
+    return (
+      <span
+        style={{
+          backgroundColor: style.bg,
+          color: style.color,
+          padding: "4px 12px",
+          borderRadius: "12px",
+          fontSize: "12px",
+          fontWeight: "600",
+        }}
+      >
+        {style.text}
+      </span>
+    );
+  };
+
   const cap = (val) => (val && typeof val === 'string' ? val.charAt(0).toUpperCase() + val.slice(1) : val);
 
   const renderComparisonRow = (label, oldData, newData) => {
@@ -204,7 +228,7 @@ const ValidationKKKS = () => {
                   <tr style={{ backgroundColor: "#F3F4F6" }}>
                     <th
                       style={{
-                        width: "30%",
+                        width: "22%",
                         padding: "14px 16px",
                         textAlign: "left",
                         color: "#6B7280",
@@ -215,7 +239,18 @@ const ValidationKKKS = () => {
                     </th>
                     <th
                       style={{
-                        width: "25%",
+                        width: "13%",
+                        padding: "14px 16px",
+                        textAlign: "center",
+                        color: "#6B7280",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {t("validationKkks.table.requestType")}
+                    </th>
+                    <th
+                      style={{
+                        width: "20%",
                         padding: "14px 16px",
                         textAlign: "left",
                         color: "#6B7280",
@@ -265,6 +300,9 @@ const ValidationKKKS = () => {
                         ) : (
                           "-"
                         )}
+                      </td>
+                      <td style={{ padding: "14px 16px", verticalAlign: "middle", textAlign: "center" }}>
+                        {getRequestTypeBadge(req)}
                       </td>
                       <td style={{ padding: "14px 16px", verticalAlign: "middle", textAlign: "left" }}>
                         {new Date(req.createdAt).toLocaleDateString()}
@@ -395,6 +433,27 @@ const ValidationKKKS = () => {
                 <p style={{ marginTop: 16, fontSize: 14, color: "#6B7280" }}>
                   {t("validationKkks.deletionText2")}
                 </p>
+              </div>
+            ) : selectedRequest.requestType === "Create" ? (
+              <div style={{ padding: "8px 4px" }}>
+                <h3 style={{ fontSize: 18, fontWeight: "bold", marginBottom: 12, color: "#1D4ED8" }}>
+                  {t("validationBpma.newStakeholderDataTitle")}
+                </h3>
+                <div style={{ padding: 16, border: "1px solid #E5E7EB", borderRadius: 8 }}>
+                  <p><strong>{t("validationKkks.modal.fields.name")}:</strong> {selectedRequest.stakeholderId?.name || "-"}</p>
+                  <p><strong>{t("validationKkks.modal.fields.role")}:</strong> {selectedRequest.stakeholderId?.role?.name || "-"}</p>
+                  <p><strong>{t("validationKkks.modal.fields.stakeholderType")}:</strong> {selectedRequest.stakeholderId?.stakeholderType?.name || "-"}</p>
+                  <p><strong>{t("validationKkks.modal.fields.engagementCategory")}:</strong> {selectedRequest.stakeholderId?.engagementCategory || "-"}</p>
+                  <p><strong>{t("validationKkks.modal.fields.location")}:</strong> {selectedRequest.stakeholderId?.location?.city || "-"} - {selectedRequest.stakeholderId?.location?.province?.name || "-"}</p>
+                  <p><strong>{t("validationKkks.modal.fields.contact")}:</strong> {selectedRequest.stakeholderId?.contact || "-"}</p>
+                  <p><strong>{t("validationKkks.modal.fields.engagementFrequency")}:</strong> {selectedRequest.stakeholderId?.engagementFrequency?.name || "-"}</p>
+                  <p><strong>{t("validationKkks.modal.fields.engagementStrategy")}:</strong> {selectedRequest.stakeholderId?.engagementStrategy?.strategy || "-"}</p>
+                  <p><strong>{t("validationKkks.modal.fields.influenceLevel")}:</strong> {cap(selectedRequest.stakeholderId?.influenceLevel)}</p>
+                  <p><strong>{t("validationKkks.modal.fields.interestLevel")}:</strong> {cap(selectedRequest.stakeholderId?.interestLevel)}</p>
+                  <p><strong>{t("validationKkks.modal.fields.riskLevel")}:</strong> {cap(selectedRequest.stakeholderId?.riskLevel)}</p>
+                  <p><strong>{t("validationKkks.modal.fields.opportunityLevel")}:</strong> {cap(selectedRequest.stakeholderId?.opportunityLevel)}</p>
+                  <p><strong>{t("validationKkks.modal.fields.benefitLevel")}:</strong> {cap(selectedRequest.stakeholderId?.benefitLevel)}</p>
+                </div>
               </div>
             ) : (
             <div style={{ display: "flex", gap: 24 }}>

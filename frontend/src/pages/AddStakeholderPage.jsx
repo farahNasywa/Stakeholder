@@ -19,6 +19,7 @@ const AddStakeholderPage = () => {
   const navigate = useNavigate();
   const { addStakeholder } = useContext(DataContext);
   const { addToast, ToastContainer } = useToast();
+  const currentUserRole = (localStorage.getItem('role') || '').toLowerCase();
 
   const [isSaving, setIsSaving] = useState(false);
   const [isLoadingOptions, setIsLoadingOptions] = useState(true);
@@ -99,10 +100,10 @@ const AddStakeholderPage = () => {
         benefitLevel: form.benefit || 'high',
         engagementStrategy: form.engagementStrategy || undefined,
         engagementFrequency: form.engagementFrequency || undefined,
-        // Data baru selalu masuk sebagai Pending sampai divalidasi BPMA.
-        // Backend juga sudah default ke "Pending" secara independen,
-        // ini dikirim eksplisit supaya tidak ambigu.
-        status: 'Pending',
+        // Alur validasi: KKKS/role lain -> Pending sampai direview BPMA.
+        // BPMA sendiri adalah approver, jadi data yang ia tambahkan
+        // langsung Approved (tidak perlu me-review dirinya sendiri).
+        status: currentUserRole === 'bpma' ? 'Approved' : 'Pending',
         createdBy: localStorage.getItem('name') || 'system',
       };
 

@@ -214,12 +214,37 @@ export const createStakeholder = async (req, res) => {
       engagementFrequency,
       engagementStrategy: strategyDoc?._id,
       reengagementTriggers,
-      status: status || "Pending", // Data baru selalu Pending sampai divalidasi BPMA
+      status: req.user?.role?.toLowerCase() === "bpma" ? "Approved" : "Pending",
+      // ^ Status TIDAK dipercaya dari client. BPMA -> langsung Approved
+      // (dia sendiri approvernya). Role lain -> selalu Pending sampai
+      // divalidasi BPMA, walau client mengirim nilai status lain.
       createdBy,
       updatedBy,
     });
 
     const savedStakeholder = await stakeholder.save();
+
+    // Untuk role selain BPMA, otomatis buat "request" memakai mekanisme
+    // StakeholderChangeRequest yang sudah ada di project (requestType:
+    // "Create"), supaya penambahan Stakeholder ini muncul di halaman
+    // Validation BPMA / My Validation tanpa perlu input manual ke database.
+    // BPMA sendiri tidak perlu request karena dialah approvernya.
+    if (req.user && req.user.role?.toLowerCase() !== "bpma") {
+      try {
+        await StakeholderChangeRequest.create({
+          stakeholderId: savedStakeholder._id,
+          requestedBy: req.user.id,
+          changeData: req.body,
+          requestType: "Create",
+          status: "Pending",
+        });
+      } catch (requestError) {
+        console.error("Failed to auto-create Stakeholder change request:", requestError);
+        // Stakeholder tetap tersimpan (status Pending) walau pencatatan
+        // request gagal; BPMA masih bisa melihatnya lewat daftar stakeholder
+        // Pending sebagai jaring pengaman.
+      }
+    }
 
     // Catatan: Justification (alasan engagement) TIDAK dibuat di sini.
     // Frontend secara eksplisit memanggil endpoint
