@@ -223,16 +223,20 @@ const ValidationKKKS = () => {
                 </p>
               </div>
             ) : (
-              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
+              <div style={{ overflowX: "auto" }}>
+              <table style={{ width: "100%", minWidth: 720, borderCollapse: "collapse", tableLayout: "fixed" }}>
                 <thead>
                   <tr style={{ backgroundColor: "#F3F4F6" }}>
                     <th
                       style={{
-                        width: "22%",
+                        width: "25%",
                         padding: "14px 16px",
                         textAlign: "left",
                         color: "#6B7280",
                         fontWeight: "600",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                       }}
                     >
                       {t("validationKkks.table.stakeholder")}
@@ -244,39 +248,51 @@ const ValidationKKKS = () => {
                         textAlign: "center",
                         color: "#6B7280",
                         fontWeight: "600",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                       }}
                     >
                       {t("validationKkks.table.requestType")}
                     </th>
                     <th
                       style={{
-                        width: "20%",
+                        width: "17%",
                         padding: "14px 16px",
                         textAlign: "left",
                         color: "#6B7280",
                         fontWeight: "600",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                       }}
                     >
                       {t("validationKkks.table.submittedOn")}
                     </th>
                     <th
                       style={{
-                        width: "20%",
+                        width: "15%",
                         padding: "14px 16px",
                         textAlign: "left",
                         color: "#6B7280",
                         fontWeight: "600",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                       }}
                     >
                       {t("validationKkks.table.status")}
                     </th>
                     <th
                       style={{
-                        width: "25%",
+                        width: "30%",
                         padding: "14px 16px",
                         textAlign: "center",
                         color: "#6B7280",
                         fontWeight: "600",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
                       }}
                     >
                       {t("validationKkks.table.actions")}
@@ -362,6 +378,7 @@ const ValidationKKKS = () => {
                   ))}
                 </tbody>
               </table>
+              </div>
             )}
           </div>
         </div>

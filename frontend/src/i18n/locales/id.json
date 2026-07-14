@@ -83,6 +83,7 @@
     "deletionText2": "Data Stakeholder ini akan dihapus permanen dari sistem jika permintaan ini disetujui oleh BPMA.",
     "table": {
       "stakeholder": "Stakeholder",
+      "requestType": "Jenis Request",
       "submittedOn": "Diajukan Pada",
       "status": "Status",
       "actions": "Aksi"

@@ -83,6 +83,7 @@
     "deletionText2": "This Stakeholder's data will be permanently deleted from the system if this request is approved by BPMA.",
     "table": {
       "stakeholder": "Stakeholder",
+      "requestType": "Request Type",
       "submittedOn": "Change Submitted On",
       "status": "Status",
       "actions": "Actions"

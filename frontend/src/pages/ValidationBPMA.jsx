@@ -252,15 +252,16 @@ const ValidationBPMA = () => {
                 </p>
               </div>
             ) : (
-              <table style={{ width: "100%", borderCollapse: "collapse", tableLayout: "fixed" }}>
+              <div style={{ overflowX: "auto" }}>
+              <table style={{ width: "100%", minWidth: 760, borderCollapse: "collapse", tableLayout: "fixed" }}>
                 <thead>
                   <tr style={{ backgroundColor: "#F3F4F6" }}>
-                    <th style={{ padding: "14px 16px", textAlign: "left", color: "#6B7280", fontWeight: "600", width: "20%" }}>{t("validationBpma.table.stakeholder")}</th>
-                    <th style={{ padding: "14px 16px", textAlign: "left", color: "#6B7280", fontWeight: "600", width: "18%" }}>{t("validationBpma.table.kkks")}</th>
-                    <th style={{ padding: "14px 16px", textAlign: "center", color: "#6B7280", fontWeight: "600", width: "12%" }}>{t("validationBpma.table.requestType")}</th>
-                    <th style={{ padding: "14px 16px", textAlign: "center", color: "#6B7280", fontWeight: "600", width: "13%" }}>{t("validationBpma.table.status")}</th>
-                    <th style={{ padding: "14px 16px", textAlign: "center", color: "#6B7280", fontWeight: "600", width: "17%" }}>{t("validationBpma.table.submittedDate")}</th>
-                    <th style={{ padding: "14px 16px", textAlign: "center", color: "#6B7280", fontWeight: "600", width: "20%" }}>{t("validationBpma.table.action")}</th>
+                    <th style={{ padding: "14px 16px", textAlign: "left", color: "#6B7280", fontWeight: "600", width: "20%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t("validationBpma.table.stakeholder")}</th>
+                    <th style={{ padding: "14px 16px", textAlign: "left", color: "#6B7280", fontWeight: "600", width: "18%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t("validationBpma.table.kkks")}</th>
+                    <th style={{ padding: "14px 16px", textAlign: "center", color: "#6B7280", fontWeight: "600", width: "12%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t("validationBpma.table.requestType")}</th>
+                    <th style={{ padding: "14px 16px", textAlign: "center", color: "#6B7280", fontWeight: "600", width: "13%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t("validationBpma.table.status")}</th>
+                    <th style={{ padding: "14px 16px", textAlign: "center", color: "#6B7280", fontWeight: "600", width: "17%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t("validationBpma.table.submittedDate")}</th>
+                    <th style={{ padding: "14px 16px", textAlign: "center", color: "#6B7280", fontWeight: "600", width: "20%", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t("validationBpma.table.action")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -331,6 +332,7 @@ const ValidationBPMA = () => {
                   ))}
                 </tbody>
               </table>
+              </div>
             )}
           </div>
         </div>
