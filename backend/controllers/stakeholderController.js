@@ -6,6 +6,7 @@ import StakeholderType from "../models/stakeholderTypeModel.js";
 import Role from "../models/roleModel.js";
 import EngagementStrategy from "../models/engagementStrategyModel.js";
 import { getFocalPointsForStakeholderType } from "../services/focalPointService.js";
+import FocalPointMapping from "../models/focalPointMappingModel.js";
 import StakeholderChangeRequest from "../models/StakeholderChangeRequest.js";
 import Justification from "../models/justificationModel.js";
 // import googleSheetsService from "../services/googleSheetsService.js";
@@ -196,6 +197,29 @@ export const createStakeholder = async (req, res) => {
       }
     }
 
+    // 🔹 Cari Focal Point / Backup yang sesuai dengan Stakeholder Type-nya.
+    // Ini WAJIB dilakukan di sini (saat create), karena sebelumnya
+    // focalPoints hanya pernah di-set ulang ketika stakeholder di-EDIT,
+    // sehingga stakeholder baru selalu bernilai null dan tidak pernah
+    // tampil di halaman Deep Analysis.
+    const resolvedStakeholderTypeId = stakeholderType || role;
+    let focalPointsMappingId = null;
+    if (resolvedStakeholderTypeId) {
+      try {
+        const fpMapping = await FocalPointMapping.findOne({
+          stakeholderType: resolvedStakeholderTypeId,
+        });
+        focalPointsMappingId = fpMapping?._id || null;
+        if (!fpMapping) {
+          console.warn(
+            `No FocalPointMapping found for stakeholderType ${resolvedStakeholderTypeId}`
+          );
+        }
+      } catch (fpError) {
+        console.error("Failed to resolve FocalPointMapping on create:", fpError);
+      }
+    }
+
     // 🔹 Create Stakeholder with properly mapped fields
     const stakeholder = new Stakeholder({
       name,
@@ -213,6 +237,7 @@ export const createStakeholder = async (req, res) => {
       engagementRelevance: mappedRelevance?.toLowerCase(),
       engagementFrequency,
       engagementStrategy: strategyDoc?._id,
+      focalPoints: focalPointsMappingId,
       reengagementTriggers,
       status: req.user?.role?.toLowerCase() === "bpma" ? "Approved" : "Pending",
       // ^ Status TIDAK dipercaya dari client. BPMA -> langsung Approved
