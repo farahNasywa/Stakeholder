@@ -39,6 +39,7 @@
   },
   "navbar": {
     "appTitle": "Stakeholder System",
+    "guestName": "Tamu",
     "help": "Bantuan",
     "profile": "Profil",
     "logout": "Keluar",
@@ -52,7 +53,7 @@
       "faq": "Pertanyaan yang Sering Diajukan",
       "about": "Tentang Kami",
       "validationBpma": "Validasi BPMA",
-      "myValidation": "Validasi Saya",
+      "myValidation": "Validasi",
       "addStakeholder": "Tambah Stakeholder",
       "default": "Stakeholder System"
     }
@@ -75,7 +76,7 @@
       "rejected": "Ditolak"
     },
     "loadingText": "Memuat permintaan validasi...",
-    "headerTitle": "Riwayat Perubahan Saya",
+    "headerTitle": "Riwayat Perubahan",
     "noRequestsTitle": "Belum Ada Perubahan Diajukan",
     "noRequestsSubtitle": "Anda belum mengajukan perubahan Stakeholder.",
     "deletionTitle": "Permintaan Penghapusan Stakeholder",
@@ -267,6 +268,7 @@
     "no": "Tidak",
     "reengagementStatusLabel": "Status Keterlibatan Ulang:",
     "triggerReasonTitle": "Alasan Pemicu",
+    "answerAllTriggersWarning": "Jawab semua Trigger Parameter (Ya/Tidak) untuk melanjutkan.",
     "nextButton": "SELANJUTNYA"
   },
   "deepAnalysist": {
@@ -373,6 +375,26 @@
       "updatedSuccess": "Data Stakeholder berhasil diperbarui!",
       "redirecting": "Mengalihkan ke daftar Stakeholder..."
     }
+  },
+  "stakeholderAutocomplete": {
+    "defaultPlaceholder": "Ketik Nama Stakeholder",
+    "noRole": "Tanpa Peran",
+    "noType": "Tanpa Tipe",
+    "select": "Pilih"
+  },
+  "errorBoundary": {
+    "title": "Terjadi kesalahan",
+    "message": "Mohon maaf, terjadi kesalahan yang tidak terduga. Silakan coba muat ulang halaman.",
+    "devDetails": "Detail Error (Hanya untuk Pengembangan)",
+    "refreshPage": "Muat Ulang Halaman",
+    "goBack": "Kembali"
+  },
+  "deleteConfirmationModal": {
+    "title": "Konfirmasi Penghapusan",
+    "confirmTextBefore": "Apakah Anda yakin ingin menghapus stakeholder",
+    "confirmTextAfter": "? Tindakan ini tidak dapat dibatalkan.",
+    "cancel": "Batal",
+    "delete": "Hapus"
   },
   "stakeholderForm": {
     "labels": {
@@ -570,13 +592,13 @@
       "step3Title": "Menuju Engagement Priority",
       "step3Desc": "Tentukan apakah akan melanjutkan ke tahap berikutnya dengan menjawab YA pada konfirmasi sistem.",
       "step4Title": "Deep Analysis",
-      "step4Desc": "Pilih Key Concern melalui dropdown yang tersedia, kemudian lanjut ke halaman Deep Analysis 2. Isi Trigger Parameter dengan memilih YA atau TIDAK untuk memperoleh Trigger Reason.",
+      "step4Desc": "Pilih Key Concern melalui dropdown yang tersedia, kemudian lanjut ke halaman Deep Analysis 2. Isi Trigger Parameter dengan memilih YA atau TIDAK untuk memperoleh Status Keterlibatan Ulang (Re-engagement Status) dan Trigger Reason.",
       "step5Title": "Stakeholder Profile Setup & Assessment",
       "step5Desc": "Lengkapi data stakeholder dan isi 10 kluster pertanyaan dengan menjawab YA atau TIDAK pada setiap pertanyaan yang tersedia.",
       "step6Title": "Engagement Justification",
       "step6Desc": "Lihat ringkasan profil stakeholder dan alasan keterlibatan yang dihasilkan secara otomatis oleh sistem.",
       "step7Title": "Fitur Sistem Lainnya",
-      "step7Desc": "Pengguna dapat melanjutkan penggunaan fitur lain pada sistem melalui menu sidebar, seperti Add Stakeholder, My Validation, dan FAQ.",
+      "step7Desc": "Pengguna dapat melanjutkan penggunaan fitur lain pada sistem melalui menu sidebar, seperti Add Stakeholder, FAQ, dan Validation.",
       "step8Title": "Kembali ke Dashboard",
       "step8Desc": "Klik tombol menu (tiga garis) di sudut kiri atas, kemudian pilih Dashboard Utama untuk memulai kembali."
     }

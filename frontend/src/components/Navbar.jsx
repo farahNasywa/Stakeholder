@@ -17,7 +17,7 @@ const Navbar = () => {
   const location = useLocation();
 
   const currentUser = {
-    name: localStorage.getItem("name") || "Tamu",
+    name: localStorage.getItem("name") || t("navbar.guestName"),
     email: localStorage.getItem("email") || "",
     role: localStorage.getItem("role") || "",
   };

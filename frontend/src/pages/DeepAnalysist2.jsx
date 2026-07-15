@@ -1027,11 +1027,22 @@ export default function DeepAnalysist2() {
       </div>
 
       {/* Next Button */}
-      <div style={{ display: "flex", justifyContent: "flex-end", padding: "16px 40px 32px" }}>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", padding: "16px 40px 32px", gap: 8 }}>
+        {!areAllFlagsSelected && (
+          <span style={{ color: "#DC2626", fontSize: 14, fontWeight: 600 }}>
+            {t("deepAnalysist2.answerAllTriggersWarning")}
+          </span>
+        )}
         <button
-          onClick={() => navigate(`/stakeholderprofilesetup/${stakeholderId}`)}
+          onClick={() => {
+            if (!areAllFlagsSelected) return;
+            navigate(`/stakeholderprofilesetup/${stakeholderId}`);
+          }}
+          disabled={!areAllFlagsSelected}
           style={{
-            background: "linear-gradient(to right, #3375C1, #81B4D6, #9FC8E3)",
+            background: areAllFlagsSelected
+              ? "linear-gradient(to right, #3375C1, #81B4D6, #9FC8E3)"
+              : "#9CA3AF",
             color: "white",
             padding: "12px 24px",
             borderRadius: 16,
@@ -1039,7 +1050,8 @@ export default function DeepAnalysist2() {
             alignItems: "center",
             gap: 12,
             border: "none",
-            cursor: "pointer",
+            cursor: areAllFlagsSelected ? "pointer" : "not-allowed",
+            opacity: areAllFlagsSelected ? 1 : 0.7,
           }}
         >
           <span style={{ fontSize: 18, fontWeight: "bold" }}>{t("deepAnalysist2.nextButton")}</span>

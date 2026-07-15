@@ -1,7 +1,9 @@
 // src/components/DeleteConfirmationModal.jsx
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const DeleteConfirmationModal = ({ isOpen, onClose, onConfirm, stakeholderName }) => {
+  const { t } = useTranslation();
   // Jika modal tidak terbuka, jangan tampilkan apa pun
   if (!isOpen) {
     return null;
@@ -15,24 +17,23 @@ const DeleteConfirmationModal = ({ isOpen, onClose, onConfirm, stakeholderName }
       {/* Kotak Modal */}
       <div className="bg-white p-8 rounded-lg shadow-xl w-96 max-w-md">
         <h3 className="text-xl font-bold mb-4 text-red-600">
-          Konfirmasi Penghapusan
+          {t("deleteConfirmationModal.title")}
         </h3>
         <p className="mb-6 text-gray-700">
-          Apakah Anda yakin ingin menghapus stakeholder <strong>{stakeholderName}</strong>? Tindakan ini
-          tidak dapat dibatalkan.
+          {t("deleteConfirmationModal.confirmTextBefore")} <strong>{stakeholderName}</strong>{t("deleteConfirmationModal.confirmTextAfter")}
         </p>
         <div className="flex justify-end space-x-4">
           <button
             onClick={onClose}
             className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 font-medium"
           >
-            Batal
+            {t("deleteConfirmationModal.cancel")}
           </button>
           <button
             onClick={onConfirm}
             className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 font-medium"
           >
-            Hapus
+            {t("deleteConfirmationModal.delete")}
           </button>
         </div>
       </div>

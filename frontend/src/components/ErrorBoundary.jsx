@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import i18n from '../i18n/config.js';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -43,17 +44,17 @@ class ErrorBoundary extends React.Component {
             </motion.div>
             
             <h2 className="text-2xl font-bold text-foreground mb-4">
-              Something went wrong
+              {i18n.t('errorBoundary.title')}
             </h2>
             
             <p className="text-muted-foreground mb-6">
-              We're sorry, but something unexpected happened. Please try refreshing the page.
+              {i18n.t('errorBoundary.message')}
             </p>
             
             {process.env.NODE_ENV === 'development' && (
               <details className="text-left bg-muted p-4 rounded-lg mb-6">
                 <summary className="cursor-pointer font-semibold text-destructive mb-2">
-                  Error Details (Development Only)
+                  {i18n.t('errorBoundary.devDetails')}
                 </summary>
                 <pre className="text-xs text-muted-foreground overflow-auto max-h-40">
                   {this.state.error && this.state.error.toString()}
@@ -68,14 +69,14 @@ class ErrorBoundary extends React.Component {
                 onClick={() => window.location.reload()}
                 className="btn-primary"
               >
-                Refresh Page
+                {i18n.t('errorBoundary.refreshPage')}
               </button>
               
               <button
                 onClick={() => window.history.back()}
                 className="px-4 py-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
               >
-                Go Back
+                {i18n.t('errorBoundary.goBack')}
               </button>
             </div>
           </motion.div>

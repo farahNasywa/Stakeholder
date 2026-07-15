@@ -152,7 +152,7 @@ const DashboardPage = () => {
     {
       title: t("dashboard.steps.step5Title"),
       desc: t("dashboard.steps.step5Desc"),
-      onClick: needsId,
+      onClick: () => navigate('/stakeholderprofilesetup'),
     },
     {
       title: t("dashboard.steps.step6Title"),

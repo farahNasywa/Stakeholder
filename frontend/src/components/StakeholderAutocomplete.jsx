@@ -1,13 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import api from '../utils/api';
 
 const StakeholderAutocomplete = ({ 
   value, 
   onChange, 
-  placeholder = "Type Name of Stakeholder",
+  placeholder,
   className = "",
   onSelect 
 }) => {
+  const { t } = useTranslation();
+  const resolvedPlaceholder = placeholder ?? t('stakeholderAutocomplete.defaultPlaceholder');
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -78,7 +81,7 @@ const StakeholderAutocomplete = ({
       <input
         ref={inputRef}
         className={`w-full h-10 rounded-md shadow-xl px-3 border-gray-400 font-semibold text-black bg-white appearance-none focus:outline-none focus:ring-2 focus:ring-blue-400 ${className}`}
-        placeholder={placeholder}
+        placeholder={resolvedPlaceholder}
         type="text"
         value={value}
         onChange={handleInputChange}
@@ -108,11 +111,11 @@ const StakeholderAutocomplete = ({
                 <div>
                   <div className="font-semibold text-gray-900">{suggestion.name}</div>
                   <div className="text-sm text-gray-600">
-                    {suggestion.role?.name || 'No role'} • {suggestion.stakeholderType?.name || 'No type'}
+                    {suggestion.role?.name || t('stakeholderAutocomplete.noRole')} • {suggestion.stakeholderType?.name || t('stakeholderAutocomplete.noType')}
                   </div>
                 </div>
                 <div className="text-xs text-blue-600 font-medium">
-                  Select
+                  {t('stakeholderAutocomplete.select')}
                 </div>
               </div>
             </div>

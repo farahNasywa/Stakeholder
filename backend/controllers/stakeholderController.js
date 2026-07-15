@@ -332,6 +332,28 @@ export const updateReengagementTriggers = async (req, res) => {
       return res.status(400).json({ message: "reengagementTriggers is required" });
     }
 
+    // Validasi: seluruh 6 Trigger Parameter wajib sudah dijawab (Yes/No,
+    // bukan null/undefined) sebelum hasil boleh disimpan. Ini mencerminkan
+    // validasi yang sama di frontend, supaya tidak bisa dilewati lewat
+    // panggilan API langsung.
+    const requiredFlagKeys = [
+      "issueEscalation",
+      "projectMilestoneImpact",
+      "stakeholderRequest",
+      "regulatoryChangeAlert",
+      "mediaCoverageAlert",
+      "communityFeedbackReceived",
+    ];
+    const flags = reengagementTriggers.flags || {};
+    const unanswered = requiredFlagKeys.filter(
+      (key) => flags[key] === null || flags[key] === undefined
+    );
+    if (unanswered.length > 0) {
+      return res.status(400).json({
+        message: `All Trigger Parameters must be answered (Yes/No) before saving. Missing: ${unanswered.join(", ")}`,
+      });
+    }
+
     const updated = await Stakeholder.findByIdAndUpdate(
       req.params.id,
       { $set: { reengagementTriggers } },
