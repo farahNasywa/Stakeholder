@@ -162,11 +162,6 @@ const DashboardPage = () => {
     {
       title: t("dashboard.steps.step7Title"),
       desc: t("dashboard.steps.step7Desc"),
-      onClick: needsId,
-    },
-    {
-      title: t("dashboard.steps.step8Title"),
-      desc: t("dashboard.steps.step8Desc"),
       onClick: () => navigate('/dashboard'),
     },
   ];

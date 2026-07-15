@@ -43,7 +43,7 @@
     "profile": "Profil",
     "logout": "Keluar",
     "titles": {
-      "stakeholderProfileSetup": "Stakeholder Setup Profile",
+      "stakeholderProfileSetup": "Stakeholder Setup Profile & Assessment",
       "dashboard": "Stakeholder Analysis System",
       "engagementJustification": "Engagement Justification",
       "deepAnalysis2": "Deep Analysis 2",
@@ -540,9 +540,9 @@
   "dashboard": {
     "card": {
       "title": "Stakeholders",
-      "subtitle": "Managed Engagement Protocol",
-      "desc": "Stakeholder yang memiliki pengaruh atau dampak sedang terhadap proyek.",
-      "text": "Mereka dapat mendukung, mengatur, memberi saran, atau mengamati, namun tidak memiliki kekuatan penentu atau mengalami dampak langsung terhadap operasi inti. Keterlibatan bersifat rutin atau berdasarkan isu tertentu, bukan berkelanjutan.",
+      "subtitle": "Sistem Pemetaan dan Analisis Pemangku Kepentingan",
+      "desc": "Sistem ini dirancang untuk membantu KKKS dan BPMA dalam memetakan, menilai, dan menganalisis pemangku kepentingan secara terstruktur. Dengan informasi yang akurat dan terintegrasi, pengambilan keputusan dapat dilakukan secara lebih tepat, terukur, dan berbasis data untuk mendukung keberhasilan kegiatan hulu migas di Aceh.",
+      "text": "",
       "mapAlt": "Peta Wilayah Kewenangan BPMA",
       "overviewTitle": "Ringkasan Stakeholder",
       "byCategory": "Berdasarkan Kategori",
@@ -564,21 +564,19 @@
     "steps": {
       "sectionTitle": "Langkah Navigasi Pengguna",
       "step1Title": "Buka Dashboard Utama",
-      "step1Desc": "Pastikan Anda berada di halaman utama aplikasi.",
-      "step2Title": "Cari Nama",
-      "step2Desc": "Ketik nama yang ingin dicari pada kolom pencarian.",
-      "step3Title": "Periksa Engagement Priority",
-      "step3Desc": "Tentukan apakah akan melanjutkan ke Engagement Priority atau tidak.",
-      "step4Title": "Menuju Engagement Priority",
-      "step4Desc": "Jika diperlukan, klik YA untuk membuka halaman Engagement Priority lalu klik Selanjutnya.",
-      "step5Title": "Stakeholder Setup Profile",
-      "step5Desc": "Jika tidak diperlukan, tetap berada di halaman Deep Analysis untuk melihat data secara rinci.",
+      "step1Desc": "Pastikan Anda berada di halaman utama aplikasi untuk melihat ringkasan dan informasi umum.",
+      "step2Title": "Cari Nama Stakeholder",
+      "step2Desc": "Ketik nama stakeholder yang ingin dicari pada kolom pencarian.",
+      "step3Title": "Menuju Engagement Priority",
+      "step3Desc": "Tentukan apakah akan melanjutkan ke tahap berikutnya dengan menjawab YA pada konfirmasi sistem.",
+      "step4Title": "Stakeholder Profile Setup & Assessment",
+      "step4Desc": "Lengkapi data stakeholder dan isi 10 kluster pertanyaan dengan menjawab YA atau TIDAK pada setiap pertanyaan yang tersedia.",
+      "step5Title": "Deep Analysis",
+      "step5Desc": "Pilih Key Concern melalui dropdown yang tersedia, kemudian lanjut ke halaman Deep Analysis 2. Isi Trigger Parameter dengan memilih YA atau TIDAK untuk memperoleh Trigger Reason.",
       "step6Title": "Engagement Justification",
-      "step6Desc": "Memberikan wawasan mengenai apakah dan mengapa perlu melibatkan setiap Stakeholder.",
-      "step7Title": "Isi Data",
-      "step7Desc": "Pilih formulir, lalu isi Status Re-engagement & Alasan Pemicu.",
-      "step8Title": "Kembali ke Awal",
-      "step8Desc": "Klik tombol menu (tiga garis) di sudut atas, pilih Dashboard Utama untuk memulai kembali."
+      "step6Desc": "Lihat ringkasan profil stakeholder dan alasan keterlibatan yang dihasilkan secara otomatis oleh sistem.",
+      "step7Title": "Kembali ke Awal",
+      "step7Desc": "Klik tombol menu (tiga garis) di sudut kiri atas, kemudian pilih Dashboard Utama untuk memulai kembali."
     }
   },
   "addStakeholder": {
