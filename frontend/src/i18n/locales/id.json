@@ -478,7 +478,8 @@
     "successPopup": {
       "title": "Berhasil!",
       "clusteringDone": "Hasil klasterisasi tersimpan! Seluruh data telah dibersihkan. Mengarahkan ke halaman justifikasi...",
-      "profileSaved": "Data Stakeholder tersimpan ke database, Google Sheets, dan penyimpanan lokal!"
+      "profileSaved": "Data Stakeholder tersimpan ke database, Google Sheets, dan penyimpanan lokal!",
+      "changeSubmitted": "Perubahan berhasil diajukan dan menunggu persetujuan BPMA. Data lama tetap digunakan sampai disetujui."
     }
   },
   "faq": {
@@ -542,7 +543,6 @@
       "title": "Stakeholders",
       "subtitle": "Sistem Pemetaan dan Analisis Pemangku Kepentingan",
       "desc": "Sistem ini dirancang untuk membantu KKKS dan BPMA dalam memetakan, menilai, dan menganalisis pemangku kepentingan secara terstruktur. Dengan informasi yang akurat dan terintegrasi, pengambilan keputusan dapat dilakukan secara lebih tepat, terukur, dan berbasis data untuk mendukung keberhasilan kegiatan hulu migas di Aceh.",
-      "text": "",
       "mapAlt": "Peta Wilayah Kewenangan BPMA",
       "overviewTitle": "Ringkasan Stakeholder",
       "byCategory": "Berdasarkan Kategori",
@@ -569,14 +569,16 @@
       "step2Desc": "Ketik nama stakeholder yang ingin dicari pada kolom pencarian.",
       "step3Title": "Menuju Engagement Priority",
       "step3Desc": "Tentukan apakah akan melanjutkan ke tahap berikutnya dengan menjawab YA pada konfirmasi sistem.",
-      "step4Title": "Stakeholder Profile Setup & Assessment",
-      "step4Desc": "Lengkapi data stakeholder dan isi 10 kluster pertanyaan dengan menjawab YA atau TIDAK pada setiap pertanyaan yang tersedia.",
-      "step5Title": "Deep Analysis",
-      "step5Desc": "Pilih Key Concern melalui dropdown yang tersedia, kemudian lanjut ke halaman Deep Analysis 2. Isi Trigger Parameter dengan memilih YA atau TIDAK untuk memperoleh Trigger Reason.",
+      "step4Title": "Deep Analysis",
+      "step4Desc": "Pilih Key Concern melalui dropdown yang tersedia, kemudian lanjut ke halaman Deep Analysis 2. Isi Trigger Parameter dengan memilih YA atau TIDAK untuk memperoleh Trigger Reason.",
+      "step5Title": "Stakeholder Profile Setup & Assessment",
+      "step5Desc": "Lengkapi data stakeholder dan isi 10 kluster pertanyaan dengan menjawab YA atau TIDAK pada setiap pertanyaan yang tersedia.",
       "step6Title": "Engagement Justification",
       "step6Desc": "Lihat ringkasan profil stakeholder dan alasan keterlibatan yang dihasilkan secara otomatis oleh sistem.",
-      "step7Title": "Kembali ke Awal",
-      "step7Desc": "Klik tombol menu (tiga garis) di sudut kiri atas, kemudian pilih Dashboard Utama untuk memulai kembali."
+      "step7Title": "Fitur Sistem Lainnya",
+      "step7Desc": "Pengguna dapat melanjutkan penggunaan fitur lain pada sistem melalui menu sidebar, seperti Add Stakeholder, My Validation, dan FAQ.",
+      "step8Title": "Kembali ke Dashboard",
+      "step8Desc": "Klik tombol menu (tiga garis) di sudut kiri atas, kemudian pilih Dashboard Utama untuk memulai kembali."
     }
   },
   "addStakeholder": {

@@ -40,6 +40,7 @@ export default function StakeholderProfileSetup() {
     const currentUser = localStorage.getItem("name") || "anonymous";
     const [isUpdatingData, setIsUpdatingData] = useState(false);
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+    const [isPendingApprovalSave, setIsPendingApprovalSave] = useState(false);
     const [isFormSaved, setIsFormSaved] = useState(false);
 
     // Tambahkan ini
@@ -311,6 +312,7 @@ export default function StakeholderProfileSetup() {
             }
 
             const token = localStorage.getItem("token");
+            const currentUserRole = (localStorage.getItem("role") || "").toLowerCase();
 
             // Get levels from Google Sheets (opsional, tidak blokir save)
             let sheetsData = {};
@@ -335,12 +337,29 @@ export default function StakeholderProfileSetup() {
             console.log("Final payload:", payload);
 
             let response;
+            let isPendingApproval = false;
             if (id) {
-                response = await api.put(
-                    `/api/stakeholders/${id}`,
-                    payload,
-                    { headers: { Authorization: `Bearer ${token}` } }
-                );
+                if (currentUserRole === "bpma") {
+                    response = await api.put(
+                        `/api/stakeholders/${id}`,
+                        payload,
+                        { headers: { Authorization: `Bearer ${token}` } }
+                    );
+                } else {
+                    // KKKS (atau role selain BPMA): jangan ubah data utama secara
+                    // langsung. Ajukan sebagai change request yang menunggu
+                    // review BPMA, memakai mekanisme yang sama dengan halaman
+                    // Engagement Priority.
+                    await api.post(
+                        `/api/stakeholder-change-requests/${id}/request-change`,
+                        payload,
+                        { headers: { Authorization: `Bearer ${token}` } }
+                    );
+                    isPendingApproval = true;
+                    // Data utama Stakeholder belum berubah sampai BPMA approve,
+                    // jadi tetap pakai data yang sudah ada di state saat ini.
+                    response = { status: 201, data: stakeholder };
+                }
             } else {
                 response = await api.post(
                     "/api/stakeholders",
@@ -353,18 +372,26 @@ export default function StakeholderProfileSetup() {
                 setStakeholder(response.data);
                 setIsFormSaved(true);
                 // clearAllLocalStorage();
+                setIsPendingApprovalSave(isPendingApproval);
                 setShowSuccessPopup(true);
-                try {
-                    await api.post(
-                        `/sheets/1GV3WqppPH0kvUrLA0zrXfqawAsCM5RhnB_Yp_fVE44Q/save-justification`,
-                        { stakeholderId: response.data._id },
-                        { headers: { Authorization: `Bearer ${token}` } }
-                    );
-                    console.log("Justification berhasil disimpan ke DB");
-                } catch (err) {
-                    console.error("Gagal menyimpan justification:", err);
+                if (isPendingApproval) {
+                    // Untuk KKKS yang mengajukan perubahan pada data yang sudah
+                    // ada, lewati pembuatan ulang justification (belum resmi
+                    // berubah) dan jangan pindah ke halaman justification dulu,
+                    // karena data belum benar-benar diperbarui sampai BPMA approve.
+                } else {
+                    try {
+                        await api.post(
+                            `/sheets/1GV3WqppPH0kvUrLA0zrXfqawAsCM5RhnB_Yp_fVE44Q/save-justification`,
+                            { stakeholderId: response.data._id },
+                            { headers: { Authorization: `Bearer ${token}` } }
+                        );
+                        console.log("Justification berhasil disimpan ke DB");
+                    } catch (err) {
+                        console.error("Gagal menyimpan justification:", err);
+                    }
+                    navigate(`/engagementjustification/${response.data._id}`, { replace: true });
                 }
-                navigate(`/engagementjustification/${response.data._id}`, { replace: true });
             }
         } catch (error) {
             console.error("Error saving stakeholder:", error);
@@ -883,7 +910,9 @@ export default function StakeholderProfileSetup() {
                         <div className="text-center">
                             <h3 className="text-lg font-bold text-gray-800">{t("stakeholderProfileSetup.successPopup.title")}</h3>
                             <p className="text-gray-600">
-                                {allAssessmentsCompleted
+                                {isPendingApprovalSave
+                                    ? t("stakeholderProfileSetup.successPopup.changeSubmitted")
+                                    : allAssessmentsCompleted
                                     ? t("stakeholderProfileSetup.successPopup.clusteringDone")
                                     : t("stakeholderProfileSetup.successPopup.profileSaved")
                                 }

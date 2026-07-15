@@ -319,6 +319,41 @@ export const createStakeholder = async (req, res) => {
 };
 
 // Update stakeholder
+// Endpoint KHUSUS untuk menyimpan hasil kalkulasi re-engagement (skor,
+// status, flags, reasons) dari halaman Deep Analysis 2. Ini SENGAJA tidak
+// dikunci hanya-BPMA seperti updateStakeholder biasa, karena data ini
+// adalah hasil kalkulasi sistem otomatis (bukan perubahan profil
+// Stakeholder yang perlu divalidasi), sehingga aman disimpan langsung
+// oleh siapa pun yang login (KKKS maupun BPMA).
+export const updateReengagementTriggers = async (req, res) => {
+  try {
+    const { reengagementTriggers } = req.body;
+    if (!reengagementTriggers) {
+      return res.status(400).json({ message: "reengagementTriggers is required" });
+    }
+
+    const updated = await Stakeholder.findByIdAndUpdate(
+      req.params.id,
+      { $set: { reengagementTriggers } },
+      { new: true, runValidators: true }
+    )
+      .populate("role", "name")
+      .populate("stakeholderType", "name")
+      .populate("engagementFrequency", "name description")
+      .populate("engagementStrategy", "strategy")
+      .populate("focalPoints", "recommendedFocalpoint backupSupportFocalpoint");
+
+    if (!updated) {
+      return res.status(404).json({ message: "Stakeholder not found" });
+    }
+
+    res.json(updated);
+  } catch (error) {
+    console.error("Error updating reengagement triggers:", error);
+    res.status(500).json({ message: "Failed to update reengagement triggers", error: error.message });
+  }
+};
+
 export const updateStakeholder = async (req, res) => {
   try {
     const { id } = req.params;

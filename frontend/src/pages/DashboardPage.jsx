@@ -164,6 +164,11 @@ const DashboardPage = () => {
       desc: t("dashboard.steps.step7Desc"),
       onClick: () => navigate('/dashboard'),
     },
+    {
+      title: t("dashboard.steps.step8Title"),
+      desc: t("dashboard.steps.step8Desc"),
+      onClick: () => navigate('/dashboard'),
+    },
   ];
 
   return (
@@ -197,9 +202,6 @@ const DashboardPage = () => {
                 <h3 className="stakeholder-subtitle">{t("dashboard.card.subtitle")}</h3>
                 <p className="stakeholder-desc">
                   {t("dashboard.card.desc")}
-                </p>
-                <p className="stakeholder-text">
-                  {t("dashboard.card.text")}
                 </p>
               </div>
             </div>

@@ -256,7 +256,7 @@ export default function DeepAnalysist2() {
         }
 
         await api.put(
-          `/api/stakeholders/${stakeholderId}`,
+          `/api/stakeholders/${stakeholderId}/reengagement`,
           updateData
         );
 

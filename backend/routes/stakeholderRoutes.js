@@ -8,6 +8,7 @@ import {
   searchStakeholders,
   createStakeholder,
   updateStakeholder,
+  updateReengagementTriggers,
   deleteStakeholder,       
   submitDeleteRequest,
   getAllStakeholdersWithJustification,
@@ -24,6 +25,9 @@ router.get("/without-justification", getStakeholdersWithoutJustification);
 router.get("/search", searchStakeholders);
 router.get("/", getAllStakeholders);
 router.post("/", authMiddleware, createStakeholder); // Status ditentukan server-side berdasarkan role (lihat controller)
+// Hasil kalkulasi sistem (re-engagement) - boleh disimpan siapa saja yang
+// login, TIDAK memerlukan validasi BPMA karena bukan perubahan data profil.
+router.put("/:id/reengagement", authMiddleware, updateReengagementTriggers);
 // Update langsung ke data Stakeholder HANYA untuk BPMA. Role lain (KKKS dsb)
 // wajib memakai /:id/request-change agar melalui alur validasi BPMA.
 router.put("/:id", authMiddleware, requireBpma, updateStakeholder);
