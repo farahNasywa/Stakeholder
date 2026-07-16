@@ -90,6 +90,12 @@ export default function StakeholderProfileSetup() {
 
                 if (stakeholderRes.data) {
                     setStakeholder(stakeholderRes.data);
+                    // Stakeholder ini berhasil dimuat dari database, artinya
+                    // profilnya memang sudah pernah tersimpan sebelumnya.
+                    // Tanpa ini, tombol "Complete & Generate Justification"
+                    // tidak akan muncul saat halaman ini dibuka ulang/di-reload,
+                    // karena isFormSaved akan selalu mulai dari false.
+                    setIsFormSaved(true);
 
                     const savedFormRaw = localStorage.getItem('stakeholder-form-data');
                     const s = savedFormRaw ? JSON.parse(savedFormRaw) : {};

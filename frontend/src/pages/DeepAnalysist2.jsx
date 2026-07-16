@@ -1027,12 +1027,7 @@ export default function DeepAnalysist2() {
       </div>
 
       {/* Next Button */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", padding: "16px 40px 32px", gap: 8 }}>
-        {!areAllFlagsSelected && (
-          <span style={{ color: "#DC2626", fontSize: 14, fontWeight: 600 }}>
-            {t("deepAnalysist2.answerAllTriggersWarning")}
-          </span>
-        )}
+      <div style={{ display: "flex", justifyContent: "flex-end", padding: "16px 40px 32px" }}>
         <button
           onClick={() => {
             if (!areAllFlagsSelected) return;
