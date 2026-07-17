@@ -256,7 +256,7 @@ export default function DeepAnalysist2() {
         }
 
         await api.put(
-          `/api/stakeholders/${stakeholderId}/reengagement`,
+          `/api/stakeholders/${stakeholderId}`,
           updateData
         );
 
@@ -1029,15 +1029,9 @@ export default function DeepAnalysist2() {
       {/* Next Button */}
       <div style={{ display: "flex", justifyContent: "flex-end", padding: "16px 40px 32px" }}>
         <button
-          onClick={() => {
-            if (!areAllFlagsSelected) return;
-            navigate(`/stakeholderprofilesetup/${stakeholderId}`);
-          }}
-          disabled={!areAllFlagsSelected}
+          onClick={() => navigate(`/stakeholderprofilesetup/${stakeholderId}`)}
           style={{
-            background: areAllFlagsSelected
-              ? "linear-gradient(to right, #3375C1, #81B4D6, #9FC8E3)"
-              : "#9CA3AF",
+            background: "linear-gradient(to right, #3375C1, #81B4D6, #9FC8E3)",
             color: "white",
             padding: "12px 24px",
             borderRadius: 16,
@@ -1045,8 +1039,7 @@ export default function DeepAnalysist2() {
             alignItems: "center",
             gap: 12,
             border: "none",
-            cursor: areAllFlagsSelected ? "pointer" : "not-allowed",
-            opacity: areAllFlagsSelected ? 1 : 0.7,
+            cursor: "pointer",
           }}
         >
           <span style={{ fontSize: 18, fontWeight: "bold" }}>{t("deepAnalysist2.nextButton")}</span>

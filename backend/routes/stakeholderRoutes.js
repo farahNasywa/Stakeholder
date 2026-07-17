@@ -28,9 +28,10 @@ router.post("/", authMiddleware, createStakeholder); // Status ditentukan server
 // Hasil kalkulasi sistem (re-engagement) - boleh disimpan siapa saja yang
 // login, TIDAK memerlukan validasi BPMA karena bukan perubahan data profil.
 router.put("/:id/reengagement", authMiddleware, updateReengagementTriggers);
-// Update langsung ke data Stakeholder HANYA untuk BPMA. Role lain (KKKS dsb)
-// wajib memakai /:id/request-change agar melalui alur validasi BPMA.
-router.put("/:id", authMiddleware, requireBpma, updateStakeholder);
+// Dikembalikan seperti semula: update langsung terbuka untuk siapa saja yang
+// login (tanpa gate khusus-BPMA), supaya Deep Analysis 2 dan Stakeholder
+// Profile Setup bisa menyimpan seperti sebelumnya.
+router.put("/:id", authMiddleware, updateStakeholder);
 router.get('/:id', getSingleStakeholder); 
 router.delete("/:id/request-delete", authMiddleware, submitDeleteRequest); // KKKS submit request
 router.delete("/:id", authMiddleware, requireBpma, deleteStakeholder); // Hanya BPMA yang boleh hapus langsung
