@@ -298,6 +298,8 @@ const ValidationBPMA = () => {
                         >
                           <FaEye /> {t("validationBpma.buttons.detail")}
                         </button>
+                        {req.status === "Pending" && (
+                          <>
                         <button
                           onClick={() => handleApprove(req._id)}
                           style={{
@@ -326,6 +328,8 @@ const ValidationBPMA = () => {
                         >
                           <FaTimes /> {t("validationBpma.buttons.reject")}
                         </button>
+                          </>
+                        )}
                         </div>
                       </td>
                     </tr>
@@ -545,18 +549,24 @@ const ValidationBPMA = () => {
               )}
             </div>
             <div className="modal-footer">
-              <button
-                onClick={() => handleApprove(selectedRequest._id)}
-                style={{ backgroundColor: "#047857", color: "white" }}
-              >
-                <FaCheck /> {t("validationBpma.buttons.approved")}
-              </button>
-              <button
-                onClick={() => handleReject(selectedRequest._id)}
-                style={{ backgroundColor: "#DC2626", color: "white" }}
-              >
-                <FaTimes /> {t("validationBpma.buttons.rejected")}
-              </button>
+              {selectedRequest.status === "Pending" ? (
+                <>
+                  <button
+                    onClick={() => handleApprove(selectedRequest._id)}
+                    style={{ backgroundColor: "#047857", color: "white" }}
+                  >
+                    <FaCheck /> {t("validationBpma.buttons.approved")}
+                  </button>
+                  <button
+                    onClick={() => handleReject(selectedRequest._id)}
+                    style={{ backgroundColor: "#DC2626", color: "white" }}
+                  >
+                    <FaTimes /> {t("validationBpma.buttons.rejected")}
+                  </button>
+                </>
+              ) : (
+                <div style={{ padding: "10px 0" }}>{getStatusBadge(selectedRequest.status)}</div>
+              )}
             </div>
           </div>
         </div>

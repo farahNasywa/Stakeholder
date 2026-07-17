@@ -43,16 +43,35 @@ const DashboardPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    api.get(API_URL)
-      .then((res) => {
-        const stakeholders = res.data;
+    // Ambil data stakeholder + status efektif (logika sama persis dengan
+    // yang dipakai halaman Engagement Priority) supaya diagram Dashboard
+    // selalu konsisten dengan status yang ditampilkan di sana.
+    Promise.all([
+      api.get(API_URL),
+      api.get('/api/stakeholder-change-requests/effective-statuses').catch(() => ({ data: {} })),
+    ])
+      .then(([stakeholdersRes, effectiveStatusRes]) => {
+        const stakeholders = stakeholdersRes.data;
+        const effectiveStatusMap = effectiveStatusRes.data || {};
         const catCount = {};
         const statusCount = {};
         stakeholders.forEach((s) => {
           const cat = s.engagementCategory || "Unknown";
-          const st = s.status || "Unknown";
           catCount[cat] = (catCount[cat] || 0) + 1;
-          statusCount[st] = (statusCount[st] || 0) + 1;
+
+          // Logika ini harus identik dengan getCurrentStatus() di
+          // EngagementPriority.jsx: kalau stakeholder ini punya change
+          // request, pakai status request TERBARU; kalau tidak ada request
+          // sama sekali, effective status-nya "Approved" (sesuai default
+          // dari endpoint latest-status).
+          const hasRequest = Object.prototype.hasOwnProperty.call(effectiveStatusMap, s._id);
+          const validationStatus = hasRequest ? effectiveStatusMap[s._id] : "Approved";
+          const effectiveStatus =
+            validationStatus && validationStatus !== s.status
+              ? validationStatus
+              : (s.status || "Unknown");
+
+          statusCount[effectiveStatus] = (statusCount[effectiveStatus] || 0) + 1;
         });
         setChartData({
           categories: Object.entries(catCount).map(([name, value]) => ({ name, value })),

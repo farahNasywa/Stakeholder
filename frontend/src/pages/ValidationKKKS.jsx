@@ -353,6 +353,7 @@ const ValidationKKKS = () => {
                           >
                             <FaEye /> {t("validationKkks.buttons.detail")}
                           </button>
+                          {req.status === "Pending" && (
                           <button
                             onClick={() => handleDelete(req._id)}
                             style={{
@@ -372,6 +373,7 @@ const ValidationKKKS = () => {
                           >
                             <FaTrash /> {t("validationKkks.buttons.delete")}
                           </button>
+                          )}
                         </div>
                       </td>
                     </tr>

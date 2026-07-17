@@ -39,7 +39,11 @@ export const createChangeRequest = async (req, res) => {
 
 export const getAllChangeRequests = async (req, res) => {
   try {
-    const requests = await StakeholderChangeRequest.find({ status: "Pending" })
+    // Tampilkan SEMUA status (Pending/Approved/Rejected), bukan cuma Pending,
+    // supaya riwayat validasi tidak hilang setelah BPMA memutuskan. Pending
+    // diprioritaskan tampil paling atas, baru diikuti yang sudah diputuskan
+    // (terbaru dulu).
+    const requests = await StakeholderChangeRequest.find({})
       .populate({
         path: "stakeholderId",
         select:
@@ -53,10 +57,15 @@ export const getAllChangeRequests = async (req, res) => {
           { path: "focalPoints", select: "recommendedFocalpoint" },
         ],
       })
-      .populate("requestedBy", "name email");
+      .populate("requestedBy", "name email")
+      .sort({ createdAt: -1 });
 
     // Filter out orphaned requests where stakeholderId was deleted
     const validRequests = requests.filter(r => r.stakeholderId !== null);
+
+    // Pending di atas, sisanya (Approved/Rejected) mengikuti urutan terbaru
+    const statusOrder = { Pending: 0, Approved: 1, Rejected: 1 };
+    validRequests.sort((a, b) => (statusOrder[a.status] ?? 1) - (statusOrder[b.status] ?? 1));
 
     res.json(validRequests);
   } catch (error) {
@@ -318,6 +327,38 @@ export const reviewChangeRequest = async (req, res) => {
     
     // Penanganan error umum
     res.status(500).json({ message: "Failed to review change request" });
+  }
+};
+
+// Mengembalikan status "efektif" SEMUA stakeholder sekaligus, memakai
+// logika PERSIS SAMA dengan yang dipakai halaman Engagement Priority
+// (lihat getCurrentStatus() di EngagementPriority.jsx / getLatestStatusForStakeholder
+// di atas): kalau ada change request untuk stakeholder itu, pakai status
+// request TERBARU; kalau tidak ada request sama sekali, effective status-nya
+// "Approved". Dipakai oleh Dashboard supaya diagram statusnya selalu
+// konsisten dengan apa yang ditampilkan di Engagement Priority, bukan
+// logika terpisah.
+export const getEffectiveStatuses = async (req, res) => {
+  try {
+    const latestByStakeholder = await StakeholderChangeRequest.aggregate([
+      { $sort: { createdAt: -1 } },
+      {
+        $group: {
+          _id: "$stakeholderId",
+          status: { $first: "$status" },
+        },
+      },
+    ]);
+
+    const map = {};
+    latestByStakeholder.forEach((r) => {
+      map[r._id.toString()] = r.status;
+    });
+
+    res.json(map);
+  } catch (error) {
+    console.error("Error computing effective statuses:", error);
+    res.status(500).json({ message: "Failed to compute effective statuses" });
   }
 };
 

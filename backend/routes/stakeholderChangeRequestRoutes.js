@@ -7,6 +7,7 @@ import {
   reviewChangeRequest,
   getMyChangeRequests,
   getLatestStatusForStakeholder,
+  getEffectiveStatuses,
   deleteChangeRequest,
   createDeletionRequest
 } from "../controllers/stakeholderChangeRequestController.js";
@@ -31,6 +32,8 @@ router.get("/my-requests", authMiddleware, getMyChangeRequests);
 router.put("/:id/review", authMiddleware, reviewChangeRequest);
 
 router.get('/latest-status', authMiddleware, getLatestStatusForStakeholder);
+// Dipakai Dashboard supaya diagram status konsisten dengan Engagement Priority
+router.get('/effective-statuses', authMiddleware, getEffectiveStatuses);
 
 router.delete("/:id", authMiddleware, deleteChangeRequest);
 router.post("/:stakeholderId/request-deletion", authMiddleware, createDeletionRequest);
