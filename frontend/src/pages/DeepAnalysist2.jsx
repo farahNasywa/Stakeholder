@@ -272,7 +272,8 @@ export default function DeepAnalysist2() {
         };
         setStakeholderData(updatedStakeholderData);
       } catch (err) {
-        // Jika error di kalkulasi, reset UI
+        // Jika error di kalkulasi (bukan di penyimpanan), baru tampilkan
+        // sebagai error yang mengganggu, karena hasilnya memang tidak valid.
         if (err.message && !err.response) {
           setReengagementStatus(t("deepAnalysist2.calcErrorStatus"));
           setReengagementReason(
@@ -280,11 +281,15 @@ export default function DeepAnalysist2() {
           );
           setError(`${t("deepAnalysist2.calcErrorStatus")}: ${err.message}`);
         } else {
-          // Jika error di backend tapi kalkulasi berhasil, tetap tampilkan hasil
-          setError(
-            `${t("deepAnalysist2.saveFailedPrefix")} ${
-              err.response?.data?.message || err.message
-            }`
+          // Kalkulasi & tampilan hasil (Re-engagement Status, Trigger Reason)
+          // SUDAH berhasil di sisi ini - hanya penyimpanan ke server yang
+          // gagal (mis. server sedang tidak bisa diakses). Jangan tampilkan
+          // banner error yang menakutkan untuk ini; pengguna tetap bisa
+          // melihat dan menjawab seluruh Trigger Parameter seperti biasa.
+          // Cukup catat di console untuk keperluan debugging.
+          console.warn(
+            "Gagal menyimpan reengagement triggers ke server (hasil tetap ditampilkan):",
+            err.response?.data?.message || err.message
           );
         }
       }
