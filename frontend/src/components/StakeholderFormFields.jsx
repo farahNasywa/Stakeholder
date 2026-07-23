@@ -51,6 +51,31 @@ export const labelStyle = {
   gap: "8px",
 };
 
+// Tanda bintang merah untuk field wajib. Ditaruh sejajar dengan teks
+// label (label pakai display:flex + alignItems:center) supaya rapi di
+// desktop maupun mobile.
+const requiredMarkStyle = {
+  color: "#DC2626",
+  marginLeft: "2px",
+};
+
+const RequiredMark = () => <span style={requiredMarkStyle}>*</span>;
+
+// Style pesan error yang tampil di bawah field ketika field wajib
+// dikosongkan saat submit.
+const errorTextStyle = {
+  color: "#DC2626",
+  fontSize: "12px",
+  marginTop: "6px",
+};
+
+const errorInputStyle = {
+  borderColor: "#DC2626",
+};
+
+const FieldError = ({ message }) =>
+  message ? <p style={errorTextStyle}>{message}</p> : null;
+
 /**
  * StakeholderFormFields
  *
@@ -64,6 +89,18 @@ export const labelStyle = {
  * Engagement Category, Influence, Interest, Risk Level, Opportunity,
  * Benefit, Engagement Strategy, Engagement Frequency.
  * Hanya Name dan Contact yang berupa text input; sisanya dropdown.
+ *
+ * Field WAJIB (tampil dengan tanda bintang merah "*"): Stakeholder Name,
+ * Stakeholder Type, Category/Engagement Category, Province, City,
+ * Influence, Interest, Risk Level, Opportunity, Benefit, Engagement
+ * Strategy, Engagement Frequency.
+ * Field OPSIONAL (tanpa bintang): Role, District, Contact.
+ *
+ * Prop `errors` (opsional): object { [fieldName]: "pesan error" } dalam
+ * bahasa Inggris, dipakai untuk menampilkan pesan validasi di bawah
+ * field terkait. Key-nya: name, stakeholderType, engagementCategory,
+ * province, city, influence, interest, riskLevel, opportunity, benefit,
+ * engagementStrategy, engagementFrequency.
  */
 export default function StakeholderFormFields({
   form,
@@ -77,6 +114,7 @@ export default function StakeholderFormFields({
   locations = [],
   selectedProvince,
   selectedCity,
+  errors = {},
 }) {
   const { t } = useTranslation();
 
@@ -93,15 +131,19 @@ export default function StakeholderFormFields({
         <label style={labelStyle}>
           <FaUserCircle />
           {t("stakeholderForm.labels.name")}
+          <RequiredMark />
         </label>
         <input
           type="text"
           name="name"
           value={form.name || ""}
           onChange={onChange}
-          style={inputStyle}
+          style={errors.name ? { ...inputStyle, ...errorInputStyle } : inputStyle}
+          aria-required="true"
+          aria-invalid={!!errors.name}
           required
         />
+        <FieldError message={errors.name} />
       </div>
 
       {/* Role */}
@@ -109,13 +151,13 @@ export default function StakeholderFormFields({
         <label style={labelStyle}>
           <FaUsers />
           {t("stakeholderForm.labels.role")}
+          <RequiredMark />
         </label>
         <select
           name="role"
           value={form.role || ""}
           onChange={onChange}
           style={selectStyle}
-          required
         >
           <option value="">{t("stakeholderForm.placeholders.selectRole")}</option>
           {roles.map((role) => (
@@ -131,12 +173,15 @@ export default function StakeholderFormFields({
         <label style={labelStyle}>
           <FaMapMarkerAlt />
           {t("stakeholderForm.labels.province")}
+          <RequiredMark />
         </label>
         <select
           name="location.province"
           value={form.location?.province || ""}
           onChange={onProvinceChange}
-          style={selectStyle}
+          style={errors.province ? { ...selectStyle, ...errorInputStyle } : selectStyle}
+          aria-required="true"
+          aria-invalid={!!errors.province}
           required
         >
           <option value="">{t("stakeholderForm.placeholders.selectProvince")}</option>
@@ -146,6 +191,7 @@ export default function StakeholderFormFields({
             </option>
           ))}
         </select>
+        <FieldError message={errors.province} />
       </div>
 
       {/* City */}
@@ -153,13 +199,16 @@ export default function StakeholderFormFields({
         <label style={labelStyle}>
           <FaBuilding />
           {t("stakeholderForm.labels.city")}
+          <RequiredMark />
         </label>
         <select
           name="location.city"
           value={form.location?.city || ""}
           onChange={onCityChange}
-          style={selectStyle}
+          style={errors.city ? { ...selectStyle, ...errorInputStyle } : selectStyle}
           disabled={!selectedProvince}
+          aria-required="true"
+          aria-invalid={!!errors.city}
           required
         >
           <option value="">{t("stakeholderForm.placeholders.selectCity")}</option>
@@ -169,9 +218,10 @@ export default function StakeholderFormFields({
             </option>
           ))}
         </select>
+        <FieldError message={errors.city} />
       </div>
 
-      {/* District */}
+      {/* District (opsional) */}
       <div>
         <label style={labelStyle}>
           <FaBuilding />
@@ -193,7 +243,7 @@ export default function StakeholderFormFields({
         </select>
       </div>
 
-      {/* Contact */}
+      {/* Contact (opsional) */}
       <div>
         <label style={labelStyle}>
           <FaPhone />
@@ -214,12 +264,15 @@ export default function StakeholderFormFields({
         <label style={labelStyle}>
           <FaUsers />
           {t("stakeholderForm.labels.stakeholderType")}
+          <RequiredMark />
         </label>
         <select
           name="stakeholderType"
           value={form.stakeholderType || ""}
           onChange={onChange}
-          style={selectStyle}
+          style={errors.stakeholderType ? { ...selectStyle, ...errorInputStyle } : selectStyle}
+          aria-required="true"
+          aria-invalid={!!errors.stakeholderType}
           required
         >
           <option value="">{t("stakeholderForm.placeholders.selectStakeholderType")}</option>
@@ -229,6 +282,7 @@ export default function StakeholderFormFields({
             </option>
           ))}
         </select>
+        <FieldError message={errors.stakeholderType} />
       </div>
 
       {/* Engagement Category */}
@@ -236,12 +290,15 @@ export default function StakeholderFormFields({
         <label style={labelStyle}>
           <FaChartLine />
           {t("stakeholderForm.labels.engagementCategory")}
+          <RequiredMark />
         </label>
         <select
           name="engagementCategory"
           value={form.engagementCategory || ""}
           onChange={onChange}
-          style={selectStyle}
+          style={errors.engagementCategory ? { ...selectStyle, ...errorInputStyle } : selectStyle}
+          aria-required="true"
+          aria-invalid={!!errors.engagementCategory}
           required
         >
           <option value="">{t("stakeholderForm.placeholders.selectCategory")}</option>
@@ -249,6 +306,7 @@ export default function StakeholderFormFields({
           <option value="Secondary">{t("stakeholderForm.categoryOptions.secondary")}</option>
           <option value="Tertiary">{t("stakeholderForm.categoryOptions.tertiary")}</option>
         </select>
+        <FieldError message={errors.engagementCategory} />
       </div>
 
       {/* Influence */}
@@ -256,12 +314,15 @@ export default function StakeholderFormFields({
         <label style={labelStyle}>
           <FaStar />
           {t("stakeholderForm.labels.influence")}
+          <RequiredMark />
         </label>
         <select
           name="influence"
           value={form.influence || ""}
           onChange={onChange}
-          style={selectStyle}
+          style={errors.influence ? { ...selectStyle, ...errorInputStyle } : selectStyle}
+          aria-required="true"
+          aria-invalid={!!errors.influence}
           required
         >
           <option value="">{t("stakeholderForm.placeholders.selectInfluence")}</option>
@@ -269,6 +330,7 @@ export default function StakeholderFormFields({
           <option value="medium">{t("stakeholderForm.levelOptions.medium")}</option>
           <option value="high">{t("stakeholderForm.levelOptions.high")}</option>
         </select>
+        <FieldError message={errors.influence} />
       </div>
 
       {/* Interest */}
@@ -276,12 +338,15 @@ export default function StakeholderFormFields({
         <label style={labelStyle}>
           <FaStar />
           {t("stakeholderForm.labels.interest")}
+          <RequiredMark />
         </label>
         <select
           name="interest"
           value={form.interest || ""}
           onChange={onChange}
-          style={selectStyle}
+          style={errors.interest ? { ...selectStyle, ...errorInputStyle } : selectStyle}
+          aria-required="true"
+          aria-invalid={!!errors.interest}
           required
         >
           <option value="">{t("stakeholderForm.placeholders.selectInterest")}</option>
@@ -289,6 +354,7 @@ export default function StakeholderFormFields({
           <option value="medium">{t("stakeholderForm.levelOptions.medium")}</option>
           <option value="high">{t("stakeholderForm.levelOptions.high")}</option>
         </select>
+        <FieldError message={errors.interest} />
       </div>
 
       {/* Risk Level */}
@@ -296,12 +362,15 @@ export default function StakeholderFormFields({
         <label style={labelStyle}>
           <FaExclamationTriangle />
           {t("stakeholderForm.labels.riskLevel")}
+          <RequiredMark />
         </label>
         <select
           name="riskLevel"
           value={form.riskLevel || ""}
           onChange={onChange}
-          style={selectStyle}
+          style={errors.riskLevel ? { ...selectStyle, ...errorInputStyle } : selectStyle}
+          aria-required="true"
+          aria-invalid={!!errors.riskLevel}
           required
         >
           <option value="">{t("stakeholderForm.placeholders.selectRiskLevel")}</option>
@@ -309,6 +378,7 @@ export default function StakeholderFormFields({
           <option value="medium">{t("stakeholderForm.levelOptions.medium")}</option>
           <option value="high">{t("stakeholderForm.levelOptions.high")}</option>
         </select>
+        <FieldError message={errors.riskLevel} />
       </div>
 
       {/* Opportunity */}
@@ -316,12 +386,15 @@ export default function StakeholderFormFields({
         <label style={labelStyle}>
           <FaLightbulb />
           {t("stakeholderForm.labels.opportunity")}
+          <RequiredMark />
         </label>
         <select
           name="opportunity"
           value={form.opportunity || ""}
           onChange={onChange}
-          style={selectStyle}
+          style={errors.opportunity ? { ...selectStyle, ...errorInputStyle } : selectStyle}
+          aria-required="true"
+          aria-invalid={!!errors.opportunity}
           required
         >
           <option value="">{t("stakeholderForm.placeholders.selectOpportunity")}</option>
@@ -329,6 +402,7 @@ export default function StakeholderFormFields({
           <option value="medium">{t("stakeholderForm.levelOptions.medium")}</option>
           <option value="high">{t("stakeholderForm.levelOptions.high")}</option>
         </select>
+        <FieldError message={errors.opportunity} />
       </div>
 
       {/* Benefit */}
@@ -336,12 +410,15 @@ export default function StakeholderFormFields({
         <label style={labelStyle}>
           <FaBullseye />
           {t("stakeholderForm.labels.benefit")}
+          <RequiredMark />
         </label>
         <select
           name="benefit"
           value={form.benefit || ""}
           onChange={onChange}
-          style={selectStyle}
+          style={errors.benefit ? { ...selectStyle, ...errorInputStyle } : selectStyle}
+          aria-required="true"
+          aria-invalid={!!errors.benefit}
           required
         >
           <option value="">{t("stakeholderForm.placeholders.selectBenefit")}</option>
@@ -349,6 +426,7 @@ export default function StakeholderFormFields({
           <option value="medium">{t("stakeholderForm.levelOptions.medium")}</option>
           <option value="high">{t("stakeholderForm.levelOptions.high")}</option>
         </select>
+        <FieldError message={errors.benefit} />
       </div>
 
       {/* Engagement Strategy */}
@@ -356,12 +434,15 @@ export default function StakeholderFormFields({
         <label style={labelStyle}>
           <FaHandshake />
           {t("stakeholderForm.labels.engagementStrategy")}
+          <RequiredMark />
         </label>
         <select
           name="engagementStrategy"
           value={form.engagementStrategy || ""}
           onChange={onChange}
-          style={selectStyle}
+          style={errors.engagementStrategy ? { ...selectStyle, ...errorInputStyle } : selectStyle}
+          aria-required="true"
+          aria-invalid={!!errors.engagementStrategy}
           required
         >
           <option value="">{t("stakeholderForm.placeholders.selectStrategy")}</option>
@@ -371,6 +452,7 @@ export default function StakeholderFormFields({
             </option>
           ))}
         </select>
+        <FieldError message={errors.engagementStrategy} />
       </div>
 
       {/* Engagement Frequency */}
@@ -378,12 +460,15 @@ export default function StakeholderFormFields({
         <label style={labelStyle}>
           <FaCalendarAlt />
           {t("stakeholderForm.labels.engagementFrequency")}
+          <RequiredMark />
         </label>
         <select
           name="engagementFrequency"
           value={form.engagementFrequency || ""}
           onChange={onChange}
-          style={selectStyle}
+          style={errors.engagementFrequency ? { ...selectStyle, ...errorInputStyle } : selectStyle}
+          aria-required="true"
+          aria-invalid={!!errors.engagementFrequency}
           required
         >
           <option value="">{t("stakeholderForm.placeholders.selectFrequency")}</option>
@@ -393,6 +478,7 @@ export default function StakeholderFormFields({
             </option>
           ))}
         </select>
+        <FieldError message={errors.engagementFrequency} />
       </div>
     </div>
   );
