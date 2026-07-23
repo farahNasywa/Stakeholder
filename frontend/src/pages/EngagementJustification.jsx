@@ -4,12 +4,150 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import api from "../utils/api";
 
+const JUSTIFICATION_TRANSLATIONS_EN = {
+  "Mengatur, menerbitkan, mengelola, dan menarik regulasi serta perizinan di sektor usaha hulu migas dan energi":
+    "Regulate, issue, manage, and revoke regulations and permits in the upstream oil, gas, and energy sector",
+  "Mengelola tata ruang dan peraturan kawasan khusus terkait energi dan migas":
+    "Manage spatial planning and special area regulations related to energy, oil, and gas",
+  "Melakukan pengawasan teknis, lingkungan, ketenagakerjaan, dan kepatuhan hukum di sektor migas dan energi":
+    "Conduct technical, environmental, labor, and legal compliance supervision in the oil, gas, and energy sector",
+  "Bertanggung jawab dalam penegakan hukum, penyidikan, dan penyelesaian sengketa":
+    "Responsible for law enforcement, investigation, and dispute resolution",
+  "Malakukan audit keuangan dan pelaksanaan kegiatan hulu migas":
+    "Conduct financial audits and oversight of upstream oil and gas activities",
+  "Mengelola perizinan investasi, fasilitasi investasi, dan pengawasan investasi di sektor hulu migas":
+    "Manage investment licensing, investment facilitation, and investment oversight in upstream oil and gas",
+  "Bertanggung jawab atas alokasi dana proyek, pengawasan anggaran, serta audit fiskal dan keuangan":
+    "Responsible for project fund allocation, budget oversight, and fiscal/financial audits",
+  "Mengelola kepemilikan Participating Interest (PI) dan kemitraan BUMD":
+    "Manage Participating Interest (PI) ownership and BUMD partnerships",
+  "Mengatur dan mengawasi keamanan fasilitas migas dan aset strategis terkait":
+    "Regulate and supervise the security of oil and gas facilities and related strategic assets",
+  "Melakukan koordinasi keamanan wilayah dan patroli rutin":
+    "Coordinate regional security and conduct routine patrols",
+  "Mengelola komunikasi, koordinasi dengan masyarakat, pelaksanaan program CSR, dan resolusi konflik sosial di wilayah kerja":
+    "Manage communication, community coordination, CSR program implementation, and social conflict resolution in operational areas",
+  "Bertanggung jawab dalam pengawasan energi terbarukan, integrasi transisi energi ke net-zero, dan pengembangan kebijakan energi berkelanjutan":
+    "Responsible for renewable energy supervision, net-zero energy transition integration, and sustainable energy policy development",
+  "Mengelola regulasi terkait perubahan iklim, emisi karbon, dan tata kelola dekarbonisasi sektor energi":
+    "Manage regulations related to climate change, carbon emissions, and decarbonization governance in the energy sector",
+  "Aktif melakukan lobi kebijakan di tingkat regional dan sinkronisasi kebijakan pusat-daerah":
+    "Actively engage in regional policy lobbying and central-regional policy synchronization",
+  "Terlibat dalam penyusunan atau pelaporan lampiran RPJMD dan berkoordinasi dengan DPRD Komisi Energi":
+    "Involved in drafting or reporting RPJMD annexes and coordinating with Regional Parliament (DPRD) Energy Commission",
+  "Memfasilitasi forum dialog kebijakan dan advokasi aspirasi masyarakat":
+    "Facilitate policy dialogue forums and community aspiration advocacy",
+  "Mengawasi proyek energi dan migas di tingkat lokal dan daerah":
+    "Supervise energy and oil/gas projects at the local and regional levels",
+  "Melakukan pengawasan fiskal, APBN/APBD, serta implementasi kebijakan di sektor energi":
+    "Conduct fiscal supervision of APBN/APBD and policy implementation in the energy sector",
+  "Memfasilitasi investasi daerah dan pengelolaan investasi migas":
+    "Facilitate regional investment and oil and gas investment management",
+  "Menetapkan atau mengawasi standar teknis seperti gas pipeline dan integritas jaringan":
+    "Set or supervise technical standards such as gas pipelines and network integrity",
+  "Mendukung pelatihan nasional dan penyebaran praktik terbaik di industri energi":
+    "Support national training and dissemination of best practices in the energy industry",
+  "Melakukan investigasi di sektor migas dan pelaporan lifting":
+    "Conduct investigations in the oil and gas sector and lifting reporting",
+  "Mengawasi pelaksanaan kebijakan perizinan dan menangani pelanggaran lingkungan":
+    "Supervise the implementation of licensing policies and address environmental violations",
+  "Mengawasi Program CSR dan resolusi konflik sosial di tingkat lokal":
+    "Supervise CSR programs and social conflict resolution at the local level",
+  "Berperan dalam advokasi masyarakat adat dan perlindungan hak atas tanah":
+    "Play a role in indigenous community advocacy and land rights protection",
+  "Memfasilitasi konsultasi AMDAL dan dialog publik terkait dampak sosial dan lingkungan":
+    "Facilitate AMDAL consultations and public dialogue regarding social and environmental impacts",
+  "Melakukan atau terlibat dalam pendidikan masyarakat pra dan pasca eksplorasi dan mediasi sengketa sosial":
+    "Engage in pre- and post-exploration community education and social dispute mediation",
+  "Memfasilitasi forum koordinasi teknis lintas sektor dan melakukan audit CSR":
+    "Facilitate cross-sector technical coordination forums and conduct CSR audits",
+  "Memantau dampak sosial dan integrasi program pembangunan melalui musrenbang dan advokasi pemangku kepentingan":
+    "Monitor social impacts and development program integration through Musrenbang and stakeholder advocacy",
+  "Melakukan verifikasi sosial-lingkungan dan transparansi fiskal migas":
+    "Conduct social-environmental verification and oil/gas fiscal transparency",
+  "Memiliki kewenangan formal dalam pengaturan, perizinan, pengawasan teknis, dan pelaksanaan kebijakan sektor migas":
+    "Possess formal authority in regulation, licensing, technical supervision, and policy execution in the oil and gas sector",
+  "Memiliki peran dalam pengelolaan izin lokal dan pengawasan lingkungan proyek migas":
+    "Have a role in local permit management and environmental supervision of oil and gas projects",
+  "Memiliki pengaruh dalam membentuk opini publik dan penerimaan masyarakat terhadap proyek":
+    "Exert influence in shaping public opinion and community acceptance of the project",
+  "Terlibat dalam pelaksanaan teknis proyek dan pemenuhan standar operasional":
+    "Involved in technical project execution and operational standards compliance",
+  "Menyediakan pembiayaan proyek atau berperan dalam penilaian kelayakan finansial":
+    "Provide project financing or participate in financial feasibility assessments",
+  "Memiliki pengaruh terhadap keputusan investasi dalam proyek migas":
+    "Exert influence over investment decisions in oil and gas projects",
+  "Berperan sebagai penasihat teknis dan kebijakan untuk proyek migas":
+    "Serve as technical and policy advisors for oil and gas projects",
+  "Menyediakan data, informasi, atau rekomendasi strategis untuk mendukung pelaksanaan proyek":
+    "Provide data, information, or strategic recommendations to support project execution",
+  "Terlibat dalam koordinasi komunikasi antar lembaga terkait proyek":
+    "Involved in inter-agency communication coordination related to the project",
+  "Berperan sebagai fasilitator komunikasi dan program sosial di wilayah proyek":
+    "Serve as communication facilitators and social program coordinators in project areas",
+  "Memiliki pengaruh lokal dalam mendorong atau menolak proyek secara sosial-politik":
+    "Have local influence in socially/politically supporting or resisting the project",
+  "Menyampaikan aspirasi dan keluhan masyarakat terkait proyek":
+    "Convey community aspirations and grievances regarding the project",
+  "Terlibat dalam advokasi lingkungan di sekitar wilayah proyek":
+    "Engage in environmental advocacy around project areas",
+  "Berperan dalam menilai risiko dan melakukan pengawasan teknis terhadap proyek":
+    "Play a role in assessing risk and conducting technical project supervision",
+  "Memberikan masukan operasional atau pembiayaan jangka pendek untuk proyek migas":
+    "Provide operational input or short-term financing for oil and gas projects",
+  "memiliki kepentingan besar dalam pajak, ketenagakerjaan lokal, dan isu lingkungan.":
+    "Have strong interests in taxes, local employment, and environmental issues.",
+  "Memiliki kontrol penuh atas proyek dan mengharapkan keuntungan finansial tinggi.":
+    "Maintain full project control and expect high financial returns.",
+  "Memantau dampak langsung proyek, dapat menolak, menjadi mediator, dan memengaruhi opini publik.":
+    "Monitor direct project impacts, mediate disputes, and influence public opinion.",
+  "Melindungi fasilitas proyek dan mendukung keamanan serta operasi di lapangan.":
+    "Protect project facilities and support site security and field operations.",
+  "Berhak atas kompensasi, berperan dalam negosiasi harga, dan dapat melakukan aksi penolakan.":
+    "Entitled to compensation, participate in price negotiations, and hold leverage in land decisions.",
+  "Memperjuangkan hak tenaga kerja lokal dan mengontrol serapan tenaga kerja proyek.":
+    "Advocate for local labor rights and oversee local workforce absorption.",
+  "Terdampak oleh penggunaan lahan proyek dan terlibat dalam isu lingkungan serta norma adat.":
+    "Affected by project land use and involved in environmental issues and customary norms.",
+  "Memiliki pengaruh melalui arah kebijakan energi nasional yang memengaruhi proyek.":
+    "Exert influence through national energy policy directions impacting the project.",
+  "Mendukung pelaksanaan proyek lewat regulasi lokal dan fasilitasi program.":
+    "Support project execution through local regulations and program facilitation.",
+  "Memberikan dukungan teknis dan administratif, meskipun bukan pengawas utama.":
+    "Provide technical and administrative support, though not acting as primary regulators.",
+  "Memberi nasihat teknis dan menjaga reputasi profesional dalam proyek":
+    "Provide technical advice and uphold professional reputation within the project",
+  "Terlibat dalam analisis independen dan evaluasi proyek":
+    "Involved in independent analysis and project evaluation",
+  "Berkontribusi membentuk opini publik melalui liputan dan kerja sama informasi.":
+    "Contribute to shaping public opinion through media coverage and information sharing.",
+  "Memengaruhi persepsi publik dan mendukung komunikasi proyek.":
+    "Influence public perception and support project communications.",
+  "Aktif dalam advokasi komunitas dan dukungan kegiatan sosial proyek.":
+    "Active in community advocacy and social project support.",
+  "Berperan dalam memantau dampak sosial dan bekerja sama dalam penyediaan data lapangan.":
+    "Monitor social impacts and collaborate in field data provision.",
+  "Mendukung kegiatan logistik dan keamanan proyek secara langsung.":
+    "Directly support project logistics and site security.",
+  "Mengandalkan pasokan migas dari proyek untuk kelangsungan usahanya.":
+    "Rely on project oil and gas supply for business continuity.",
+};
+
 export default function EngagementJustification() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { id } = useParams();
   const [stakeholder, setStakeholder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const translateJustificationItem = (text, currentLang) => {
+    if (!text) return "";
+    if (currentLang === "en") {
+      const trimmed = text.trim();
+      return JUSTIFICATION_TRANSLATIONS_EN[trimmed] || text;
+    }
+    return text;
+  };
 
   const formatJustification = (text) => {
     if (!text) return [];
@@ -74,7 +212,15 @@ export default function EngagementJustification() {
     );
   }
 
-  const cap = (val) => val ? val.charAt(0).toUpperCase() + val.slice(1) : '-';
+  const formatLevel = (level) => {
+    if (!level) return "-";
+    const normalized = level.trim().toLowerCase();
+    if (normalized === "high") return t("common.high", "Tinggi");
+    if (normalized === "medium") return t("common.medium", "Sedang");
+    if (normalized === "low") return t("common.low", "Rendah");
+    if (normalized === "very high" || normalized === "very_high") return t("engagementPriority.intensities.Very High", "Sangat Tinggi");
+    return level.charAt(0).toUpperCase() + level.slice(1);
+  };
 
   return (
     <>
@@ -158,10 +304,10 @@ export default function EngagementJustification() {
             </div>
 
             {[
-              { label: t("engagementJustification.fields.stakeholderType"), value: stakeholder.stakeholderType?.name || "-", bg: "#E9F7DF", color: "#065f46" },
-              { label: t("engagementJustification.fields.engagementCategory"), value: stakeholder.engagementCategory || "-", bg: "#D2E3EB", color: "#374151" },
-              { label: t("engagementJustification.fields.influenceLevel"), value: cap(stakeholder.influenceLevel), bg: "#EDE9FE", color: "#4C1D95" },
-              { label: t("engagementJustification.fields.interestLevel"), value: cap(stakeholder.interestLevel), bg: "#FEF3C7", color: "#78350F" },
+              { label: t("engagementJustification.fields.stakeholderType"), value: stakeholder.stakeholderType?.name ? t(`dashboard.card.types.${stakeholder.stakeholderType.name}`, stakeholder.stakeholderType.name) : "-", bg: "#E9F7DF", color: "#065f46" },
+              { label: t("engagementJustification.fields.engagementCategory"), value: stakeholder.engagementCategory ? t(`dashboard.card.categories.${stakeholder.engagementCategory}`, stakeholder.engagementCategory) : "-", bg: "#D2E3EB", color: "#374151" },
+              { label: t("engagementJustification.fields.influenceLevel"), value: formatLevel(stakeholder.influenceLevel), bg: "#EDE9FE", color: "#4C1D95" },
+              { label: t("engagementJustification.fields.interestLevel"), value: formatLevel(stakeholder.interestLevel), bg: "#FEF3C7", color: "#78350F" },
             ].map(({ label, value, bg, color }) => (
               <div
                 key={label}
@@ -279,7 +425,7 @@ export default function EngagementJustification() {
                           fontSize: 14,
                         }}
                       >
-                        {item}
+                        {translateJustificationItem(item, i18n.language)}
                       </li>
                     ))}
                   </ol>

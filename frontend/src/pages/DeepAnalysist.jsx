@@ -14,6 +14,8 @@ const getStrategyDescriptions = () => ({
   "Check Input": i18n.t("deepAnalysist.strategyDescriptions.checkInput"),
 });
 
+
+
 // A simple modal component for the success message
 const SuccessModal = ({ isOpen, onClose, message }) => {
   const { t } = useTranslation();
@@ -202,17 +204,22 @@ export default function DeepAnalysist() {
     }
   }, [id, fetchStakeholderData]);
 
+  const formatLevel = (level) => {
+    if (!level) return "-";
+    const normalized = level.trim().toLowerCase();
+    if (normalized === "high") return t("common.high", "Tinggi");
+    if (normalized === "medium") return t("common.medium", "Sedang");
+    if (normalized === "low") return t("common.low", "Rendah");
+    if (normalized === "very high" || normalized === "very_high") return t("engagementPriority.intensities.Very High", "Sangat Tinggi");
+    return level.charAt(0).toUpperCase() + level.slice(1);
+  };
+
   const getIntensityColor = (intensity) => {
-    switch (intensity?.toUpperCase()) {
-      case "HIGH":
-        return "#ef4444"; // Red
-      case "MEDIUM":
-        return "#facc15"; // Yellow
-      case "LOW":
-        return "#3b82f6"; // Blue
-      default:
-        return "#facc15";
-    }
+    const norm = intensity?.trim()?.toUpperCase() || "";
+    if (norm.includes("HIGH") || norm.includes("TINGGI")) return "#ef4444";
+    if (norm.includes("MEDIUM") || norm.includes("SEDANG")) return "#facc15";
+    if (norm.includes("LOW") || norm.includes("RENDAH")) return "#3b82f6";
+    return "#facc15";
   };
 
    const fetchKeyConcerns = useCallback(async () => {
@@ -534,7 +541,7 @@ export default function DeepAnalysist() {
                       textAlign: "center",
                     }}
                   >
-                    {stakeholder.engagementCategory}
+                    {t(`dashboard.card.categories.${stakeholder.engagementCategory}`, stakeholder.engagementCategory)}
                   </div>
                 </div>
               </div>
@@ -587,13 +594,13 @@ export default function DeepAnalysist() {
 
               {/* Semua baris pakai struktur sama: flex:1 label + flex:2 value */}
               {[
-                { label: t("deepAnalysist.fields.engagementStrategy"), value: stakeholder.calculatedEngagementStrategy || "-", valueStyle: { background: "linear-gradient(to right, #F5FFEF 0%, #B8F580 100%)", color: "black" } },
-                { label: t("deepAnalysist.fields.influence"), value: stakeholder.influenceLevel ? stakeholder.influenceLevel.charAt(0).toUpperCase() + stakeholder.influenceLevel.slice(1) : "-" },
-                { label: t("deepAnalysist.fields.interest"), value: stakeholder.interestLevel ? stakeholder.interestLevel.charAt(0).toUpperCase() + stakeholder.interestLevel.slice(1) : "-" },
-                { label: t("deepAnalysist.fields.engagementIntensity"), value: stakeholder.engagementIntensity ? stakeholder.engagementIntensity.charAt(0).toUpperCase() + stakeholder.engagementIntensity.slice(1) : "-", valueStyle: { backgroundColor: getIntensityColor(stakeholder.engagementIntensity), color: "black" } },
-                { label: t("deepAnalysist.fields.riskLevel"), value: stakeholder.riskLevel ? stakeholder.riskLevel.charAt(0).toUpperCase() + stakeholder.riskLevel.slice(1) : "-" },
-                { label: t("deepAnalysist.fields.opportunity"), value: stakeholder.opportunityLevel ? stakeholder.opportunityLevel.charAt(0).toUpperCase() + stakeholder.opportunityLevel.slice(1) : "-" },
-                { label: t("deepAnalysist.fields.benefit"), value: stakeholder.benefitLevel ? stakeholder.benefitLevel.charAt(0).toUpperCase() + stakeholder.benefitLevel.slice(1) : "-" },
+                { label: t("deepAnalysist.fields.engagementStrategy"), value: stakeholder.calculatedEngagementStrategy ? t(`engagementPriority.strategies.${stakeholder.calculatedEngagementStrategy}`, stakeholder.calculatedEngagementStrategy) : "-", valueStyle: { background: "linear-gradient(to right, #F5FFEF 0%, #B8F580 100%)", color: "black" } },
+                { label: t("deepAnalysist.fields.influence"), value: formatLevel(stakeholder.influenceLevel) },
+                { label: t("deepAnalysist.fields.interest"), value: formatLevel(stakeholder.interestLevel) },
+                { label: t("deepAnalysist.fields.engagementIntensity"), value: stakeholder.engagementIntensity ? t(`engagementPriority.intensities.${stakeholder.engagementIntensity}`, formatLevel(stakeholder.engagementIntensity)) : "-", valueStyle: { backgroundColor: getIntensityColor(stakeholder.engagementIntensity), color: "black" } },
+                { label: t("deepAnalysist.fields.riskLevel"), value: formatLevel(stakeholder.riskLevel) },
+                { label: t("deepAnalysist.fields.opportunity"), value: formatLevel(stakeholder.opportunityLevel) },
+                { label: t("deepAnalysist.fields.benefit"), value: formatLevel(stakeholder.benefitLevel) },
               ].map(({ label, value, valueStyle }) => (
                 <div key={label} style={{ display: "flex", gap: 12, marginBottom: 6, marginTop: 6 }}>
                   <div style={{ flex: 1, padding: 3, borderRadius: 16, background: "linear-gradient(to right, #6C6DCB, #204C92)" }}>
@@ -641,31 +648,38 @@ export default function DeepAnalysist() {
                     justifyContent: "space-between",
                   }}
                 >
-                  {[
-                    stakeholder.finalRecommendations?.engagementPriority ||
-                      t("deepAnalysist.defaultRecommendationMain"),
-                    stakeholder.finalRecommendations
-                      ?.engagementPriorityDescription ||
-                      t("deepAnalysist.defaultRecommendationDetail"),
-                  ].map((text, index) => (
-                    <div
-                      key={index}
-                      style={{
-                        backgroundColor: "rgba(255,255,255,0.3)",
-                        mixBlendMode: "normal",
-                        backgroundBlendMode: "plus-lighter",
-                        boxShadow: "0 4px 6px 4px rgba(0,0,0,0.2)",
-                        backdropFilter: "blur(20px)",
-                        padding: 15,
-                        borderRadius: 16,
-                        flex: 1,
-                        fontWeight: "bold",
-                        textAlign: "center",
-                      }}
-                    >
-                      {text}
-                    </div>
-                  ))}
+                  {(() => {
+                    const mainRecKey = stakeholder.finalRecommendations?.engagementPriority || stakeholder.engagementPriority || "";
+                    const detailRecKey = stakeholder.finalRecommendations?.engagementPriorityDescription || "";
+
+                    const mainRecText = mainRecKey
+                      ? t(`engagementPriority.recommendations.${mainRecKey}`, mainRecKey)
+                      : t("deepAnalysist.defaultRecommendationMain");
+
+                    const detailRecText = mainRecKey
+                      ? t(`engagementPriority.recommendationDescriptions.${mainRecKey}`, detailRecKey || t("deepAnalysist.defaultRecommendationDetail"))
+                      : t("deepAnalysist.defaultRecommendationDetail");
+
+                    return [mainRecText, detailRecText].map((text, index) => (
+                      <div
+                        key={index}
+                        style={{
+                          backgroundColor: "rgba(255,255,255,0.3)",
+                          mixBlendMode: "normal",
+                          backgroundBlendMode: "plus-lighter",
+                          boxShadow: "0 4px 6px 4px rgba(0,0,0,0.2)",
+                          backdropFilter: "blur(20px)",
+                          padding: 15,
+                          borderRadius: 16,
+                          flex: 1,
+                          fontWeight: "bold",
+                          textAlign: "center",
+                        }}
+                      >
+                        {text}
+                      </div>
+                    ));
+                  })()}
                 </div>
               </div>
             </div>
@@ -943,8 +957,9 @@ export default function DeepAnalysist() {
                       whiteSpace: "pre-line",
                     }}
                   >
-                    {selectedKeyConcern?.mitigation_plan ||
-                      t("deepAnalysist.mitigationPlanPlaceholder")}
+                    {selectedKeyConcern
+                      ? t(`deepAnalysist.mitigationPlans.${selectedKeyConcern.mitigation_plan}`, selectedKeyConcern.mitigation_plan)
+                      : t("deepAnalysist.mitigationPlanPlaceholder")}
                   </div>
                 </div>
 
@@ -983,8 +998,9 @@ export default function DeepAnalysist() {
                       fontWeight: "600",
                     }}
                   >
-                    {selectedKeyConcern?.objective ||
-                      t("deepAnalysist.objectivePlaceholder")}
+                    {selectedKeyConcern
+                      ? t(`deepAnalysist.objectives.${selectedKeyConcern.objective}`, selectedKeyConcern.objective)
+                      : t("deepAnalysist.objectivePlaceholder")}
                   </div>
                 </div>
               </div>

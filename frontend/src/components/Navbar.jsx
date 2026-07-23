@@ -113,34 +113,34 @@ const Navbar = () => {
       return titles.myValidation;
     }
     if (path.startsWith("/cluster/authority")) {
-      return "Authority / Legitimacy";
+      return t("stakeholderProfileSetup.clusters.authority");
     }
     if (path.startsWith("/cluster/influence")) {
-      return "Influence on Project";
+      return t("stakeholderProfileSetup.clusters.influence");
     }
     if (path.startsWith("/cluster/interest")) {
-      return "Interest";
+      return t("stakeholderProfileSetup.clusters.interest");
     }
     if (path.startsWith("/cluster/impactedbyproject")) {
-      return "Impacted by Project";
+      return t("stakeholderProfileSetup.clusters.impactedbyproject");
     }
     if (path.startsWith("/cluster/dependency")) {
-      return "Dependency";
+      return t("stakeholderProfileSetup.clusters.dependency");
     }
     if (path.startsWith("/cluster/alignment")) {
-      return "Alignment / Policy Role";
+      return t("stakeholderProfileSetup.clusters.alignment");
     }
     if (path.startsWith("/cluster/opportunity")) {
-      return "Opportunity Potential";
+      return t("stakeholderProfileSetup.clusters.opportunity");
     }
     if (path.startsWith("/cluster/risk")) {
-      return "Risk Potential";
+      return t("stakeholderProfileSetup.clusters.risk");
     }
     if (path.startsWith("/cluster/benefit")) {
-      return "Benefit Analysis";
+      return t("stakeholderProfileSetup.clusters.benefit");
     }
     if (path.startsWith("/cluster/category")) {
-      return "Category";
+      return t("stakeholderProfileSetup.clusters.category");
     }
 
     return titles.default;

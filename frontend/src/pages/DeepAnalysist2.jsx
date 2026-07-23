@@ -696,7 +696,9 @@ export default function DeepAnalysist2() {
                   }}
                 >
                   <span style={{ flex: 1 }}>
-                    {recommendationData?.keyConcern || "-"}
+                    {recommendationData?.keyConcern
+                      ? t(`deepAnalysist.keyConcerns.${recommendationData.keyConcern}`, recommendationData.keyConcern)
+                      : "-"}
                   </span>
                 </div>
               </div>
@@ -712,13 +714,17 @@ export default function DeepAnalysist2() {
                 <GlassCard>
                   <CardTitle>{t("deepAnalysist2.mitigationPlanTitle")}</CardTitle>
                   <CardContent style={{ minHeight: "50px", fontSize: 16 }}>
-                    {recommendationData?.mitigationPlan || "-"}
+                    {recommendationData?.mitigationPlan
+                      ? t(`deepAnalysist.mitigationPlans.${recommendationData.mitigationPlan}`, recommendationData.mitigationPlan)
+                      : "-"}
                   </CardContent>
                 </GlassCard>
                 <GlassCard>
                   <CardTitle>{t("deepAnalysist2.objectiveTitle")}</CardTitle>
                   <CardContent style={{ minHeight: "50px", fontSize: 16 }}>
-                    {recommendationData?.objective || "-"}
+                    {recommendationData?.objective
+                      ? t(`deepAnalysist.objectives.${recommendationData.objective}`, recommendationData.objective)
+                      : "-"}
                   </CardContent>
                 </GlassCard>
               </div>
@@ -811,7 +817,23 @@ export default function DeepAnalysist2() {
                     fontWeight: 600,
                   }}
                 >
-                  {stakeholderData?.engagementStrategy?.strategy || recommendationData?.engagementStrategy || stakeholderData?.calculatedEngagementStrategy || "-"}
+                  {(() => {
+                    const strat = stakeholderData?.engagementStrategy?.strategy || recommendationData?.engagementStrategy || stakeholderData?.calculatedEngagementStrategy;
+                    if (!strat) return "-";
+                    if (strat.includes("Actively engage") || strat.includes("Libatkan secara aktif")) {
+                      return t("deepAnalysist.strategyDescriptions.keyPlayer");
+                    }
+                    if (strat.includes("Manage expectations") || strat.includes("Kelola ekspektasi")) {
+                      return t("deepAnalysist.strategyDescriptions.keepSatisfied");
+                    }
+                    if (strat.includes("Provide regular") || strat.includes("Berikan komunikasi")) {
+                      return t("deepAnalysist.strategyDescriptions.keepInformed");
+                    }
+                    if (strat.includes("Track engagement") || strat.includes("Pantau kebutuhan")) {
+                      return t("deepAnalysist.strategyDescriptions.monitor");
+                    }
+                    return t(`engagementPriority.strategies.${strat}`, strat);
+                  })()}
                 </div>
               </div>
 
@@ -836,9 +858,10 @@ export default function DeepAnalysist2() {
                 </div>
                 <div style={{ textAlign: "center" }}>
                   <div style={{ fontWeight: "bold", fontSize: 17 }}>
-                    {recommendationData?.engagementFrequency ||
-                      stakeholderData?.engagementFrequency?.name ||
-                      "-"}
+                    {(() => {
+                      const freq = recommendationData?.engagementFrequency || stakeholderData?.engagementFrequency?.name;
+                      return freq ? t(`deepAnalysist.frequencies.${freq}`, freq) : "-";
+                    })()}
                   </div>
                   <div
                     style={{

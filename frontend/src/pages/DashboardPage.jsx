@@ -225,12 +225,23 @@ const DashboardPage = () => {
             </a>
 
             {(() => {
-              const catData = chartData.categories.length > 0
+              const rawCatData = chartData.categories.length > 0
                 ? chartData.categories
                 : [{ name: "Primary", value: 1 }, { name: "Secondary", value: 1 }, { name: "Tertiary", value: 1 }];
-              const statData = chartData.statuses.length > 0
+              const rawStatData = chartData.statuses.length > 0
                 ? chartData.statuses
                 : [{ name: "Approved", value: 1 }, { name: "Pending", value: 1 }, { name: "Rejected", value: 1 }];
+
+              const catData = rawCatData.map((item) => ({
+                ...item,
+                displayName: t(`dashboard.card.categories.${item.name}`, item.name),
+              }));
+
+              const statData = rawStatData.map((item) => ({
+                ...item,
+                displayName: t(`dashboard.card.statuses.${item.name}`, item.name),
+              }));
+
               return (
                 <div
                   style={{
@@ -256,6 +267,7 @@ const DashboardPage = () => {
                           <Pie
                             data={catData}
                             dataKey="value"
+                            nameKey="displayName"
                             cx="35%"
                             cy="50%"
                             outerRadius={50}
@@ -280,6 +292,7 @@ const DashboardPage = () => {
                           <Pie
                             data={statData}
                             dataKey="value"
+                            nameKey="displayName"
                             cx="35%"
                             cy="50%"
                             outerRadius={50}
@@ -353,7 +366,7 @@ const DashboardPage = () => {
                   <div>{selectedStakeholder.name}</div>
                   <div>{selectedStakeholder.role ? selectedStakeholder.role.name : "-"}</div>
                   <div>{selectedStakeholder.stakeholderType ? selectedStakeholder.stakeholderType.name : "-"}</div>
-                  <div>{selectedStakeholder.engagementCategory}</div>
+                  <div>{t(`dashboard.card.categories.${selectedStakeholder.engagementCategory}`, selectedStakeholder.engagementCategory)}</div>
                 </div>
                 <div className="engagement-popup">
                   <div className="popup-title">{t("dashboard.search.continuePrompt")}</div>

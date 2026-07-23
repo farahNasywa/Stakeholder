@@ -147,26 +147,42 @@ export default function EngagementPriority() {
   };
 
   const getIntensityStyle = (intensity) => {
-    switch (intensity?.toUpperCase()) {
-      case "VERY HIGH":
-        return { background: "linear-gradient(to right, #FF5F6D 0%, #FFC371 100%)" };
-      case "HIGH":
-        return { background: "linear-gradient(to right, #FF8C42 0%, #FFD166 100%)" };
-      case "MEDIUM":
-        return { background: "linear-gradient(to right, #FFE3B2 0%, #FFAF26 100%)" };
-      case "LOW":
-        return { background: "linear-gradient(to right, #B2E3FF 0%, #26C6FF 100%)" };
-      case "KEY PLAYER":
-        return { background: "linear-gradient(to right, #F5FFEF 0%, #B8F580 100%)", color: "black" };
-      case "KEEP SATISFIED":
-        return { background: "linear-gradient(to right, #E0F7FA 0%, #26C6DA 100%)" };
-      case "KEEP INFORMED":
-        return { background: "linear-gradient(to right, #FFF8E1 0%, #FFD54F 100%)", color: "black" };
-      case "MONITOR":
-        return { background: "linear-gradient(to right, #F3E5F5 0%, #CE93D8 100%)" };
-      default:
-        return { background: "#e5e7eb", color: "black" };
+    const norm = intensity?.trim()?.toUpperCase() || "";
+    if (norm.includes("VERY HIGH") || norm.includes("VERY_HIGH") || norm.includes("SANGAT TINGGI")) {
+      return { background: "linear-gradient(to right, #FF5F6D 0%, #FFC371 100%)" };
     }
+    if (norm.includes("HIGH") || norm.includes("TINGGI")) {
+      return { background: "linear-gradient(to right, #FF8C42 0%, #FFD166 100%)" };
+    }
+    if (norm.includes("MEDIUM") || norm.includes("SEDANG")) {
+      return { background: "linear-gradient(to right, #FFE3B2 0%, #FFAF26 100%)" };
+    }
+    if (norm.includes("LOW") || norm.includes("RENDAH")) {
+      return { background: "linear-gradient(to right, #B2E3FF 0%, #26C6FF 100%)" };
+    }
+    if (norm.includes("KEY PLAYER") || norm.includes("PEMAIN UTAMA")) {
+      return { background: "linear-gradient(to right, #F5FFEF 0%, #B8F580 100%)", color: "black" };
+    }
+    if (norm.includes("KEEP SATISFIED") || norm.includes("JAGA KEPUASAN")) {
+      return { background: "linear-gradient(to right, #E0F7FA 0%, #26C6DA 100%)" };
+    }
+    if (norm.includes("KEEP INFORMED") || norm.includes("JAGA INFORMASI")) {
+      return { background: "linear-gradient(to right, #FFF8E1 0%, #FFD54F 100%)", color: "black" };
+    }
+    if (norm.includes("MONITOR") || norm.includes("PANTAU")) {
+      return { background: "linear-gradient(to right, #F3E5F5 0%, #CE93D8 100%)" };
+    }
+    return { background: "#e5e7eb", color: "black" };
+  };
+
+  const formatLevel = (level) => {
+    if (!level) return "-";
+    const normalized = level.trim().toLowerCase();
+    if (normalized === "high") return t("common.high", "Tinggi");
+    if (normalized === "medium") return t("common.medium", "Sedang");
+    if (normalized === "low") return t("common.low", "Rendah");
+    if (normalized === "very high" || normalized === "very_high") return t("engagementPriority.intensities.Very High", "Sangat Tinggi");
+    return level.charAt(0).toUpperCase() + level.slice(1);
   };
 
   const handleEditClick = () => {
@@ -711,7 +727,7 @@ export default function EngagementPriority() {
                     textAlign: "center",
                   }}
                 >
-                  {stakeholder.engagementCategory}
+                  {t(`dashboard.card.categories.${stakeholder.engagementCategory}`, stakeholder.engagementCategory)}
                 </div>
               </div>
             </div>
@@ -772,13 +788,13 @@ export default function EngagementPriority() {
             }}
           >
             {[
-                { label: t("engagementPriority.fields.engagementStrategy"), value: stakeholder.calculatedEngagementStrategy || "-", valueStyle: getIntensityStyle(stakeholder.calculatedEngagementStrategy), hasInfo: true, infoText: t("engagementPriority.engagementStrategyInfo"), noBadgeWrapper: true },
-                { label: t("engagementPriority.fields.influence"), value: stakeholder.influenceLevel ? stakeholder.influenceLevel.charAt(0).toUpperCase() + stakeholder.influenceLevel.slice(1) : "-" },
-                { label: t("engagementPriority.fields.interest"), value: stakeholder.interestLevel ? stakeholder.interestLevel.charAt(0).toUpperCase() + stakeholder.interestLevel.slice(1) : "-" },
-                { label: t("engagementPriority.fields.engagementIntensity"), value: stakeholder.engagementIntensity ? stakeholder.engagementIntensity.charAt(0).toUpperCase() + stakeholder.engagementIntensity.slice(1) : (stakeholder.calculatedEngagementStrategy || "-"), valueStyle: getIntensityStyle(stakeholder.engagementIntensity || stakeholder.calculatedEngagementStrategy), hasInfo: true, infoText: t("engagementPriority.engagementIntensityInfo"), noBadgeWrapper: true },
-                { label: t("engagementPriority.fields.riskLevel"), value: stakeholder.riskLevel ? stakeholder.riskLevel.charAt(0).toUpperCase() + stakeholder.riskLevel.slice(1) : "-" },
-                { label: t("engagementPriority.fields.opportunity"), value: stakeholder.opportunityLevel ? stakeholder.opportunityLevel.charAt(0).toUpperCase() + stakeholder.opportunityLevel.slice(1) : "-" },
-                { label: t("engagementPriority.fields.benefit"), value: stakeholder.benefitLevel ? stakeholder.benefitLevel.charAt(0).toUpperCase() + stakeholder.benefitLevel.slice(1) : "-" },
+                { label: t("engagementPriority.fields.engagementStrategy"), value: stakeholder.calculatedEngagementStrategy ? t(`engagementPriority.strategies.${stakeholder.calculatedEngagementStrategy}`, stakeholder.calculatedEngagementStrategy) : "-", valueStyle: getIntensityStyle(stakeholder.calculatedEngagementStrategy), hasInfo: true, infoText: t("engagementPriority.engagementStrategyInfo"), noBadgeWrapper: true },
+                { label: t("engagementPriority.fields.influence"), value: formatLevel(stakeholder.influenceLevel) },
+                { label: t("engagementPriority.fields.interest"), value: formatLevel(stakeholder.interestLevel) },
+                { label: t("engagementPriority.fields.engagementIntensity"), value: stakeholder.engagementIntensity ? t(`engagementPriority.intensities.${stakeholder.engagementIntensity}`, formatLevel(stakeholder.engagementIntensity)) : (stakeholder.calculatedEngagementStrategy ? t(`engagementPriority.strategies.${stakeholder.calculatedEngagementStrategy}`, stakeholder.calculatedEngagementStrategy) : "-"), valueStyle: getIntensityStyle(stakeholder.engagementIntensity || stakeholder.calculatedEngagementStrategy), hasInfo: true, infoText: t("engagementPriority.engagementIntensityInfo"), noBadgeWrapper: true },
+                { label: t("engagementPriority.fields.riskLevel"), value: formatLevel(stakeholder.riskLevel) },
+                { label: t("engagementPriority.fields.opportunity"), value: formatLevel(stakeholder.opportunityLevel) },
+                { label: t("engagementPriority.fields.benefit"), value: formatLevel(stakeholder.benefitLevel) },
               ].map(({ label, value, valueStyle, hasInfo, infoText, noBadgeWrapper }) => (
                 <div key={label} style={{ display: "flex", gap: 12, marginBottom: 6, marginTop: 6 }}>
                   {noBadgeWrapper ? (
@@ -855,31 +871,39 @@ export default function EngagementPriority() {
                   justifyContent: "space-between",
                 }}
               >
-                {[
-                  stakeholder.finalRecommendations?.engagementPriority ||
-                  t("engagementPriority.defaultMainRecommendation"),
-                  stakeholder.finalRecommendations
-                    ?.engagementPriorityDescription || t("engagementPriority.defaultDetailRecommendation"),
-                ].map((text, index) => (
-                  <div
-                    key={index}
-                    style={{
-                      backgroundColor: "rgba(255,255,255,0.3)",
-                      mixBlendMode: "normal",
-                      backgroundBlendMode: "plus-lighter",
-                      boxShadow: "0 4px 6px 4px rgba(0,0,0,0.2)",
-                      backdropFilter: "blur(20px)",
-                      padding: 10,
-                      borderRadius: 16,
-                      flex: 1,
-                      fontWeight: "bold",
-                      textAlign: "center",
-                      fontSize: "14px",
-                    }}
-                  >
-                    {text}
-                  </div>
-                ))}
+                {(() => {
+                  const mainRecKey = stakeholder.finalRecommendations?.engagementPriority || stakeholder.engagementPriority || "";
+                  const detailRecKey = stakeholder.finalRecommendations?.engagementPriorityDescription || "";
+
+                  const mainRecText = mainRecKey
+                    ? t(`engagementPriority.recommendations.${mainRecKey}`, mainRecKey)
+                    : t("engagementPriority.defaultMainRecommendation");
+
+                  const detailRecText = mainRecKey
+                    ? t(`engagementPriority.recommendationDescriptions.${mainRecKey}`, detailRecKey || t("engagementPriority.defaultDetailRecommendation"))
+                    : t("engagementPriority.defaultDetailRecommendation");
+
+                  return [mainRecText, detailRecText].map((text, index) => (
+                    <div
+                      key={index}
+                      style={{
+                        backgroundColor: "rgba(255,255,255,0.3)",
+                        mixBlendMode: "normal",
+                        backgroundBlendMode: "plus-lighter",
+                        boxShadow: "0 4px 6px 4px rgba(0,0,0,0.2)",
+                        backdropFilter: "blur(20px)",
+                        padding: 10,
+                        borderRadius: 16,
+                        flex: 1,
+                        fontWeight: "bold",
+                        textAlign: "center",
+                        fontSize: "14px",
+                      }}
+                    >
+                      {text}
+                    </div>
+                  ));
+                })()}
               </div>
             </div>
           </div>
