@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 
 // Style yang identik dipakai di form Add Stakeholder maupun Edit Stakeholder,
 // supaya keduanya konsisten dan mudah dipelihara dari satu tempat.
+
 export const inputStyle = {
   width: "100%",
   padding: "10px 15px",
@@ -56,6 +57,8 @@ export const labelStyle = {
 // desktop maupun mobile.
 const requiredMarkStyle = {
   color: "#DC2626",
+  fontSize: "18px",
+  fontWeight: 700,
   marginLeft: "2px",
 };
 
@@ -119,6 +122,30 @@ export default function StakeholderFormFields({
   const { t } = useTranslation();
 
   return (
+    <div>
+    {/* Keterangan field wajib */}
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "6px",
+        marginBottom: "18px",
+        fontSize: "14px",
+        color: "#6B7280",
+      }}
+    >
+      <span
+        style={{
+          color: "#DC2626",
+          fontSize: "18px",
+          fontWeight: "700",
+        }}
+      >
+        *
+      </span>
+      Required fields
+    </div>
+      
     <div
       style={{
         display: "grid",
