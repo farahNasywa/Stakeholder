@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "seed:users": "node seeders/seedUsers.js",
+    "seed:roles": "node seeders/roleSeeder.js",
+    "seed:locations": "node seeders/locationSeeder.js",
+    "seed:stakeholder-types": "node seeders/stakeholderTypesSeeder.js",
+    "seed:engagement-frequencies": "node seeders/engagementFrequencySeeder.js",
+    "seed:engagement-strategies": "node seeders/engagementStrategySeeder.js",
+    "seed:key-concerns": "node seeders/keyConcernSeeder.js",
+    "seed:focal-points": "node seeders/focalPointMappingSeeder.js",
+    "seed:stakeholders": "node seeders/stakeholderSeeder.js",
+    "seed:justifications": "node seeders/justificationSeeder.js",
+    "seed:all": "npm run seed:users && npm run seed:roles && npm run seed:locations && npm run seed:stakeholder-types && npm run seed:engagement-frequencies && npm run seed:engagement-strategies && npm run seed:key-concerns && npm run seed:focal-points && npm run seed:stakeholders && npm run seed:justifications",
+    "check:data": "node seeders/checkData.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "googleapis": "^159.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

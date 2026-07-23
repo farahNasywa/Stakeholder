@@ -1,0 +1,7 @@
+### Ambil data baris 91 kolom D–G
+GET http://localhost:5050/sheets/1GV3WqppPH0kvUrLA0zrXfqawAsCM5RhnB_Yp_fVE44Q?range='All in One'!D91:G91
+Accept: application/json
+
+### Ambil semua isi mulai D91 ke bawah
+GET http://localhost:5050/sheets/1GV3WqppPH0kvUrLA0zrXfqawAsCM5RhnB_Yp_fVE44Q?range='All in One'!D91:G
+Accept: application/json

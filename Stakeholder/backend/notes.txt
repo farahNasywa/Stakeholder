@@ -1,0 +1,1091 @@
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 3680
+ETag: W/"e60-yBlkw8ELJ56+5uvAAtfKk59pxUU"
+Date: Sun, 03 Aug 2025 13:08:38 GMT
+Connection: close
+
+[
+  {
+    "_id": "688ee3df4c067a15c7ad44cb",
+    "name": "Academia & Education",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44cc",
+    "name": "Civil Society and NGOs",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44cd",
+    "name": "Community-Based Organizations (CBOs)",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44ce",
+    "name": "Directly Affected People (DAPs)",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44cf",
+    "name": "Donors and Multilateral Institutions",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44d0",
+    "name": "Education and Training Institutions",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44d1",
+    "name": "Environmental Bodies and Consultants",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44d2",
+    "name": "Government-District/City Executive",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44d3",
+    "name": "Government-District/City Legislative",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44d4",
+    "name": "Government-Provincial Executive",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44d5",
+    "name": "Government-Provincial Legislative",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44d6",
+    "name": "Government-Security Forces",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44d7",
+    "name": "Government-Subdistrict & Village",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44d8",
+    "name": "Government-Upstream Regulatory",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44d9",
+    "name": "Health and Social Services",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44da",
+    "name": "Investment and Licensing Agencies",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44db",
+    "name": "Legal and Advisory Services",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44dc",
+    "name": "Local Communities",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44dd",
+    "name": "Media and Communication",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44de",
+    "name": "Political Figures and Bodies",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44df",
+    "name": "Private Sector and Businesses",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44e0",
+    "name": "Religious Courts and Judicial Bodies",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44e1",
+    "name": "Religious Organizations and Leaders",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  },
+  {
+    "_id": "688ee3df4c067a15c7ad44e2",
+    "name": "State-Owned Enterprises (BUMN/BUMD)",
+    "createdAt": "2025-08-03T13:08:38.681Z",
+    "updatedAt": "2025-08-03T13:08:38.681Z"
+  }
+]
+
+------
+Roles
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 3053
+ETag: W/"bed-GNN9MTCwhmyI5d3pz1WHYHqSI7E"
+Date: Sun, 03 Aug 2025 13:11:21 GMT
+Connection: close
+
+[
+  {
+    "_id": "688ef2803ced93bdae98caa3",
+    "name": "Governor of Aceh",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.184Z",
+    "updatedAt": "2025-08-03T05:24:16.184Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98caa4",
+    "name": "Vice Governor of Aceh",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.184Z",
+    "updatedAt": "2025-08-03T05:24:16.184Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98caa5",
+    "name": "Mayor of Banda Aceh",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.184Z",
+    "updatedAt": "2025-08-03T05:24:16.184Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98caa6",
+    "name": "Regent of Aceh Besar",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.184Z",
+    "updatedAt": "2025-08-03T05:24:16.184Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98caa7",
+    "name": "Director of Planning, Bappeda",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98caa8",
+    "name": "Director of Licensing, DPMPTSP",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98caa9",
+    "name": "Stakeholder Engagement Officer",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98caaa",
+    "name": "Head of Environmental Division",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98caab",
+    "name": "Community Representative",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98caac",
+    "name": "NGO Coordinator",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98caad",
+    "name": "Field Supervisor",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98caae",
+    "name": "Public Relations Officer",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98caaf",
+    "name": "CSR Coordinator",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98cab0",
+    "name": "Monitoring & Evaluation Officer",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98cab1",
+    "name": "Project Manager",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98cab2",
+    "name": "Investor Representative",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98cab3",
+    "name": "Local Business Owner",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98cab4",
+    "name": "Traditional Leader",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98cab5",
+    "name": "Religious Leader",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  },
+  {
+    "_id": "688ef2803ced93bdae98cab6",
+    "name": "Media Representative",
+    "__v": 0,
+    "createdAt": "2025-08-03T05:24:16.185Z",
+    "updatedAt": "2025-08-03T05:24:16.185Z"
+  }
+]
+
+----
+Locations
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 3336
+ETag: W/"d08-wDRHfTKR28p7IfoMoDKLj1GK38M"
+Date: Sun, 03 Aug 2025 13:12:21 GMT
+Connection: close
+
+[
+  {
+    "_id": "688ee9b94c067a15c7ad44e3",
+    "name": "Banda Aceh",
+    "createdAt": "2025-08-03T04:46:49.144Z",
+    "updatedAt": "2025-08-03T04:46:49.144Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44e4",
+    "name": "Langsa",
+    "createdAt": "2025-08-03T04:46:49.144Z",
+    "updatedAt": "2025-08-03T04:46:49.144Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44e5",
+    "name": "Lhokseumawe",
+    "createdAt": "2025-08-03T04:46:49.144Z",
+    "updatedAt": "2025-08-03T04:46:49.144Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44e6",
+    "name": "Sabang",
+    "createdAt": "2025-08-03T04:46:49.144Z",
+    "updatedAt": "2025-08-03T04:46:49.144Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44e7",
+    "name": "Subulussalam",
+    "createdAt": "2025-08-03T04:46:49.144Z",
+    "updatedAt": "2025-08-03T04:46:49.144Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44e8",
+    "name": "Aceh Barat",
+    "createdAt": "2025-08-03T04:46:49.144Z",
+    "updatedAt": "2025-08-03T04:46:49.144Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44e9",
+    "name": "Aceh Barat Daya",
+    "createdAt": "2025-08-03T04:46:49.144Z",
+    "updatedAt": "2025-08-03T04:46:49.144Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44ea",
+    "name": "Aceh Besar",
+    "createdAt": "2025-08-03T04:46:49.144Z",
+    "updatedAt": "2025-08-03T04:46:49.144Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44eb",
+    "name": "Aceh Jaya",
+    "createdAt": "2025-08-03T04:46:49.144Z",
+    "updatedAt": "2025-08-03T04:46:49.144Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44ec",
+    "name": "Aceh Selatan",
+    "createdAt": "2025-08-03T04:46:49.144Z",
+    "updatedAt": "2025-08-03T04:46:49.144Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44ed",
+    "name": "Aceh Singkil",
+    "createdAt": "2025-08-03T04:46:49.144Z",
+    "updatedAt": "2025-08-03T04:46:49.144Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44ee",
+    "name": "Aceh Tamiang",
+    "createdAt": "2025-08-03T04:46:49.144Z",
+    "updatedAt": "2025-08-03T04:46:49.144Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44ef",
+    "name": "Aceh Tengah",
+    "createdAt": "2025-08-03T04:46:49.144Z",
+    "updatedAt": "2025-08-03T04:46:49.144Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44f0",
+    "name": "Aceh Tenggara",
+    "createdAt": "2025-08-03T04:46:49.145Z",
+    "updatedAt": "2025-08-03T04:46:49.145Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44f1",
+    "name": "Aceh Timur",
+    "createdAt": "2025-08-03T04:46:49.145Z",
+    "updatedAt": "2025-08-03T04:46:49.145Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44f2",
+    "name": "Aceh Utara",
+    "createdAt": "2025-08-03T04:46:49.145Z",
+    "updatedAt": "2025-08-03T04:46:49.145Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44f3",
+    "name": "Bener Meriah",
+    "createdAt": "2025-08-03T04:46:49.145Z",
+    "updatedAt": "2025-08-03T04:46:49.145Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44f4",
+    "name": "Bireuen",
+    "createdAt": "2025-08-03T04:46:49.145Z",
+    "updatedAt": "2025-08-03T04:46:49.145Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44f5",
+    "name": "Gayo Lues",
+    "createdAt": "2025-08-03T04:46:49.145Z",
+    "updatedAt": "2025-08-03T04:46:49.145Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44f6",
+    "name": "Nagan Raya",
+    "createdAt": "2025-08-03T04:46:49.145Z",
+    "updatedAt": "2025-08-03T04:46:49.145Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44f7",
+    "name": "Pidie",
+    "createdAt": "2025-08-03T04:46:49.145Z",
+    "updatedAt": "2025-08-03T04:46:49.145Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44f8",
+    "name": "Pidie Jaya",
+    "createdAt": "2025-08-03T04:46:49.145Z",
+    "updatedAt": "2025-08-03T04:46:49.145Z",
+    "cities": []
+  },
+  {
+    "_id": "688ee9b94c067a15c7ad44f9",
+    "name": "Simeulue",
+    "createdAt": "2025-08-03T04:46:49.145Z",
+    "updatedAt": "2025-08-03T04:46:49.145Z",
+    "cities": []
+  }
+]
+
+--------
+Frequencies
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 3104
+ETag: W/"c20-+qJ8/EWK/sRhN54JMp0wZrUW03g"
+Date: Sun, 03 Aug 2025 13:14:07 GMT
+Connection: close
+
+[
+  {
+    "_id": "688ef2a5161247ef590da35c",
+    "name": "Weekly",
+    "description": "For project-critical stakeholders (e.g. contractors, communities during construction phase). Used during high-risk or high-activity periods.",
+    "createdAt": "2025-08-03T05:24:53.637Z",
+    "updatedAt": "2025-08-03T05:24:53.637Z",
+    "__v": 0
+  },
+  {
+    "_id": "688ef2a5161247ef590da35d",
+    "name": "Bi-weekly",
+    "description": "When rapid updates are needed (e.g. during E&S mitigation or incident response).",
+    "createdAt": "2025-08-03T05:24:53.638Z",
+    "updatedAt": "2025-08-03T05:24:53.638Z",
+    "__v": 0
+  },
+  {
+    "_id": "688ef2a5161247ef590da35e",
+    "name": "Monthly",
+    "description": "Standard for local government, impacted communities, contractors, and labor groups.",
+    "createdAt": "2025-08-03T05:24:53.638Z",
+    "updatedAt": "2025-08-03T05:24:53.638Z",
+    "__v": 0
+  },
+  {
+    "_id": "688ef2a5161247ef590da35f",
+    "name": "Every 6 Weeks",
+    "description": "Useful for technical partners, project steering committees, or joint venture participants.",
+    "createdAt": "2025-08-03T05:24:53.638Z",
+    "updatedAt": "2025-08-03T05:24:53.638Z",
+    "__v": 0
+  },
+  {
+    "_id": "688ef2a5161247ef590da360",
+    "name": "Quarterly",
+    "description": "Common for regulators, NGOs, media briefings, provincial governments. Matches many ESG reporting timelines.",
+    "createdAt": "2025-08-03T05:24:53.638Z",
+    "updatedAt": "2025-08-03T05:24:53.638Z",
+    "__v": 0
+  },
+  {
+    "_id": "688ef2a5161247ef590da361",
+    "name": "Bi-annually (Every 6 months)",
+    "description": "Suitable for academia, distant stakeholders, regional NGOs, and watchdog groups.",
+    "createdAt": "2025-08-03T05:24:53.638Z",
+    "updatedAt": "2025-08-03T05:24:53.638Z",
+    "__v": 0
+  },
+  {
+    "_id": "688ef2a5161247ef590da362",
+    "name": "Annually",
+    "description": "For general public, corporate shareholders, and sustainability/ESG report users.",
+    "createdAt": "2025-08-03T05:24:53.638Z",
+    "updatedAt": "2025-08-03T05:24:53.638Z",
+    "__v": 0
+  },
+  {
+    "_id": "688ef2a5161247ef590da363",
+    "name": "Ad-hoc / As Needed",
+    "description": "Triggered by incidents, major milestones, or stakeholder requests. Flexibility is key here.",
+    "createdAt": "2025-08-03T05:24:53.638Z",
+    "updatedAt": "2025-08-03T05:24:53.638Z",
+    "__v": 0
+  },
+  {
+    "_id": "688ef2a5161247ef590da364",
+    "name": "Aligned with Project Milestones",
+    "description": "Used for engagement during exploration, permitting, construction, decommissioning, etc.",
+    "createdAt": "2025-08-03T05:24:53.638Z",
+    "updatedAt": "2025-08-03T05:24:53.638Z",
+    "__v": 0
+  },
+  {
+    "_id": "688ef2a5161247ef590da365",
+    "name": "During Regulatory Submissions",
+    "description": "Required frequency for authorities and permitting bodies; often tied to deadlines.",
+    "createdAt": "2025-08-03T05:24:53.638Z",
+    "updatedAt": "2025-08-03T05:24:53.638Z",
+    "__v": 0
+  },
+  {
+    "_id": "688ef2a5161247ef590da366",
+    "name": "During Crisis or Emergency Events",
+    "description": "Immediate and frequent contact with affected parties (e.g., spills, accidents, security).",
+    "createdAt": "2025-08-03T05:24:53.638Z",
+    "updatedAt": "2025-08-03T05:24:53.638Z",
+    "__v": 0
+  },
+  {
+    "_id": "688ef2a5161247ef590da367",
+    "name": "Ongoing / Continuous",
+    "description": "For embedded stakeholders like in-field community liaisons, on-site contractors, or co-management partners.",
+    "createdAt": "2025-08-03T05:24:53.638Z",
+    "updatedAt": "2025-08-03T05:24:53.638Z",
+    "__v": 0
+  }
+]
+
+-----
+engagement strategies
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 14751
+ETag: W/"399f-2Ps3d2eNo9znSYd7qEbdAmr2LSY"
+Date: Sun, 03 Aug 2025 13:15:33 GMT
+Connection: close
+
+[
+  {
+    "_id": "688f266f7fee5c73198bf6cc",
+    "strategy": "Manage legal/regulatory risk, align with national development priorities, maintain strategic alignment",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6cd",
+    "strategy": "Co-design social and environmental impact mitigation measures with communities",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6ce",
+    "strategy": "Build and maintain social license to operate through continuous dialogue",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6cf",
+    "strategy": "Identify and address community grievances early via accessible mechanisms",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6d0",
+    "strategy": "Facilitate community capacity building and skills development programs",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6d1",
+    "strategy": "Collaborate with local governments on infrastructure and service improvements",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6d2",
+    "strategy": "Promote transparency and trust through regular disclosure of project information",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6d3",
+    "strategy": "Align stakeholder expectations with project capabilities and limitations",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6d4",
+    "strategy": "Engage workers and labor representatives to promote workplace safety and fair labor practices",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6d5",
+    "strategy": "Support local economic development by increasing local content and procurement",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6d6",
+    "strategy": "Strengthen environmental stewardship through joint monitoring and reporting",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6d7",
+    "strategy": "Address and mitigate human rights concerns proactively",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6d8",
+    "strategy": "Engage Indigenous Peoples respectfully and recognize their rights and customs",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6d9",
+    "strategy": "Foster partnerships with NGOs to co-deliver social and environmental programs",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6da",
+    "strategy": "Monitor evolving stakeholder perceptions and adapt engagement approaches accordingly",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6db",
+    "strategy": "Promote gender equality and inclusive participation in engagement processes",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.484Z",
+    "updatedAt": "2025-08-03T09:05:51.484Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6dc",
+    "strategy": "Manage and reduce operational risks through stakeholder early-warning inputs",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6dd",
+    "strategy": "Facilitate conflict resolution and mediate disputes between project and communities",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6de",
+    "strategy": "Encourage stakeholder participation in biodiversity conservation initiatives",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6df",
+    "strategy": "Support health and safety awareness campaigns in local communities",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6e0",
+    "strategy": "Align stakeholder engagement with ESG reporting and corporate sustainability goals",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6e1",
+    "strategy": "Collaborate with academic institutions for research and innovation partnerships",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6e2",
+    "strategy": "Build resilience in local communities against environmental and economic shocks",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6e3",
+    "strategy": "Enable stakeholder input into emergency preparedness and response planning",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6e4",
+    "strategy": "Advocate for fair compensation and resettlement programs when needed",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6e5",
+    "strategy": "Promote cultural heritage preservation in project areas",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6e6",
+    "strategy": "Strengthen government relations to secure project approvals and permits",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6e7",
+    "strategy": "Support local small and medium enterprises (SMEs) through capacity-building and contracts",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6e8",
+    "strategy": "Share project benefits equitably across stakeholder groups",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6e9",
+    "strategy": "Build awareness on environmental risks and promote responsible behaviors",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6ea",
+    "strategy": "Facilitate access to information via digital platforms and community centers",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6eb",
+    "strategy": "Align engagement timing with cultural and religious events to maximize participation",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6ec",
+    "strategy": "Use stakeholder feedback to improve project design and operational practices",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6ed",
+    "strategy": "Collaborate with media to ensure accurate and balanced information dissemination",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6ee",
+    "strategy": "Develop joint initiatives to improve water, sanitation, and health services",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6ef",
+    "strategy": "Promote corporate social responsibility projects aligned with community priorities",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6f0",
+    "strategy": "Engage stakeholders in monitoring compliance with environmental standards",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6f1",
+    "strategy": "Encourage ethical business practices among suppliers and contractors",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6f2",
+    "strategy": "Support workforce diversity and inclusion through targeted engagement",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6f3",
+    "strategy": "Build stakeholder resilience through climate adaptation initiatives",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6f4",
+    "strategy": "Engage youth groups to foster future community leadership and awareness",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6f5",
+    "strategy": "Facilitate multi-stakeholder forums for shared problem-solving and innovation",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6f6",
+    "strategy": "Promote sustainable land use planning in collaboration with local authorities",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6f7",
+    "strategy": "Encourage stakeholder participation in grievance mechanism design and review",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6f8",
+    "strategy": "Monitor and respond to emerging social or environmental issues promptly",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6f9",
+    "strategy": "Build trust with transparent reporting on environmental incidents and corrective actions",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6fa",
+    "strategy": "Encourage dialogue on energy transition and sustainability challenges",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6fb",
+    "strategy": "Facilitate cross-sector collaboration on regional development goals",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6fc",
+    "strategy": "Support continuous improvement of stakeholder engagement processes through lessons learned and best practice sharing",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6fd",
+    "strategy": "Ensure strict compliance with offshore and onshore safety and environmental standards",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6fe",
+    "strategy": "Engage marine and fisheries communities affected by offshore operations",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf6ff",
+    "strategy": "Implement flare reduction and emissions monitoring programs with stakeholder input",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf700",
+    "strategy": "Collaborate with regulators on decommissioning and site rehabilitation planning",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf701",
+    "strategy": "Foster dialogue on pipeline safety and community preparedness along rights-of-way",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf702",
+    "strategy": "Address concerns about seismic surveys and underwater noise impacts on marine life",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf703",
+    "strategy": "Support alternative livelihood programs for communities affected by reduced fishing or farming access",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf704",
+    "strategy": "Engage stakeholders in monitoring water usage and contamination risks from drilling activities",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf705",
+    "strategy": "Promote transparency on oil spill prevention and response capabilities",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf706",
+    "strategy": "Work with local health agencies to manage risks related to chemical exposure and pollution",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf707",
+    "strategy": "Facilitate community-based environmental monitoring programs near drilling sites",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf708",
+    "strategy": "Collaborate with academic and technical institutions on innovation in clean energy transitions",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf709",
+    "strategy": "Engage local labor forces in skills training specific to the O&G industry’s technological needs",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf70a",
+    "strategy": "Support women’s participation in technical and managerial roles within O&G projects",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf70b",
+    "strategy": "Implement joint safety drills with community emergency responders and security forces",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf70c",
+    "strategy": "Communicate clearly on project timelines and potential disruptions to local livelihoods",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf70d",
+    "strategy": "Develop stakeholder-specific communication protocols for sensitive exploration activities",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf70e",
+    "strategy": "Engage with artisanal mining communities potentially impacted by upstream operations",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf70f",
+    "strategy": "Facilitate stakeholder input on social investment priorities such as education and healthcare",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  },
+  {
+    "_id": "688f266f7fee5c73198bf710",
+    "strategy": "Support multi-stakeholder initiatives to improve regional air and water quality",
+    "__v": 0,
+    "createdAt": "2025-08-03T09:05:51.485Z",
+    "updatedAt": "2025-08-03T09:05:51.485Z"
+  }
+]

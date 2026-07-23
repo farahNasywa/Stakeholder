@@ -1,0 +1,482 @@
+{
+  "clusterNames": {
+    "authority": "Authority / Legitimacy",
+    "influence": "Influence on Project",
+    "interest": "Interest",
+    "impactedbyproject": "Impacted by Project",
+    "dependency": "Dependency",
+    "alignment": "Alignment / Policy Role",
+    "opportunity": "Opportunity Potential",
+    "risk": "Risk Potential",
+    "benefit": "Benefit Analysis",
+    "category": "Category"
+  },
+  "overviewTitle": "Overview",
+  "overviewText": "Collects and manages stakeholder information to support effective coordination, communication, and decision making.",
+  "questionsSuffix": "Questions",
+  "yes": "Yes",
+  "no": "No",
+  "finishButton": "Finish",
+  "completeNextButton": "Complete → Next",
+  "answerAllWarning": "Please answer all questions before proceeding.",
+  "completePreviousWarning": "Please complete the assessment above first!",
+  "arrayClusterNote": "This cluster is a direct array of questions",
+  "noQuestions": "No questions available for this cluster.",
+  "backButton": "← Back to Stakeholder Profile Setup",
+  "continueButton": "Continue to Next Cluster →",
+  "completeAllFirstButton": "Complete all questions first",
+  "clusterSavedAlert": "Cluster completed and saved!",
+  "allClustersDoneAlert": "🎉 All clusters have been completed!",
+  "questions": {
+    "authority": {
+      "Upstream Oil and Gas and Energy Regulation & Licensing": [
+        "Does this stakeholder regulate, issue, manage, and revoke regulations and licenses in the upstream oil, gas, and energy sector?",
+        "Does this stakeholder set technical policies and safety standards in that sector?",
+        "Does this stakeholder manage spatial planning and special-zone regulations related to energy and oil and gas?"
+      ],
+      "Supervision, Compliance, and Law Enforcement": [
+        "Does this stakeholder audit the finances and execution of upstream oil and gas activities?",
+        "Does this stakeholder manage investment licensing, investment facilitation, and investment oversight in the upstream oil and gas sector?",
+        "Is this stakeholder responsible for law enforcement, investigation, and dispute resolution related to this sector?"
+      ],
+      "Investment, Financing, and Asset Management": [
+        "Does this stakeholder manage investment licensing, investment facilitation, and investment oversight in the upstream oil and gas sector?",
+        "Is this stakeholder responsible for project fund allocation, budget oversight, and fiscal and financial audits?",
+        "Does this stakeholder manage Participating Interest (PI) ownership and regional-enterprise (BUMD) partnerships?"
+      ],
+      "Security and Protection of Strategic Assets": [
+        "Does this stakeholder regulate and oversee the security of oil and gas facilities and related strategic assets?",
+        "Does this stakeholder coordinate regional security and routine patrols?"
+      ],
+      "Communication, Partnerships, and Social Responsibility": [
+        "Does this stakeholder manage communication, community coordination, CSR program implementation, and social conflict resolution in the working area?"
+      ],
+      "Energy Transition and Sustainable Policy": [
+        "Is this stakeholder responsible for renewable energy oversight, integrating the energy transition toward net-zero, and developing sustainable energy policy?",
+        "Does this stakeholder manage regulations related to climate change, carbon emissions, and decarbonization governance in the energy sector?"
+      ],
+      "Regional Policy and Government Synchronization": [
+        "Is this stakeholder actively engaged in regional-level policy lobbying and central-regional policy synchronization?",
+        "Is this stakeholder involved in drafting or reporting RPJMD (regional mid-term development plan) attachments and coordinating with the Regional Legislature's Energy Commission?",
+        "Does this stakeholder facilitate policy dialogue forums and community aspiration advocacy?"
+      ],
+      "Local Project Supervision and Facilitation": [
+        "Does this stakeholder oversee energy and oil and gas projects at the local and regional level?",
+        "Does this stakeholder conduct fiscal oversight of the national/regional budget (APBN/APBD) and policy implementation in the energy sector?",
+        "Does this stakeholder facilitate regional investment and oil and gas investment management?"
+      ],
+      "Technical Standards and Industry Practices": [
+        "Does this stakeholder set or oversee technical standards such as gas pipeline and network integrity?",
+        "Does this stakeholder support national training and the dissemination of best practices in the energy industry?"
+      ],
+      "Oversight and Investigation": [
+        "Does this stakeholder conduct investigations in the oil and gas sector and lifting reporting?",
+        "Does this stakeholder oversee licensing policy implementation and handle environmental violations?",
+        "Does this stakeholder oversee CSR and social conflict resolution at the local level?"
+      ],
+      "Advocacy and Public Participation": [
+        "Does this stakeholder play a role in indigenous community advocacy and land rights protection?",
+        "Does this stakeholder facilitate AMDAL (environmental impact assessment) consultations and public dialogue on social and environmental impacts?",
+        "Does this stakeholder conduct or participate in pre- and post-exploration community education and social dispute mediation?"
+      ],
+      "Social and Environmental Coordination and Monitoring": [
+        "Does this stakeholder facilitate cross-sector technical coordination forums and conduct CSR audits?",
+        "Does this stakeholder monitor social impact and integrate development programs through musrenbang (development planning forums) and stakeholder advocacy?",
+        "Does this stakeholder conduct social-environmental verification and oil and gas fiscal transparency?"
+      ]
+    },
+    "influence": {
+      "Stakeholders with Formal Authority": [
+        "Does this stakeholder hold formal authority over the regulation, licensing, technical oversight, and implementation of oil and gas sector policy?",
+        "Does this stakeholder have legal or administrative power that can determine the project's continuity?"
+      ],
+      "Regional Government": [
+        "Does this stakeholder play a role in local permit management and environmental oversight of the oil and gas project?",
+        "Is this stakeholder involved in cross-sector coordination and supporting project operations in its region?"
+      ],
+      "Community Leaders and Social Groups": [
+        "Does this stakeholder have influence in shaping public opinion and community acceptance of the project?",
+        "Does this stakeholder play a role in managing potential social conflict around the project area?"
+      ],
+      "Business Partner / Project Implementer": [
+        "Does this stakeholder manage investment licensing, investment facilitation, and investment oversight in the upstream oil and gas sector?",
+        "Is this stakeholder involved in the technical execution of the project and meeting operational standards?"
+      ],
+      "Financial Institutions and Investment Support Entities": [
+        "Does this stakeholder provide project financing or play a role in financial feasibility assessment?",
+        "Does this stakeholder have influence over investment decisions in the oil and gas project?"
+      ],
+      "Technical Advisory and Data Coordination Agency": [
+        "Does this stakeholder act as a technical and policy advisor for the oil and gas project?",
+        "Does this stakeholder provide data, information, or strategic recommendations to support project implementation?",
+        "Is this stakeholder involved in communication coordination between agencies related to the project?"
+      ],
+      "The Local Government as a Social Facilitator": [
+        "Does this stakeholder act as a facilitator of communication and social programs in the project area?",
+        "Does this stakeholder have local influence in encouraging or rejecting the project on socio-political grounds?"
+      ],
+      "Community as Social Mediator": [
+        "Does this stakeholder convey community aspirations and grievances related to the project?",
+        "Is this stakeholder involved in environmental advocacy around the project area?"
+      ],
+      "Business Partners as [role/function to be specified]": [
+        "Does this stakeholder also play a role in risk assessment and technical oversight of the project?"
+      ],
+      "Financial Institutions: Working Capital and Operational Input": [
+        "Does this stakeholder provide operational input or short-term financing for the oil and gas project?",
+        "Does this stakeholder facilitate regional investment and oil and gas investment management?"
+      ]
+    },
+    "interest": {
+      "Government and Regulatory Authorities": [
+        "Does the regional government have an interest in the project due to tax revenue and local job creation?",
+        "Is the main regulator responsible for strict oversight and operational compliance of the project?"
+      ],
+      "Investors & Capital Owners": [
+        "Do the major shareholders have full control and expect financial returns from the project?",
+        "Do institutional investors have significant capital exposure to the project?"
+      ],
+      "External Oversight & Balancing Bodies": [
+        "Does this stakeholder, as an environmental agency, monitor the project's impact and engage in cooperation with or opposition to the project?",
+        "Does this stakeholder, as a security apparatus, bear responsibility for protecting facilities and ensuring operational security of the project?"
+      ],
+      "Workforce & Direct Partners": [
+        "Does this stakeholder, as a direct project employee, earn direct income from the project and can demand fairness or wage increases?",
+        "Does this stakeholder, as the project's main contractor, hold significant control through large contracts and work monopoly?",
+        "Does this stakeholder, as a strategic project partner, provide essential services and hold a dominant role in project development?",
+        "Does this stakeholder, as the main raw material supplier, play a strategic role in maintaining supply continuity and project services?"
+      ],
+      "Local Communities & Social Groups": [
+        "Does this stakeholder, as a local resident, depend on the oil and gas project for employment, CSR programs, and local economic strengthening?",
+        "Does this stakeholder, as an affected landowner, have the right to direct compensation and can be involved in price negotiation and opposition action against the project?",
+        "Does this stakeholder, as a labor union, fight for local labor rights and play a role in dominating job absorption in the project?",
+        "Does this stakeholder, as an indigenous community, get affected by the project's land use and engage with environmental issues and customary norm compliance?",
+        "Does this stakeholder, as a local consumer, depend on energy supply from the project and have concerns about energy prices and compensation?"
+      ],
+      "Supporting Government & Regulators": [
+        "Does this stakeholder, as the central government, have influence over the project through national energy policy?",
+        "Does this stakeholder, as a non-primary-decision-making regional government, play a role in supporting project implementation through regulation and activity programs?",
+        "Does this stakeholder, as a non-primary supporting regulator, have technical or administrative involvement in the project even though it is not the main supervisor?"
+      ],
+      "Consultants, Academics, & Professionals": [
+        "Does this stakeholder, as a project consultant, provide technical advice and get involved in project implementation while being mindful of professional reputation?",
+        "Does this stakeholder, as a project academic or researcher, get involved in independent analysis, evaluation, or project cooperation?",
+        "Does this stakeholder, as an oil and gas sector professional organization, set industry standards and offer cooperation programs within the project?"
+      ],
+      "Media & Public Opinion": [
+        "Does this stakeholder, as local media, cover oil and gas project issues and play a role in shaping public opinion?",
+        "Does this stakeholder, as social media (an influencer), have moderate influence in shaping public perception and supporting project programs?"
+      ],
+      "Civil Organizations & Social NGOs": [
+        "Does this stakeholder, as a social-environmental organization not directly affected, engage in community advocacy, cooperation, or oversight of project programs?",
+        "Does this stakeholder, as an NGO monitoring social impact, play a role in cooperation, social oversight, or project data access?"
+      ],
+      "Business Partners & Supporting Services": [
+        "Does this stakeholder, as a supporting SME, play a role in collaborating on project implementation and influencing local public opinion?",
+        "Does this stakeholder, as a supporting-service provider (such as logistics and security), get involved in the project's operational activities?"
+      ],
+      "Customers & Financial Sector": [
+        "Does this stakeholder, as an industrial customer, use oil and gas products from the project and depend on supply continuity?",
+        "Does this stakeholder, as a financial institution, provide financing or credit support for project implementation?"
+      ]
+    },
+    "impactedbyproject": {
+      "Government & Regulatory Authorities": [
+        "Does this stakeholder, as the regional government or main regulator, bear responsibility for issuing permits, regulatory oversight, and project policy implementation?",
+        "Is this stakeholder involved in project coordination, legal risk management, and maintaining operational safety in the project area?",
+        "Does this stakeholder have an interest in project taxes, social legitimacy, and the project's sustainability and social responsibility?"
+      ],
+      "Local Communities & Indigenous Peoples": [
+        "Is this stakeholder, as a local community or indigenous group, affected by land use and resource degradation around the project?",
+        "Is this stakeholder affected socially, economically, culturally, or health-wise by project activities?",
+        "Does this stakeholder play a role in managing potential social conflict around the project area?"
+      ],
+      "Landowners": [
+        "Does this stakeholder, as an affected landowner, have rights to compensation, price negotiation, and legal protection of land ownership?",
+        "Might this stakeholder support or reject the project based on land agreements, rights transfer, or dispute risk?",
+        "Is this stakeholder affected by business disruption and concerned about land security and tenure?"
+      ],
+      "Workers & Labor Unions": [
+        "Does this stakeholder, as a project employee or labor union, have an interest in working conditions, safety, and job security?",
+        "Can this stakeholder negotiate, strike, or advocate regarding wages, working hours, and industrial relations?",
+        "Does this stakeholder provide data, information, or strategic recommendations to support project implementation?"
+      ],
+      "Investors & Capital Owners": [
+        "Does this stakeholder, as an institutional investor, have concerns about reputational risk, financial impact, and the continuity of the project investment?",
+        "Is this stakeholder concerned with regulatory compliance, ROI (Return On Investment), and project transparency?",
+        "Does this stakeholder assess project performance based on ESG (Environmental, Social, Governance) principles and risk management?"
+      ],
+      "Main Contractors & Vendors": [
+        "Does this stakeholder depend on the project through work contracts and a supply chain that must be fulfilled periodically?",
+        "Is this stakeholder affected by the project schedule, operational quality, and potential price negotiation and delay risk?",
+        "Does this stakeholder need to be involved in technical coordination, performance reporting, and compliance with project standards?"
+      ],
+      "Sub-District Government": [
+        "Does this stakeholder play a role in supporting project implementation through local programs, operational permits, and community outreach?",
+        "Does this stakeholder have responsibility in helping resolve social conflicts or grievances from communities around the project?",
+        "Is this stakeholder involved in monitoring project impact and collecting data for local reporting or policy?"
+      ],
+      "NGOs & Social NGOs": [
+        "Does this stakeholder focus on social and environmental advocacy by monitoring project impact and running public awareness campaigns?",
+        "Does this stakeholder have the ability to trigger public opinion, conduct social audits, and pressure the project's social compliance?",
+        "Could this stakeholder become a partner in public dialogue or community-based CSR programs?"
+      ],
+      "Strategic Partners & Project Consultants": [
+        "Does this stakeholder support the project through technical consultation, evaluation, or cross-sector coordination?",
+        "Does this stakeholder play an important role in risk mitigation and technical plan adjustments throughout the project cycle?",
+        "Is this stakeholder involved in developing the project's internal capacity through technology transfer and performance audits?"
+      ],
+      "Surrounding Communities": [
+        "Is this stakeholder affected by disruptions from project activities such as traffic congestion, pollution, and noise in the surrounding environment?",
+        "Does this stakeholder have expectations of project benefits such as infrastructure access, business opportunities, or social programs?",
+        "Can this stakeholder be involved in social participation, project communication, and local community development?"
+      ]
+    },
+    "dependency": {
+      "Government & Regulatory Authorities": [
+        "Does the regional government receive direct revenue or significant fund allocation from the project?",
+        "Does the government depend on the project for regional economic stability?",
+        "Does the government/regulator have an interest in project taxes, social legitimacy, and the project's sustainability and social responsibility?"
+      ],
+      "Indigenous Peoples Groups & Local Communities": [
+        "Does this community receive social service benefits such as access to water, fuel, and assistance from the project?",
+        "Are they among the groups that need to be engaged culturally and socially?"
+      ],
+      "Vulnerable Groups & Poor Communities": [
+        "Is this group heavily dependent on social assistance and project services for daily survival?",
+        "Could the project's termination potentially worsen their social and economic condition?"
+      ],
+      "Local Economic Actors & MSMEs": [
+        "Could the project's termination potentially worsen the social and economic condition of local business actors?",
+        "Is the continuity of their business heavily influenced by the presence of the project's workforce?",
+        "Does this stakeholder experience economic improvement while the project is ongoing?"
+      ],
+      "Local Workers, Projects, & Companies": [
+        "Does this stakeholder rely on the project as the main livelihood for their family?",
+        "Would the project's termination directly affect their income and economic welfare?",
+        "Do they need job security and continued engagement from the project?"
+      ],
+      "Service Providers & Project Business Partners": [
+        "Does this stakeholder depend on the project as its main source of income through contracts and services?",
+        "Could project delays or termination disrupt their operations and financial stability?"
+      ],
+      "Supporting Business Partners & Medium SMEs": [
+        "Is the project one of several income sources for them?",
+        "Is their relationship with the project conditional or non-exclusive?"
+      ],
+      "Traditional & Independent Local Business Actors": [
+        "Does the project provide additional market access or capital?",
+        "Does the project support the diversification of their business?",
+        "Can they still survive without the project, but experience growth when the project is present?"
+      ],
+      "Non-Permanent Workers & Freelancers": [
+        "Do they work seasonally or temporarily on the project?",
+        "Do they have other work outside the project?"
+      ],
+      "Secondary Suppliers & Goods Providers": [
+        "Are they part of the project's indirect or non-exclusive supply chain?",
+        "Does the project provide additional market opportunity without being their only customer?"
+      ],
+      "Educational Institutions": [
+        "Does this institution benefit from training, internships, or partnership programs from the project?",
+        "Is their relationship with the project supplementary or supporting in nature?"
+      ],
+      "NGOs & Community Social Organizations": [
+        "Do they receive program assistance from the project irregularly or in a way that could be replaced?",
+        "Does the project support their programs through collaboration rather than structural obligation?",
+        "Do they continue to operate without direct dependency on the project?"
+      ]
+    },
+    "alignment": {
+      "Government and Regulatory Authorities": [
+        "Does this stakeholder have the authority to grant or revoke the project's permits?",
+        "Can they change or reject policies that affect the project's continuity?",
+        "Do they have an oversight function and can conduct audits or investigations?"
+      ],
+      "Oil and Gas Regulators (Upstream/Downstream)": [
+        "Does this regulator have the authority to close or halt project operations?",
+        "Do they set technical standards and regulations the project must comply with?",
+        "Does the project depend on routine approvals, reporting, or permits from this party?"
+      ],
+      "Industry Stakeholders": [
+        "Is this stakeholder the main operator or does it hold a financial interest in the project?",
+        "Can they withdraw support, pull out investment, or terminate cooperation?",
+        "Does the project depend on the continuity of collaboration with them for daily operations?",
+        "Does this stakeholder act as a strategic partner or owner of key infrastructure?",
+        "Are they subject to public or political pressure that could affect the project?"
+      ],
+      "Civil Society / Local Communities": [
+        "Does this community have a history of conflict or demonstrations against the project?",
+        "Do they have the capacity to organize mobilization or block access?",
+        "Are they voicing unmet demands related to social/environmental impact?"
+      ],
+      "Employee Representatives / Labor Unions": [
+        "Does this representative actively voice labor rights and working conditions?",
+        "Do they have the potential to strike or apply industrial pressure?",
+        "Could their demands affect the project's efficiency or operational continuity?"
+      ],
+      "Stakeholders on Social Issues and Conflicts": [
+        "Does this stakeholder have a history of conflict or disputes related to the project?",
+        "Could they potentially protest or cause social disruption that affects the project's smooth running?"
+      ],
+      "Media, NGOs, and Public Advocacy": [
+        "Can this stakeholder negatively influence public opinion toward the project?",
+        "Could they potentially spread negative information or campaigns that harm the project?",
+        "Are they active in advocacy or public discussions that could influence perception of the project?"
+      ],
+      "Professionals, Technical Experts, and Operational Partners": [
+        "Is there a risk of operational disruption due to technical or quality issues?",
+        "Is there a risk of work delays or delayed delivery of technical results from operational partners?",
+        "Is there a shortage of experts or technical skills that affects project implementation?"
+      ],
+      "Religious Leaders, Traditional Authorities, and Custodians of Socio-Cultural Values": [
+        "Is there cultural incompatibility or rejection of local values toward the project?",
+        "Are there religious or moral sensitivity issues that could hinder project implementation?",
+        "Are there demands for protection of customary practices, cultural sites, or religious symbols?"
+      ]
+    },
+    "opportunity": {
+      "Government & Regulatory Authorities": [
+        "Can the regional government facilitate local permits or align development programs with the project?",
+        "Do they have a role in the village budget or local resource allocation related to the project?"
+      ],
+      "Community Leader / Village Head": [
+        "Does the community figure have strong influence over community acceptance of the project?",
+        "Do they have local insight or a mediating role that could speed up conflict resolution?"
+      ],
+      "Oil and Gas Industry Operators / State-Owned Enterprises / Regionally-Owned Enterprises": [
+        "Can this stakeholder become a partner in technical aspects or project investment?",
+        "Is there potential synergy in operations, infrastructure, or logistics?"
+      ],
+      "Local Communities & Community Groups": [
+        "Does the community show active support or partnership in the project's social activities?",
+        "Do they have local knowledge that could help mitigate social/environmental risk?"
+      ],
+      "Oil and Gas Technical Regulator / BPMA / SKK MIGAS / Related Agencies": [
+        "Can they provide technical support, oversight, or operational guidance?",
+        "Do they have a role in improving local technical capacity?"
+      ],
+      "Workers & Employees Union": [
+        "Does this stakeholder support productivity and harmonious labor relations?",
+        "Are they willing to get involved in HR development and training?"
+      ],
+      "Academics & Educational Institutions": [
+        "Can they support the project through research, training, or consultation?",
+        "Can they become a partner in innovation or knowledge dissemination?"
+      ],
+      "Media & Public Communications": [
+        "Can they help build a positive public image for the project?",
+        "Are they open to public education campaigns or constructive coverage?"
+      ],
+      "NGOs & Social Organizations": [
+        "Are they willing to collaborate on CSR, environmental, or social programs?",
+        "Can they help reach vulnerable or specific communities?"
+      ],
+      "Business & Industry Association": [
+        "Can the association expand business networks, investment opportunities, or policy advocacy?"
+      ],
+      "Business Partners & Service Providers": [
+        "Do they contribute to operational efficiency or project quality?"
+      ],
+      "Religious & Cultural Groups": [
+        "Do they support the project's social acceptance through local values and norms?"
+      ]
+    },
+    "risk": {
+      "Government & Regulatory Authorities": [
+        "Does this stakeholder have the authority to grant or revoke the project's permits?",
+        "Do they have the power to impose sanctions, audits, or project shutdown?",
+        "How often do they conduct oversight or intervention on the project?"
+      ],
+      "Oil and Gas Industry Operators / State-Owned Enterprises (SOEs) / Regional-Owned Enterprises (ROEs)": [
+        "Do they play a key role in the project's operations or investment?",
+        "Is there a risk of partner failure, internal conflict, or withdrawal of support?",
+        "Does the project depend on logistics, supply, or technology support from this stakeholder?",
+        "Is there potential conflict of interest or a change in strategic direction from this stakeholder?",
+        "Are they vulnerable to political pressure or intervention?"
+      ],
+      "Technical Oil and Gas Regulators / BPMA / SKK MIGAS / Relevant Agencies": [
+        "Do they set technical requirements and operational safety standards?",
+        "How strictly do they conduct audits and investigations?",
+        "Is there a history of sanctions or project halts imposed by them?"
+      ],
+      "Local Leaders / Communities & Community Groups": [
+        "Does the project directly affect their resources, land, or culture?",
+        "Has this group previously staged protests or opposition?",
+        "Do community figures or village heads have significant influence over the project's acceptance in the local community?"
+      ],
+      "Labor Unions & Employees": [
+        "Is there industrial-relations tension or potential for a strike?",
+        "How much influence do they have over daily operations?",
+        "Are there unmet welfare demands?"
+      ],
+      "Academics & Educational Institutions": [
+        "Have they previously criticized the project or similar issues?",
+        "Are they involved in social or environmental research?"
+      ],
+      "Media & Public Communication": [
+        "Have they previously spread negative narratives or misinformation?",
+        "How much influence does public opinion have through this channel?"
+      ],
+      "NGOs & Social Organizations": [
+        "Are they active on environmental, social, or human rights issues in the project area?",
+        "Do they have local community support or international networks?",
+        "Do they have a track record of litigation or media campaigns?"
+      ],
+      "Business & Industry Associations": [
+        "Is there a risk of conflict of interest related to supply or market?",
+        "Are there regulatory changes or unhealthy competition occurring?"
+      ],
+      "Business Partners & Service Providers": [
+        "Do they have a poor track record or technical mismatches?",
+        "Are they fully dependent on this project?"
+      ],
+      "Religious & Cultural Groups": [
+        "Is there cultural or religious sensitivity in the project area?",
+        "Does this group have the potential to mobilize moral opposition?",
+        "Does this stakeholder show high distrust toward the government, company, or outside institutions?"
+      ]
+    },
+    "benefit": {
+      "Government & Regulatory Authorities": [
+        "Can involvement from the government and ministries speed up processes, support operational smoothness, and maintain the project's security and order?",
+        "Can they help strengthen social acceptance and the project's reputation among the public?",
+        "Does this government act as a source of knowledge and a strategic partner in policy synergy?"
+      ],
+      "Community, Traditional, and Religious Leaders": [
+        "Can involvement of local communities, including customary and community figures, strengthen social acceptance, area access, and project coordination?",
+        "Do they bring cultural values and local knowledge, and play a role in maintaining harmony and resolving conflict constructively?"
+      ],
+      "Local Business and Economic Actors": [
+        "Can the involvement of local business actors and workers improve operational efficiency and support project stability?",
+        "Does their involvement support the company's image as a responsible employer adaptive to local conditions?"
+      ],
+      "Social, Academic, and NGO/CSO Organizations": [
+        "Can this organization become a strategic partner in social programs, strengthening participation, and community acceptance of the project?",
+        "Can they enhance the project's credibility, transparency, and reputation through an ESG approach and public collaboration?",
+        "Do they provide research input or data-based knowledge that strengthens decision-making and the project's legitimacy?"
+      ]
+    },
+    "category": {
+      "Government & Regulatory Authorities": [
+        "Does this stakeholder have direct authority at the village and regional level, playing an important role in permitting and area management?",
+        "Is this stakeholder a regional government with direct authority over permitting and operational implementation of the project in its region?",
+        "Does this stakeholder have high authority and significant influence over regional policy and permitting? Is their involvement important for the project's smooth running?",
+        "Does this stakeholder play a role in supporting technical implementation and regulation at the sub-district level? Is engagement conducted periodically and as needed?"
+      ],
+      "Community / Traditional / Religious Leaders": [
+        "Does this stakeholder act as a community leader with strong social and cultural influence, important for the project's smooth running?",
+        "Does this stakeholder have moral and social influence within the community, supporting the project's social acceptance?"
+      ],
+      "Social Risk Stakeholders": [
+        "Does this stakeholder have concerns about the project?",
+        "Is there potential conflict or disagreement between the project and this stakeholder?"
+      ],
+      "Stakeholders with Social & Economic Influence": [
+        "Do they act as local economic stakeholders playing a role in the business climate and economic support of the project?",
+        "Does this stakeholder act as an advocacy supporter and social watchdog influencing public opinion and community relations?",
+        "Does this stakeholder act as a local monitor and information disseminator that can influence public opinion?"
+      ]
+    }
+  }
+}

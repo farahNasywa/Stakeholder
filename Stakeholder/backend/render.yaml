@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: stakeholder-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: MONGO_URI
+        value: mongodb+srv://cutsula_db_user:jbgbnYeujesWF8YD@cluster0.gsfiuze.mongodb.net/stakeholderDB?retryWrites=true&w=majority&appName=Cluster0
+      - key: JWT_SECRET
+        value: myverysecretkey
+      - key: PORT
+        value: 5050
+      - key: ALLOWED_ORIGIN
+        value: https://stakeholder-bpma.vercel.app
+      - key: GOOGLE_PROJECT_ID
+        value: enhanced-parser-470514-a1
+      - key: GOOGLE_CLIENT_EMAIL
+        value: stakehoolder@enhanced-parser-470514-a1.iam.gserviceaccount.com
+      - key: GOOGLE_PRIVATE_KEY
+        sync: false

@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;600;700&display=swap');
+
+.faq-container {
+  max-width: 700px;
+  margin: 40px auto;
+  font-family: 'SF Pro Display', Arial, sans-serif;
+  background: linear-gradient(135deg, #eaf0fd, #c9dcfc);
+  color: #222B45;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(54, 98, 227, 0.06);
+  text-align: left;
+}
+
+.faq-list {
+  padding-left: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+/* Pertanyaan dan jawaban grup */
+.faq-question {
+  background: rgba(54, 98, 227, 0.10);
+  color: #222B45;
+  border-left: 5px solid #3662E3;
+  margin: 12px 0 4px 0; /* Margin bawah diperkecil untuk rapat */
+  padding: 0;
+  border-radius: 12px;
+  font-weight: 700;
+  font-family: 'SF Pro Display', Arial, sans-serif;
+  box-shadow: 0 4px 10px rgba(54, 98, 227, 0.06);
+  transition: background-color 0.4s, color 0.2s, transform 0.2s;
+  overflow: hidden;
+}
+
+.faq-question:hover,
+.faq-question:focus-within {
+  background-color: rgba(54, 98, 227, 0.16);
+  color: #3662E3;
+  transform: scale(1.03);
+  outline: none;
+}
+
+.faq-question-header {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 25px;
+  user-select: none;
+}
+
+.faq-arrow {
+  transition: transform 0.3s;
+  user-select: none;
+  display: inline-block;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.faq-arrow.open {
+  transform: rotate(180deg);
+}
+
+.faq-answer-wrapper {
+  overflow: hidden;
+  animation: fadeIn 0.3s ease forwards;
+  margin-top: 4px; /* Margin atas jawaban dikecilkan agar dekat ke pertanyaan */
+}
+
+.faq-blur {
+  background: rgba(245, 250, 255, 0.7);
+  backdrop-filter: blur(4px);
+  border-radius: 0 0 12px 12px;
+  padding: 20px 25px;
+  font-size: 1em;
+  color: #27416a;
+  line-height: 1.7;
+  user-select: text;
+  box-shadow: 0 4px 15px rgba(76, 110, 245, 0.2);
+  white-space: pre-line;
+}
+
+/* Margin antar paragraf jawaban rapat */
+.faq-blur p {
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+
+/* Animasi fade sederhana mirip Vue <transition name="fade"> */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
