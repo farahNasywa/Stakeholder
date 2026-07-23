@@ -508,5 +508,6 @@ export default function StakeholderFormFields({
         <FieldError message={errors.engagementFrequency} />
       </div>
     </div>
+  </div>
   );
 }
