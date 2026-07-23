@@ -111,7 +111,7 @@ const StakeholderAutocomplete = ({
                 <div>
                   <div className="font-semibold text-gray-900">{suggestion.name}</div>
                   <div className="text-sm text-gray-600">
-                    {suggestion.role?.name || t('stakeholderAutocomplete.noRole')} • {suggestion.stakeholderType?.name || t('stakeholderAutocomplete.noType')}
+                    {suggestion.role?.name ? t(`dashboard.card.roles.${suggestion.role.name}`, suggestion.role.name) : t('stakeholderAutocomplete.noRole')} • {suggestion.stakeholderType?.name ? t(`dashboard.card.types.${suggestion.stakeholderType.name}`, suggestion.stakeholderType.name) : t('stakeholderAutocomplete.noType')}
                   </div>
                 </div>
                 <div className="text-xs text-blue-600 font-medium">

@@ -888,9 +888,9 @@ export default function DeepAnalysist() {
                     lineHeight: "1.5",
                   }}
                 >
-                  {stakeholder.engagementStrategy?.strategy ||
-                    getStrategyDescriptions()[stakeholder.calculatedEngagementStrategy] ||
-                    "-"}
+                  {stakeholder.engagementStrategy?.strategy
+                    ? t(`deepAnalysist.strategyText.${stakeholder.engagementStrategy.strategy}`, stakeholder.engagementStrategy.strategy)
+                    : (getStrategyDescriptions()[stakeholder.calculatedEngagementStrategy] || "-")}
                 </div>
               </div>
 
@@ -916,7 +916,9 @@ export default function DeepAnalysist() {
                 </div>
                 <div style={{ textAlign: "center" }}>
                   <div style={{ fontWeight: "bold", fontSize: 17 }}>
-                    {stakeholder.engagementFrequency?.name || t("deepAnalysist.defaultFrequency")}
+                    {stakeholder.engagementFrequency?.name
+                      ? t(`deepAnalysist.frequencies.${stakeholder.engagementFrequency.name}`, stakeholder.engagementFrequency.name)
+                      : t("deepAnalysist.defaultFrequency")}
                   </div>
                   <div
                     style={{
@@ -925,8 +927,11 @@ export default function DeepAnalysist() {
                       maxWidth: "250px",
                     }}
                   >
-                    {stakeholder.engagementFrequency?.description ||
-                      t("deepAnalysist.defaultFrequencyDescription")}
+                    {stakeholder.engagementFrequency?.description
+                      ? t(`deepAnalysist.frequencyDescriptions.${stakeholder.engagementFrequency.description}`, stakeholder.engagementFrequency.description)
+                      : (stakeholder.engagementFrequency?.name
+                        ? t(`deepAnalysist.frequencyDescriptions.${stakeholder.engagementFrequency.name}`, t("deepAnalysist.defaultFrequencyDescription"))
+                        : t("deepAnalysist.defaultFrequencyDescription"))}
                   </div>
                 </div>
               </div>

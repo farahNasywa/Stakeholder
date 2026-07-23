@@ -397,7 +397,19 @@
     "engagementStrategyLabel": "Engagement Strategy",
     "engagementFrequencyLabel": "Engagement Frequency",
     "defaultFrequency": "Monthly",
-    "defaultFrequencyDescription": "H-M/ Standard for local government, impacted communities, and labor groups.",
+    "defaultFrequencyDescription": "Standard for local government, impacted communities, contractors, and labor groups.",
+    "strategyText": {
+      "Manage legal/regulatory risk, align with national development priorities, maintain strategic alignment": "Manage legal/regulatory risk, align with national development priorities, maintain strategic alignment",
+      "Build strong relationship, involve in key decisions, maintain regular communication": "Build strong relationship, involve in key decisions, maintain regular communication",
+      "Keep informed, manage expectations, address concerns proactively": "Keep informed, manage expectations, address concerns proactively",
+      "Monitor attitude, provide basic information, maintain minimal contact": "Monitor attitude, provide basic information, maintain minimal contact"
+    },
+    "frequencyDescriptions": {
+      "Monthly": "Standard for local government, impacted communities, contractors, and labor groups.",
+      "Quarterly": "Standard for regional NGOs, business associations, and academic institutions.",
+      "Annually": "Standard for national regulators, international bodies, and secondary stakeholders.",
+      "Standard for local government, impacted communities, contractors, and labor groups.": "Standard for local government, impacted communities, contractors, and labor groups."
+    },
     "recommendationTitle": "Recommendation",
     "mitigationPlanTitle": "Mitigation Plan",
     "mitigationPlanPlaceholder": "Select a Key Concern to see the Mitigation Plan",

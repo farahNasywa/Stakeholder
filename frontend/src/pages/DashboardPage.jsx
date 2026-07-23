@@ -347,8 +347,7 @@ const DashboardPage = () => {
                     className="search-dropdown-item"
                     onClick={() => handleStakeholderClick(stakeholder)}
                   >
-                    {stakeholder.name} ({stakeholder.role ? stakeholder.role.name : "-"})
-                    {/* i18n: nama role diambil langsung dari database, tidak diterjemahkan */}
+                    {stakeholder.name} ({stakeholder.role ? t(`dashboard.card.roles.${stakeholder.role.name}`, stakeholder.role.name) : "-"})
                   </div>
                 ))}
               </div>
@@ -364,7 +363,7 @@ const DashboardPage = () => {
                 </div>
                 <div key={selectedStakeholder._id} className="data-row">
                   <div>{selectedStakeholder.name}</div>
-                  <div>{selectedStakeholder.role ? selectedStakeholder.role.name : "-"}</div>
+                  <div>{selectedStakeholder.role ? t(`dashboard.card.roles.${selectedStakeholder.role.name}`, selectedStakeholder.role.name) : "-"}</div>
                   <div>{selectedStakeholder.stakeholderType ? t(`dashboard.card.types.${selectedStakeholder.stakeholderType.name}`, selectedStakeholder.stakeholderType.name) : "-"}</div>
                   <div>{t(`dashboard.card.categories.${selectedStakeholder.engagementCategory}`, selectedStakeholder.engagementCategory)}</div>
                 </div>

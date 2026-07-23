@@ -250,7 +250,7 @@ const EngagementJustificationList = () => {
                           <div className="flex items-center mt-1">
                             <FaBuilding className="text-sm text-muted-foreground mr-2" />
                             <p className="text-sm font-medium text-muted-foreground">
-                              {stakeholder.role ? stakeholder.role.name : t("engagementJustificationList.noRole")}
+                              {getTranslatedRole(stakeholder.role)}
                             </p>
                           </div>
                         </div>

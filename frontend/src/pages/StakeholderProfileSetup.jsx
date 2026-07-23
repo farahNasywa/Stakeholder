@@ -698,7 +698,7 @@ export default function StakeholderProfileSetup() {
                                 <option value="">{t("stakeholderProfileSetup.selectRole")}</option>
                                 {roles.map((role) => (
                                     <option key={role._id} value={role._id}>
-                                        {role.name}
+                                        {t(`dashboard.card.roles.${role.name}`, role.name)}
                                     </option>
                                 ))}
                             </select>
@@ -729,7 +729,7 @@ export default function StakeholderProfileSetup() {
                                 <option value="">{t("stakeholderProfileSetup.selectType")}</option>
                                 {stakeholderTypes.map((type) => (
                                     <option key={type._id} value={type._id}>
-                                        {type.name}
+                                        {t(`dashboard.card.types.${type.name}`, type.name)}
                                     </option>
                                 ))}
                             </select>
@@ -741,11 +741,11 @@ export default function StakeholderProfileSetup() {
                             <h1 className="mb-2 font-semibold text-lg text-white">{t("stakeholderProfileSetup.categoryLabel")}</h1>
                             <input
                                 type="text"
-                                value={selectedCategory || ""}
+                                value={selectedCategory ? t(`dashboard.card.categories.${selectedCategory}`, selectedCategory) : ""}
                                 readOnly
                                 disabled={!allAssessmentsCompleted}   // 🚀 kunci disini
                                 className={`w-full h-12 rounded-lg border-2 shadow px-4 font-semibold text-black 
-        ${allAssessmentsCompleted
+                                        ${allAssessmentsCompleted
                                         ? "border-gray-400 bg-gray-100"
                                         : "border-gray-300 bg-gray-300 cursor-not-allowed"
                                     }`}
@@ -756,7 +756,7 @@ export default function StakeholderProfileSetup() {
                             <h1 className="mb-2 font-semibold text-lg text-white">{t("stakeholderProfileSetup.relevanceLabel")}</h1>
                             <input
                                 type="text"
-                                value={selectedRelevance || ""}
+                                value={selectedRelevance ? t(`engagementPriority.intensities.${selectedRelevance}`, selectedRelevance) : ""}
                                 readOnly
                                 disabled={!allAssessmentsCompleted}   // 🚀 kunci disini
                                 className={`w-full h-12 rounded-lg border-2 shadow px-4 font-semibold text-black 

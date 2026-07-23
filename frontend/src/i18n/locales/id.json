@@ -401,7 +401,19 @@
     "engagementStrategyLabel": "Strategi Keterlibatan",
     "engagementFrequencyLabel": "Frekuensi Keterlibatan",
     "defaultFrequency": "Bulanan",
-    "defaultFrequencyDescription": "H-M / Standar untuk pemerintah daerah, komunitas terdampak, dan kelompok tenaga kerja.",
+    "defaultFrequencyDescription": "Standar untuk pemerintah daerah, komunitas terdampak, kontraktor, dan kelompok tenaga kerja.",
+    "strategyText": {
+      "Manage legal/regulatory risk, align with national development priorities, maintain strategic alignment": "Kelola risiko hukum/regulasi, selaraskan dengan prioritas pembangunan nasional, jaga keselarasan strategis",
+      "Build strong relationship, involve in key decisions, maintain regular communication": "Bangun hubungan kuat, libatkan dalam keputusan penting, jaga komunikasi rutin",
+      "Keep informed, manage expectations, address concerns proactively": "Beri informasi secara berkala, kelola ekspektasi, tanggapi kekhawatiran secara proaktif",
+      "Monitor attitude, provide basic information, maintain minimal contact": "Pantau sikap, berikan informasi dasar, jaga kontak minimal"
+    },
+    "frequencyDescriptions": {
+      "Monthly": "Standar untuk pemerintah daerah, komunitas terdampak, kontraktor, dan kelompok tenaga kerja.",
+      "Quarterly": "Standar untuk LSM regional, asosiasi bisnis, dan lembaga akademis.",
+      "Annually": "Standar untuk pengawas nasional, badan internasional, dan pemangku kepentingan sekunder.",
+      "Standard for local government, impacted communities, contractors, and labor groups.": "Standar untuk pemerintah daerah, komunitas terdampak, kontraktor, dan kelompok tenaga kerja."
+    },
     "recommendationTitle": "Rekomendasi",
     "mitigationPlanTitle": "Rencana Mitigasi",
     "mitigationPlanPlaceholder": "Pilih Isu Utama untuk melihat Rencana Mitigasi",
@@ -745,7 +757,7 @@
       "tableRole": "Peran",
       "tableType": "Tipe Stakeholder",
       "tableCategory": "Kategori",
-      "continuePrompt": "Lanjutkan ke Engagement Priority?",
+      "continuePrompt": "Lanjutkan ke Prioritas Keterlibatan?",
       "yes": "Ya",
       "no": "Tidak",
       "needsSelection": "Silakan cari dan pilih Stakeholder terlebih dahulu."

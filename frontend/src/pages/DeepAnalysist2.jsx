@@ -888,7 +888,7 @@ export default function DeepAnalysist2() {
                     if (strat.includes("Track engagement") || strat.includes("Pantau kebutuhan")) {
                       return t("deepAnalysist.strategyDescriptions.monitor");
                     }
-                    return t(`engagementPriority.strategies.${strat}`, strat);
+                    return t(`deepAnalysist.strategyText.${strat}`, t(`engagementPriority.strategies.${strat}`, strat));
                   })()}
                 </div>
               </div>
@@ -926,7 +926,17 @@ export default function DeepAnalysist2() {
                       maxWidth: "250px",
                     }}
                   >
-                    {t("deepAnalysist2.defaultFrequencyDescription")}
+                    {(() => {
+                      const desc = stakeholderData?.engagementFrequency?.description;
+                      if (desc) {
+                        return t(`deepAnalysist.frequencyDescriptions.${desc}`, desc);
+                      }
+                      const freq = recommendationData?.engagementFrequency || stakeholderData?.engagementFrequency?.name;
+                      if (freq) {
+                        return t(`deepAnalysist.frequencyDescriptions.${freq}`, t("deepAnalysist2.defaultFrequencyDescription"));
+                      }
+                      return t("deepAnalysist2.defaultFrequencyDescription");
+                    })()}
                   </div>
                 </div>
               </div>

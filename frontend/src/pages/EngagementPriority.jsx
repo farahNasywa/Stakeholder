@@ -549,7 +549,7 @@ export default function EngagementPriority() {
                       textAlign: "left",
                     }}
                   >
-                    {stakeholder.role?.name}
+                    {stakeholder.role?.name ? t(`dashboard.card.roles.${stakeholder.role.name}`, stakeholder.role.name) : ""}
                   </p>
                 </div>
               </div>
