@@ -700,6 +700,37 @@
         "Pending": "Pending",
         "Rejected": "Rejected",
         "Unknown": "Unknown"
+      },
+      "types": {
+        "Academia & Education": "Academia & Education",
+        "Civil Society and NGOs": "Civil Society and NGOs",
+        "Community-Based Organizations (CBOs)": "Community-Based Organizations (CBOs)",
+        "Directly Affected People (DAPs)": "Directly Affected People (DAPs)",
+        "Donors and Multilateral Institutions": "Donors and Multilateral Institutions",
+        "Education and Training Institutions": "Education and Training Institutions",
+        "Environmental Bodies and Consultants": "Environmental Bodies and Consultants",
+        "Government-District/City Executive": "Government-District/City Executive",
+        "Government-District/City Legislative": "Government-District/City Legislative",
+        "Government-Provincial Executive": "Government-Provincial Executive",
+        "Government-Provincial Legislative": "Government-Provincial Legislative",
+        "Government-Security Forces": "Government-Security Forces",
+        "Government-Subdistrict & Village": "Government-Subdistrict & Village",
+        "Government-Upstream Regulatory": "Government-Upstream Regulatory",
+        "Health and Social Services": "Health and Social Services",
+        "Investment and Licensing Agencies": "Investment and Licensing Agencies",
+        "Legal and Advisory Services": "Legal and Advisory Services",
+        "Local Communities": "Local Communities",
+        "Media and Communication": "Media and Communication",
+        "Political Figures and Bodies": "Political Figures and Bodies",
+        "Private Sector and Businesses": "Private Sector and Businesses",
+        "Religious Courts and Judicial Bodies": "Religious Courts and Judicial Bodies",
+        "Religious Organizations and Leaders": "Religious Organizations and Leaders",
+        "State-Owned Enterprises (BUMN/BUMD)": "State-Owned Enterprises (BUMN/BUMD)"
+      },
+      "roles": {
+        "Governor of Aceh": "Governor of Aceh",
+        "Vice Governor of Aceh": "Vice Governor of Aceh",
+        "Camat (District Head)": "Camat (District Head)"
       }
     },
     "search": {

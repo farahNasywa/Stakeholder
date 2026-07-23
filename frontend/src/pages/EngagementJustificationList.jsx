@@ -280,7 +280,7 @@ const EngagementJustificationList = () => {
                       <div className="flex items-center justify-between">
                         <div className="inline-flex items-center px-3 py-1.5 bg-secondary rounded-lg border border-border/50">
                           <span className="text-xs font-semibold text-secondary-foreground">
-                            {stakeholder.stakeholderType ? t(`dashboard.card.types.${stakeholder.stakeholderType.name}`, stakeholder.stakeholderType.name) : t("engagementJustificationList.notAvailable")}
+                            {stakeholder.stakeholderType ? t(`dashboard.card.types.${(typeof stakeholder.stakeholderType === "string" ? stakeholder.stakeholderType : stakeholder.stakeholderType.name || "").trim()}`, typeof stakeholder.stakeholderType === "string" ? stakeholder.stakeholderType : stakeholder.stakeholderType.name) : t("engagementJustificationList.notAvailable")}
                           </span>
                         </div>
                         

@@ -161,11 +161,51 @@ export default function DeepAnalysist() {
     return stakeholder?.status || t("deepAnalysist.unknown");
   };
 
+  const translateKeyConcern = (text) => {
+    if (!text) return "";
+    if (i18n.language === "id") {
+      const trimmed = text.trim();
+      const bundle = i18n.getResourceBundle("id", "translation");
+      const dict = bundle?.deepAnalysist?.keyConcerns;
+      if (dict && dict[trimmed]) {
+        return dict[trimmed];
+      }
+    }
+    return text;
+  };
+
+  const translateMitigationPlan = (text) => {
+    if (!text) return "";
+    if (i18n.language === "id") {
+      const trimmed = text.trim();
+      const bundle = i18n.getResourceBundle("id", "translation");
+      const dict = bundle?.deepAnalysist?.mitigationPlans;
+      if (dict && dict[trimmed]) {
+        return dict[trimmed];
+      }
+    }
+    return text;
+  };
+
+  const translateObjective = (text) => {
+    if (!text) return "";
+    if (i18n.language === "id") {
+      const trimmed = text.trim();
+      const bundle = i18n.getResourceBundle("id", "translation");
+      const dict = bundle?.deepAnalysist?.objectives;
+      if (dict && dict[trimmed]) {
+        return dict[trimmed];
+      }
+    }
+    return text;
+  };
+
   const getStatusDisplay = () => {
     if (statusLoading) {
       return t("deepAnalysist.loading");
     }
-    return getCurrentStatus();
+    const rawStatus = getCurrentStatus();
+    return t(`dashboard.card.statuses.${rawStatus}`, rawStatus);
   };
 
   // Function untuk refresh data setelah ada perubahan
@@ -432,7 +472,7 @@ export default function DeepAnalysist() {
                       {stakeholder.name}
                     </h2>
                     <p style={{ fontSize: 14, margin: 0, opacity: 0.85, textAlign: "left" }}>
-                      {stakeholder.role?.name || ""}
+                      {stakeholder.role?.name ? t(`dashboard.card.roles.${stakeholder.role.name}`, stakeholder.role.name) : ""}
                     </p>
                   </div>
                 </div>
@@ -503,7 +543,7 @@ export default function DeepAnalysist() {
                       textAlign: "center",
                     }}
                   >
-                    {stakeholder.stakeholderType?.name || "-"}
+                    {stakeholder.stakeholderType?.name ? t(`dashboard.card.types.${stakeholder.stakeholderType.name}`, stakeholder.stakeholderType.name) : "-"}
                   </div>
                 </div>
               </div>
@@ -754,7 +794,7 @@ export default function DeepAnalysist() {
                 >
                   <span style={{ flex: 1 }}>
                     {selectedKeyConcern
-                      ? selectedKeyConcern.key_concern
+                      ? translateKeyConcern(selectedKeyConcern.key_concern)
                       : t("deepAnalysist.keyConcernPlaceholder")}
                   </span>
                   <svg
@@ -801,7 +841,7 @@ export default function DeepAnalysist() {
                         }}
                         onClick={() => handleKeyConcernChange(concern)}
                       >
-                        {concern.key_concern}
+                        {translateKeyConcern(concern.key_concern)}
                       </li>
                     ))}
                   </ul>
@@ -958,7 +998,7 @@ export default function DeepAnalysist() {
                     }}
                   >
                     {selectedKeyConcern
-                      ? t(`deepAnalysist.mitigationPlans.${selectedKeyConcern.mitigation_plan}`, selectedKeyConcern.mitigation_plan)
+                      ? translateMitigationPlan(selectedKeyConcern.mitigation_plan)
                       : t("deepAnalysist.mitigationPlanPlaceholder")}
                   </div>
                 </div>
@@ -999,7 +1039,7 @@ export default function DeepAnalysist() {
                     }}
                   >
                     {selectedKeyConcern
-                      ? t(`deepAnalysist.objectives.${selectedKeyConcern.objective}`, selectedKeyConcern.objective)
+                      ? translateObjective(selectedKeyConcern.objective)
                       : t("deepAnalysist.objectivePlaceholder")}
                   </div>
                 </div>

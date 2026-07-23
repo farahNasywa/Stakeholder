@@ -365,7 +365,7 @@ const DashboardPage = () => {
                 <div key={selectedStakeholder._id} className="data-row">
                   <div>{selectedStakeholder.name}</div>
                   <div>{selectedStakeholder.role ? selectedStakeholder.role.name : "-"}</div>
-                  <div>{selectedStakeholder.stakeholderType ? selectedStakeholder.stakeholderType.name : "-"}</div>
+                  <div>{selectedStakeholder.stakeholderType ? t(`dashboard.card.types.${selectedStakeholder.stakeholderType.name}`, selectedStakeholder.stakeholderType.name) : "-"}</div>
                   <div>{t(`dashboard.card.categories.${selectedStakeholder.engagementCategory}`, selectedStakeholder.engagementCategory)}</div>
                 </div>
                 <div className="engagement-popup">

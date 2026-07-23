@@ -8,7 +8,7 @@ import Navbar from "../components/Navbar";
 import { calculateCompleteReengagementAnalysis } from "../services/reengagementCalculationService.js";
 
 export default function DeepAnalysist2() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { id: stakeholderId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
@@ -93,7 +93,8 @@ export default function DeepAnalysist2() {
     if (statusLoading) {
       return t("deepAnalysist2.loading");
     }
-    return getCurrentStatus();
+    const rawStatus = getCurrentStatus();
+    return t(`dashboard.card.statuses.${rawStatus}`, rawStatus);
   };
 
   // Function untuk refresh stakeholder data (sama seperti di Deep Analysis 1)
@@ -127,6 +128,61 @@ export default function DeepAnalysist2() {
       console.error("Gagal mengambil data stakeholder:", error);
     }
   }, [stakeholderId, fetchValidationStatus]);
+
+  const translateKeyConcern = (text) => {
+    if (!text) return "";
+    if (i18n.language === "id") {
+      const trimmed = text.trim();
+      const bundle = i18n.getResourceBundle("id", "translation");
+      const dict = bundle?.deepAnalysist?.keyConcerns;
+      if (dict && dict[trimmed]) {
+        return dict[trimmed];
+      }
+    }
+    return text;
+  };
+
+  const translateMitigationPlan = (text) => {
+    if (!text) return "";
+    if (i18n.language === "id") {
+      const trimmed = text.trim();
+      const bundle = i18n.getResourceBundle("id", "translation");
+      const dict = bundle?.deepAnalysist?.mitigationPlans;
+      if (dict && dict[trimmed]) {
+        return dict[trimmed];
+      }
+    }
+    return text;
+  };
+
+  const translateObjective = (text) => {
+    if (!text) return "";
+    if (i18n.language === "id") {
+      const trimmed = text.trim();
+      const bundle = i18n.getResourceBundle("id", "translation");
+      const dict = bundle?.deepAnalysist?.objectives;
+      if (dict && dict[trimmed]) {
+        return dict[trimmed];
+      }
+    }
+    return text;
+  };
+
+  const formatReengagementStatus = (status) => {
+    if (!status) return "";
+    return t(`deepAnalysist2.statuses.${status}`, status);
+  };
+
+  const formatReengagementReason = (reason) => {
+    if (!reason) return "";
+    const match = reason.match(/^(.*?)\s*\((.*?)\)$/);
+    if (match) {
+      const englishPart = match[1].trim();
+      const indoPart = match[2].trim();
+      return i18n.language === "id" ? indoPart : englishPart;
+    }
+    return reason;
+  };
 
   // Effect untuk mengambil data stakeholder dari API
   const fetchStakeholder = useCallback(async () => {
@@ -488,7 +544,7 @@ export default function DeepAnalysist2() {
                       {stakeholderData?.name || t("deepAnalysist2.notAvailable")}
                     </h2>
                     <p style={{ fontSize: 14, color: "white", margin: 0, opacity: 0.85, textAlign: "left" }}>
-                      {stakeholderData?.role?.name || ""}
+                      {stakeholderData?.role?.name ? t(`dashboard.card.roles.${stakeholderData.role.name}`, stakeholderData.role.name) : ""}
                     </p>
                   </div>
                 </div>
@@ -554,7 +610,7 @@ export default function DeepAnalysist2() {
                       textAlign: "center",
                     }}
                   >
-                    {stakeholderData?.stakeholderType?.name || t("deepAnalysist2.notAvailable")}
+                    {stakeholderData?.stakeholderType?.name ? t(`dashboard.card.types.${stakeholderData.stakeholderType.name}`, stakeholderData.stakeholderType.name) : t("deepAnalysist2.notAvailable")}
                   </div>
                 </div>
               </div>
@@ -588,7 +644,7 @@ export default function DeepAnalysist2() {
                       textAlign: "center",
                     }}
                   >
-                    {stakeholderData?.engagementCategory || t("deepAnalysist2.notAvailable")}
+                    {stakeholderData?.engagementCategory ? t(`dashboard.card.categories.${stakeholderData.engagementCategory}`, stakeholderData.engagementCategory) : t("deepAnalysist2.notAvailable")}
                   </div>
                 </div>
               </div>
@@ -697,7 +753,7 @@ export default function DeepAnalysist2() {
                 >
                   <span style={{ flex: 1 }}>
                     {recommendationData?.keyConcern
-                      ? t(`deepAnalysist.keyConcerns.${recommendationData.keyConcern}`, recommendationData.keyConcern)
+                      ? translateKeyConcern(recommendationData.keyConcern)
                       : "-"}
                   </span>
                 </div>
@@ -715,7 +771,7 @@ export default function DeepAnalysist2() {
                   <CardTitle>{t("deepAnalysist2.mitigationPlanTitle")}</CardTitle>
                   <CardContent style={{ minHeight: "50px", fontSize: 16 }}>
                     {recommendationData?.mitigationPlan
-                      ? t(`deepAnalysist.mitigationPlans.${recommendationData.mitigationPlan}`, recommendationData.mitigationPlan)
+                      ? translateMitigationPlan(recommendationData.mitigationPlan)
                       : "-"}
                   </CardContent>
                 </GlassCard>
@@ -723,7 +779,7 @@ export default function DeepAnalysist2() {
                   <CardTitle>{t("deepAnalysist2.objectiveTitle")}</CardTitle>
                   <CardContent style={{ minHeight: "50px", fontSize: 16 }}>
                     {recommendationData?.objective
-                      ? t(`deepAnalysist.objectives.${recommendationData.objective}`, recommendationData.objective)
+                      ? translateObjective(recommendationData.objective)
                       : "-"}
                   </CardContent>
                 </GlassCard>
@@ -996,7 +1052,7 @@ export default function DeepAnalysist2() {
                       fontSize: "16px",
                     }}
                   >
-                    {reengagementStatus}
+                    {formatReengagementStatus(reengagementStatus)}
                   </div>
                 </div>
                 {reengagementReason && (
@@ -1043,7 +1099,7 @@ export default function DeepAnalysist2() {
                           whiteSpace: "pre-line",
                         }}
                       >
-                        {reengagementReason}
+                        {formatReengagementReason(reengagementReason)}
                       </div>
                     </div>
                   </div>

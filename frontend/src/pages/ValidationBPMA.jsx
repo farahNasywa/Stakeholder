@@ -382,7 +382,7 @@ const ValidationBPMA = () => {
                   <div className="card">
                     <p><strong>{t("validationBpma.modal.fields.name")}:</strong> {selectedRequest.stakeholderId?.name || "-"}</p>
                     <p><strong>{t("validationBpma.modal.fields.role")}:</strong> {selectedRequest.stakeholderId?.role?.name || "-"}</p>
-                    <p><strong>{t("validationBpma.modal.fields.stakeholderType")}:</strong> {selectedRequest.stakeholderId?.stakeholderType?.name || "-"}</p>
+                    <p><strong>{t("validationBpma.modal.fields.stakeholderType")}:</strong> {selectedRequest.stakeholderId?.stakeholderType?.name ? t(`dashboard.card.types.${selectedRequest.stakeholderId.stakeholderType.name}`, selectedRequest.stakeholderId.stakeholderType.name) : "-"}</p>
                     <p><strong>{t("validationBpma.modal.fields.engagementCategory")}:</strong> {selectedRequest.stakeholderId?.engagementCategory || "-"}</p>
                     <p><strong>{t("validationBpma.modal.fields.location")}:</strong> {selectedRequest.stakeholderId?.location?.city || "-"} - {selectedRequest.stakeholderId?.location?.province?.name || "-"}</p>
                     <p><strong>{t("validationBpma.modal.fields.contact")}:</strong> {selectedRequest.stakeholderId?.contact || "-"}</p>

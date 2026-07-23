@@ -120,7 +120,7 @@ export default function StakeholderFormFields({
           <option value="">{t("stakeholderForm.placeholders.selectRole")}</option>
           {roles.map((role) => (
             <option key={role._id} value={role._id}>
-              {role.name}
+              {t(`dashboard.card.roles.${role.name}`, role.name)}
             </option>
           ))}
         </select>
@@ -225,7 +225,7 @@ export default function StakeholderFormFields({
           <option value="">{t("stakeholderForm.placeholders.selectStakeholderType")}</option>
           {stakeholderTypes.map((type) => (
             <option key={type._id} value={type._id}>
-              {type.name}
+              {t(`dashboard.card.types.${type.name}`, type.name)}
             </option>
           ))}
         </select>
@@ -367,7 +367,7 @@ export default function StakeholderFormFields({
           <option value="">{t("stakeholderForm.placeholders.selectStrategy")}</option>
           {strategies.map((strategy) => (
             <option key={strategy._id} value={strategy._id}>
-              {strategy.strategy}
+              {t(`engagementPriority.strategies.${strategy.strategy}`, strategy.strategy)}
             </option>
           ))}
         </select>
@@ -389,7 +389,7 @@ export default function StakeholderFormFields({
           <option value="">{t("stakeholderForm.placeholders.selectFrequency")}</option>
           {frequencies.map((frequency) => (
             <option key={frequency._id} value={frequency._id}>
-              {frequency.name}
+              {t(`deepAnalysist.frequencies.${frequency.name}`, frequency.name)}
             </option>
           ))}
         </select>

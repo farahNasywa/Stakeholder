@@ -132,6 +132,7 @@ export default function EngagementPriority() {
       return t("engagementPriority.loading");
     }
     if (validationStatus) {
+      const translatedStatus = t(`dashboard.card.statuses.${validationStatus}`, validationStatus);
       const formattedDate = validationDate
         ? new Date(validationDate).toLocaleString("id-ID", {
           day: "2-digit",
@@ -141,7 +142,7 @@ export default function EngagementPriority() {
           minute: "2-digit",
         })
         : "";
-      return `${validationStatus} ${t("engagementPriority.onDate")} ${formattedDate}`;
+      return `${translatedStatus} ${t("engagementPriority.onDate")} ${formattedDate}`;
     }
     return t("engagementPriority.unknown");
   };
@@ -692,7 +693,7 @@ export default function EngagementPriority() {
                     textAlign: "center",
                   }}
                 >
-                  {stakeholder.stakeholderType?.name || "-"}
+                  {stakeholder.stakeholderType?.name ? t(`dashboard.card.types.${stakeholder.stakeholderType.name}`, stakeholder.stakeholderType.name) : "-"}
                 </div>
               </div>
             </div>
@@ -769,11 +770,8 @@ export default function EngagementPriority() {
                   }}
                 >
                   {getStatusDisplay()}
-
                 </div>
-
               </div>
-
             </div>
           </div>
 
@@ -998,7 +996,7 @@ export default function EngagementPriority() {
                 : t("engagementPriority.successPopup.changeRequestSubmitted")}
               <br />
               <small style={{ fontSize: "14px", color: "#666" }}>
-                {t("engagementPriority.successPopup.statusLabel")}: {validationStatus || t("engagementPriority.successPopup.pendingReview")}
+                {t("engagementPriority.successPopup.statusLabel")}: {validationStatus ? t(`dashboard.card.statuses.${validationStatus}`, validationStatus) : t("engagementPriority.successPopup.pendingReview")}
               </small>
             </>
           ) : (

@@ -212,6 +212,22 @@ export default function EngagementJustification() {
     );
   }
 
+  const getTranslatedType = (typeData) => {
+    if (!typeData) return "-";
+    const name = typeof typeData === "string" ? typeData : typeData.name;
+    if (!name) return "-";
+    const trimmed = name.trim();
+    return t(`dashboard.card.types.${trimmed}`, trimmed);
+  };
+
+  const getTranslatedRole = (roleData) => {
+    if (!roleData) return "-";
+    const name = typeof roleData === "string" ? roleData : roleData.name;
+    if (!name) return "-";
+    const trimmed = name.trim();
+    return t(`dashboard.card.roles.${trimmed}`, trimmed);
+  };
+
   const formatLevel = (level) => {
     if (!level) return "-";
     const normalized = level.trim().toLowerCase();
@@ -264,7 +280,7 @@ export default function EngagementJustification() {
                   {stakeholder.name}
                 </h2>
                 <p style={{ fontSize: 15, color: "white", margin: "6px 0 0 0", lineHeight: 1.3, textAlign: "left" }}>
-                  {stakeholder.role?.name}
+                  {getTranslatedRole(stakeholder.role)}
                 </p>
               </div>
             </div>
@@ -304,7 +320,7 @@ export default function EngagementJustification() {
             </div>
 
             {[
-              { label: t("engagementJustification.fields.stakeholderType"), value: stakeholder.stakeholderType?.name ? t(`dashboard.card.types.${stakeholder.stakeholderType.name}`, stakeholder.stakeholderType.name) : "-", bg: "#E9F7DF", color: "#065f46" },
+              { label: t("engagementJustification.fields.stakeholderType"), value: getTranslatedType(stakeholder.stakeholderType), bg: "#E9F7DF", color: "#065f46" },
               { label: t("engagementJustification.fields.engagementCategory"), value: stakeholder.engagementCategory ? t(`dashboard.card.categories.${stakeholder.engagementCategory}`, stakeholder.engagementCategory) : "-", bg: "#D2E3EB", color: "#374151" },
               { label: t("engagementJustification.fields.influenceLevel"), value: formatLevel(stakeholder.influenceLevel), bg: "#EDE9FE", color: "#4C1D95" },
               { label: t("engagementJustification.fields.interestLevel"), value: formatLevel(stakeholder.interestLevel), bg: "#FEF3C7", color: "#78350F" },

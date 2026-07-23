@@ -238,7 +238,7 @@
     "locationUnavailable": "[Lokasi Tidak Tersedia]",
     "loadingStakeholder": "Memuat data Stakeholder...",
     "errorPrefix": "Kesalahan",
-    "recommendationNotFound": "⚠️ Data rekomendasi tidak ditemukan. Silakan kembali ke halaman sebelumnya dan pilih \"Key Concern\" lalu klik \"Trigger\".",
+    "recommendationNotFound": "⚠️ Data rekomendasi tidak ditemukan. Silakan kembali ke halaman sebelumnya dan pilih \"Isu Utama\" lalu klik \"Parameter Kekhawatiran\".",
     "flagLabels": {
       "issueEscalation": "Eskalasi Isu",
       "projectMilestoneImpact": "Dampak pada Milestone Proyek",
@@ -256,7 +256,7 @@
     },
     "notAvailable": "T/A",
     "previousRecommendationTitle": "Rekomendasi Sebelumnya",
-    "keyConcernLabel": "Kekhawatiran Utama (Key Concern)",
+    "keyConcernLabel": "Isu Utama",
     "mitigationPlanTitle": "Rencana Mitigasi",
     "objectiveTitle": "Tujuan",
     "focalPointTitle": "Penghubung Utama (Focal Point)",
@@ -267,8 +267,12 @@
     "yes": "Ya",
     "no": "Tidak",
     "reengagementStatusLabel": "Status Keterlibatan Ulang:",
+    "statuses": {
+      "Re-engage": "Perlu Keterlibatan Ulang",
+      "No re-engagement needed": "Tidak Perlu Keterlibatan Ulang"
+    },
     "triggerReasonTitle": "Alasan Pemicu",
-    "answerAllTriggersWarning": "Jawab semua Parameter Pemicu (Ya/Tidak) untuk melanjutkan.",
+    "answerAllTriggersWarning": "Jawab semua Parameter Kekhawatiran (Ya/Tidak) untuk melanjutkan.",
     "nextButton": "SELANJUTNYA"
   },
   "deepAnalysist": {
@@ -370,7 +374,7 @@
     "idMissingError": "ID Stakeholder tidak ditemukan di URL.",
     "unknown": "Tidak Diketahui",
     "loading": "Memuat...",
-    "selectKeyConcernFirst": "Pilih Key Concern terlebih dahulu untuk melanjutkan.",
+    "selectKeyConcernFirst": "Pilih isu utama terlebih dahulu untuk melanjutkan.",
     "loadingText": "Memuat data analisis mendalam...",
     "errorHint": "Pastikan server backend berjalan dan ID Stakeholder valid.",
     "notFound": "Data Stakeholder tidak ditemukan untuk analisis mendalam.",
@@ -392,21 +396,21 @@
     "finalRecommendationTitle": "Rekomendasi Akhir",
     "defaultRecommendationMain": "Pertahankan keterlibatan & tanggapi isu yang muncul",
     "defaultRecommendationDetail": "Lanjutkan komunikasi dan tanggapi umpan balik serta kekhawatiran Stakeholder sesuai kebutuhan.",
-    "keyConcernLabel": "Kekhawatiran Utama (Key Concern)",
-    "keyConcernPlaceholder": "Silakan pilih Kekhawatiran Utama (Key Concern) yang akan diproses",
+    "keyConcernLabel": "Isu Utama",
+    "keyConcernPlaceholder": "Silakan pilih Isu Utama yang akan diproses",
     "engagementStrategyLabel": "Strategi Keterlibatan",
     "engagementFrequencyLabel": "Frekuensi Keterlibatan",
     "defaultFrequency": "Bulanan",
     "defaultFrequencyDescription": "H-M / Standar untuk pemerintah daerah, komunitas terdampak, dan kelompok tenaga kerja.",
     "recommendationTitle": "Rekomendasi",
     "mitigationPlanTitle": "Rencana Mitigasi",
-    "mitigationPlanPlaceholder": "Pilih Key Concern untuk melihat Rencana Mitigasi",
+    "mitigationPlanPlaceholder": "Pilih Isu Utama untuk melihat Rencana Mitigasi",
     "objectiveTitle": "Tujuan",
-    "objectivePlaceholder": "Pilih Key Concern untuk melihat Tujuan",
+    "objectivePlaceholder": "Pilih Isu Utama untuk melihat Tujuan",
     "focalPointTitle": "Penghubung Utama (Focal Point)",
-    "focalPointPlaceholder": "Pilih Key Concern untuk melihat Focal Point",
+    "focalPointPlaceholder": "Pilih Isu Utama untuk melihat Penghubung Utama",
     "backupTitle": "Cadangan (Backup Support)",
-    "backupPlaceholder": "Pilih Key Concern untuk melihat Backup Support",
+    "backupPlaceholder": "Pilih Isu Utama untuk melihat Cadangan",
     "triggerButton": "Pemicu (Trigger)",
     "triggerButtonSubtitle": "Klik tombol pemicu jika keterlibatan ulang diperlukan"
   },
@@ -551,9 +555,9 @@
       "selectFrequency": "Pilih Frekuensi"
     },
     "categoryOptions": {
-      "primary": "Primary",
-      "secondary": "Secondary",
-      "tertiary": "Tertiary"
+      "primary": "Utama",
+      "secondary": "Sekunder",
+      "tertiary": "Tersier"
     },
     "levelOptions": {
       "low": "Rendah",
@@ -631,23 +635,23 @@
     "searchPlaceholder": "Cari pertanyaan...",
     "noResults": "FAQ tidak ditemukan",
     "items": [
-      { "question": "Apa itu Nama Stakeholder?", "answer": "• Nama Stakeholder adalah nama individu atau kelompok yang dapat memengaruhi atau dipengaruhi oleh kegiatan, produk, layanan, atau kinerja organisasi." },
+      { "question": "Apa itu Nama Pemangku Kepentingan (Stakeholder)?", "answer": "• Nama Stakeholder adalah nama individu atau kelompok yang dapat memengaruhi atau dipengaruhi oleh kegiatan, produk, layanan, atau kinerja organisasi." },
       { "question": "Apa itu Peran / Jabatan / Instansi?", "answer": "• Peran / Jabatan / Instansi mengacu pada posisi resmi, jabatan, atau organisasi/instansi tempat Stakeholder bernaung." },
-      { "question": "Apa itu Tipe Stakeholder?", "answer": "• Tipe Stakeholder adalah kategori Stakeholder berdasarkan perannya, misalnya:\n  - pemerintah\n  - masyarakat\n  - LSM\n  - perusahaan\n  - kelompok adat" },
-      { "question": "Apa itu Kategori Keterlibatan?", "answer": "• Kategori Keterlibatan mengklasifikasikan Stakeholder berdasarkan tingkat pengaruh, dampak, kepentingan, dan urgensi keterlibatan.\n1. Primary\n   - Stakeholder yang terdampak langsung atau memiliki pengaruh, kekuatan, atau kendali tinggi terhadap keberhasilan proyek.\n   - Biasanya terdapat ketergantungan timbal balik atau risiko tinggi apabila kepentingannya tidak terpenuhi.\n   - Keterlibatan harus berkelanjutan, proaktif, dan strategis.\n2. Secondary\n   - Stakeholder dengan pengaruh atau dampak sedang; dapat berperan sebagai pendukung, regulator, penasihat, atau pengawas.\n   - Tidak memiliki kekuatan pengambilan keputusan langsung.\n   - Keterlibatan bersifat berkala atau berdasarkan isu.\n3. Tertiary\n   - Stakeholder dengan pengaruh atau dampak langsung yang rendah; penting untuk reputasi, nilai simbolis, atau strategi jangka panjang.\n   - Keterlibatan bersifat perwakilan, berkala, atau berbasis itikad baik." },
+      { "question": "Apa itu Tipe Pemangku Kepentingan (Stakeholder)?", "answer": "• Tipe Stakeholder adalah kategori Stakeholder berdasarkan perannya, misalnya:\n  - pemerintah\n  - masyarakat\n  - LSM\n  - perusahaan\n  - kelompok adat" },
+      { "question": "Apa itu Kategori Keterlibatan?", "answer": "• Kategori Keterlibatan mengklasifikasikan Stakeholder berdasarkan tingkat pengaruh, dampak, kepentingan, dan urgensi keterlibatan.\n1. Utama (Primary)\n   - Stakeholder yang terdampak langsung atau memiliki pengaruh, kekuatan, atau kendali tinggi terhadap keberhasilan proyek.\n   - Biasanya terdapat ketergantungan timbal balik atau risiko tinggi apabila kepentingannya tidak terpenuhi.\n   - Keterlibatan harus berkelanjutan, proaktif, dan strategis.\n2. Sekunder (Secondary)\n   - Stakeholder dengan pengaruh atau dampak sedang; dapat berperan sebagai pendukung, regulator, penasihat, atau pengawas.\n   - Tidak memiliki kekuatan pengambilan keputusan langsung.\n   - Keterlibatan bersifat berkala atau berdasarkan isu.\n3. Tersier (Tertiary)\n   - Stakeholder dengan pengaruh atau dampak langsung yang rendah; penting untuk reputasi, nilai simbolis, atau strategi jangka panjang.\n   - Keterlibatan bersifat perwakilan, berkala, atau berbasis itikad baik." },
       { "question": "Apa itu Lokasi?", "answer": "• Lokasi adalah wilayah geografis tempat Stakeholder berada atau menjalankan kegiatannya." },
       { "question": "Apa itu Kontak?", "answer": "• Kontak mengacu pada informasi relevan untuk komunikasi, seperti nomor telepon atau email." },
-      { "question": "Apa itu Engagement Priority?", "answer": "• Engagement Priority mengacu pada urgensi atau tingkat kepentingan untuk melibatkan Stakeholder ini." },
-      { "question": "Apa itu Engagement Relevance?", "answer": "• Engagement Relevance mengukur seberapa besar pengaruh atau dampak Stakeholder terhadap proyek atau kegiatan organisasi." },
-      { "question": "Apa itu Engagement Frequency?", "answer": "• Engagement Frequency menjelaskan seberapa sering Anda berinteraksi atau berkomunikasi dengan Stakeholder." },
-      { "question": "Apa itu Engagement Strategy?", "answer": "• Engagement Strategy adalah metode atau pendekatan yang digunakan untuk membangun, memelihara, dan mengelola hubungan dengan Stakeholder." },
-      { "question": "Apa itu Key Concerns?", "answer": "• Key Concerns adalah isu, harapan, atau kekhawatiran utama yang disampaikan Stakeholder selama proses keterlibatan." },
-      { "question": "Apa itu Mitigation Plan?", "answer": "• Mitigation Plan adalah tindakan atau upaya yang direncanakan untuk menangani dan merespons isu serta kekhawatiran Stakeholder." },
-      { "question": "Apa itu Objective?", "answer": "• Objective adalah tujuan atau hasil yang ingin dicapai melalui keterlibatan dengan Stakeholder." },
-      { "question": "Apa itu Recommended Focal Point?", "answer": "• Recommended Focal Point adalah orang utama yang direkomendasikan sebagai penghubung atau kontak untuk hubungan dengan Stakeholder." },
-      { "question": "Apa itu Backup / Support Focal Point?", "answer": "• Backup / Support Focal Point adalah orang pendukung atau cadangan yang dapat membantu atau menggantikan focal point utama bila diperlukan." },
-      { "question": "Apa itu Re-engagement Trigger?", "answer": "• Re-engagement Trigger mengacu pada kondisi atau peristiwa yang mengharuskan keterlibatan ulang dengan Stakeholder." },
-      { "question": "Apa itu Trigger Reasons?", "answer": "• Trigger Reasons adalah penjelasan atau latar belakang penyebab yang membuat keterlibatan ulang dengan Stakeholder diperlukan." }
+      { "question": "Apa itu Prioritas Keterlibatan (Engagement Priority)?", "answer": "• Prioritas Keterlibatan mengacu pada urgensi atau tingkat kepentingan untuk melibatkan Stakeholder ini." },
+      { "question": "Apa itu Relevansi Keterlibatan (Engagement Relevance)?", "answer": "• Relevansi Keterlibatan mengukur seberapa besar pengaruh atau dampak Stakeholder terhadap proyek atau kegiatan organisasi." },
+      { "question": "Apa itu Frekuensi Keterlibatan (Engagement Frequency)?", "answer": "• Frekuensi Keterlibatan menjelaskan seberapa sering Anda berinteraksi atau berkomunikasi dengan Stakeholder." },
+      { "question": "Apa itu Strategi Keterlibatan (Engagement Strategy)?", "answer": "• Strategi Keterlibatan adalah metode atau pendekatan yang digunakan untuk membangun, memelihara, dan mengelola hubungan dengan Stakeholder." },
+      { "question": "Apa itu Isu Utama?", "answer": "• Isu Utama adalah isu atau harapan yang disampaikan Stakeholder selama proses keterlibatan." },
+      { "question": "Apa itu Rencana Mitigasi?", "answer": "• Rencana Mitigasi adalah tindakan atau upaya yang direncanakan untuk menangani dan merespons isu serta kekhawatiran Stakeholder." },
+      { "question": "Apa itu Tujuan?", "answer": "• Tujuan adalah sasaran atau hasil yang ingin dicapai melalui keterlibatan dengan Stakeholder." },
+      { "question": "Apa itu Penghubung Utama (Focal Point) yang Direkomendasikan?", "answer": "• Penghubung Utama (Focal Point) adalah orang utama yang direkomendasikan sebagai kontak untuk hubungan dengan Stakeholder." },
+      { "question": "Apa itu Penghubung Cadangan / Pendukung (Backup Support)?", "answer": "• Penghubung Cadangan (Backup Support) adalah orang pendukung atau cadangan yang dapat membantu atau menggantikan penghubung utama bila diperlukan." },
+      { "question": "Apa itu Parameter Kekhawatiran / Pemicu Keterlibatan Ulang?", "answer": "• Parameter Kekhawatiran / Pemicu Keterlibatan Ulang mengacu pada kondisi atau peristiwa yang mengharuskan keterlibatan ulang dengan Stakeholder." },
+      { "question": "Apa itu Alasan Pemicu (Trigger Reasons)?", "answer": "• Alasan Pemicu adalah penjelasan atau latar belakang penyebab yang membuat keterlibatan ulang dengan Stakeholder diperlukan." }
     ]
   },
   "about": {
@@ -690,9 +694,9 @@
       "byCategory": "Berdasarkan Kategori",
       "byStatus": "Berdasarkan Status",
       "categories": {
-        "Primary": "Primary",
-        "Secondary": "Secondary",
-        "Tertiary": "Tertiary",
+        "Primary": "Utama",
+        "Secondary": "Sekunder",
+        "Tertiary": "Tersier",
         "Unknown": "Tidak Diketahui"
       },
       "statuses": {
@@ -700,6 +704,37 @@
         "Pending": "Menunggu",
         "Rejected": "Ditolak",
         "Unknown": "Tidak Diketahui"
+      },
+      "types": {
+        "Academia & Education": "Akademisi & Pendidikan",
+        "Civil Society and NGOs": "Masyarakat Sipil & LSM",
+        "Community-Based Organizations (CBOs)": "Organisasi Berbasis Masyarakat (ORMAS)",
+        "Directly Affected People (DAPs)": "Masyarakat Terdampak Langsung",
+        "Donors and Multilateral Institutions": "Donor & Lembaga Multilateral",
+        "Education and Training Institutions": "Lembaga Pendidikan & Pelatihan",
+        "Environmental Bodies and Consultants": "Badan & Konsultan Lingkungan",
+        "Government-District/City Executive": "Pemerintah - Eksekutif Kabupaten/Kota",
+        "Government-District/City Legislative": "Pemerintah - Legislatif Kabupaten/Kota",
+        "Government-Provincial Executive": "Pemerintah - Eksekutif Provinsi",
+        "Government-Provincial Legislative": "Pemerintah - Legislatif Provinsi",
+        "Government-Security Forces": "Pemerintah - Aparat Keamanan",
+        "Government-Subdistrict & Village": "Pemerintah - Kecamatan & Desa",
+        "Government-Upstream Regulatory": "Pemerintah - Regulator Hulu Migas",
+        "Health and Social Services": "Layanan Kesehatan & Sosial",
+        "Investment and Licensing Agencies": "Layanan Investasi & Perizinan",
+        "Legal and Advisory Services": "Layanan Hukum & Penasihat",
+        "Local Communities": "Masyarakat Lokal",
+        "Media and Communication": "Media & Komunikasi",
+        "Political Figures and Bodies": "Tokoh & Lembaga Politik",
+        "Private Sector and Businesses": "Sektor Swasta & Usaha",
+        "Religious Courts and Judicial Bodies": "Pengadilan Agama & Lembaga Peradilan",
+        "Religious Organizations and Leaders": "Organisasi & Tokoh Agama",
+        "State-Owned Enterprises (BUMN/BUMD)": "BUMN / BUMD"
+      },
+      "roles": {
+        "Governor of Aceh": "Gubernur Aceh",
+        "Vice Governor of Aceh": "Wakil Gubernur Aceh",
+        "Camat (District Head)": "Camat"
       }
     },
     "search": {
@@ -724,7 +759,7 @@
       "step3Title": "Menuju Prioritas Keterlibatan",
       "step3Desc": "Tentukan apakah akan melanjutkan ke tahap berikutnya dengan menjawab YA pada konfirmasi sistem.",
       "step4Title": "Analisis Mendalam",
-      "step4Desc": "Pilih Key Concern melalui dropdown yang tersedia, kemudian lanjut ke halaman Deep Analysis 2. Isi Trigger Parameter dengan memilih YA atau TIDAK untuk memperoleh Status Keterlibatan Ulang (Re-engagement Status) dan Trigger Reason.",
+      "step4Desc": "Pilih Isu Utama melalui dropdown yang tersedia, kemudian lanjut ke halaman Analisis Mendalam 2. Isi Parameter Kekhawatiran dengan memilih YA atau TIDAK untuk memperoleh Status Keterlibatan Ulang dan Alasan Pemicu.",
       "step5Title": "Profil Stakeholder",
       "step5Desc": "Lengkapi data stakeholder dan isi 10 kluster pertanyaan dengan menjawab YA atau TIDAK pada setiap pertanyaan yang tersedia.",
       "step6Title": "Justifikasi Keterlibatan",
