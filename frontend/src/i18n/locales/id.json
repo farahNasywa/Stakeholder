@@ -277,9 +277,18 @@
   },
   "deepAnalysist": {
     "frequencies": {
+      "Weekly": "Mingguan",
+      "Bi-weekly": "Dua Mingguan (Bi-weekly)",
       "Monthly": "Bulanan",
+      "Every 6 Weeks": "Setiap 6 Minggu",
       "Quarterly": "Triwulanan",
-      "Annually": "Tahunan"
+      "Bi-annually (Every 6 months)": "Enam Bulanan (Bi-annually)",
+      "Annually": "Tahunan",
+      "Ad-hoc / As Needed": "Insidental / Sesuai Kebutuhan (Ad-hoc)",
+      "Aligned with Project Milestones": "Disesuaikan Tahapan Proyek (Milestone)",
+      "During Regulatory Submissions": "Saat Pengajuan Perizinan / Regulasi",
+      "During Crisis or Emergency Events": "Saat Situasi Krisis atau Darurat",
+      "Ongoing / Continuous": "Terkelola / Berkelanjutan (Ongoing)"
     },
     "keyConcerns": {
       "Environmental Impact: Concerns over habitat destruction, water contamination, and air pollution.": "Dampak Lingkungan: Kekhawatiran atas kerusakan habitat, kontaminasi air, dan polusi udara.",
@@ -404,6 +413,15 @@
     "defaultFrequencyDescription": "Standar untuk pemerintah daerah, komunitas terdampak, kontraktor, dan kelompok tenaga kerja.",
     "strategyText": {
       "Manage legal/regulatory risk, align with national development priorities, maintain strategic alignment": "Kelola risiko hukum/regulasi, selaraskan dengan prioritas pembangunan nasional, jaga keselarasan strategis",
+      "Manage and reduce operational risks through stakeholder early-warning inputs": "Kelola dan kurangi risiko operasional melalui masukan peringatan dini dari pemangku kepentingan",
+      "Maintain security coordination and protect strategic assets": "Jaga koordinasi keamanan dan lindungi aset strategis",
+      "Engage in policy alignment and political advocacy": "Lakukan penyelarasan kebijakan dan advokasi politik",
+      "Coordinate on economic, natural resources, and environmental policies": "Koordinasikan kebijakan ekonomi, sumber daya alam, dan lingkungan",
+      "Support financial oversight and investment alignment": "Dukung pengawasan keuangan dan penyelarasan investasi",
+      "Ensure compliance and support energy sector development": "Pastikan kepatuhan dan dukung pengembangan sektor energi",
+      "Monitor environmental compliance and sustainability": "Pantau kepatuhan lingkungan dan keberlanjutan",
+      "Support workforce development and labor relations": "Dukung pengembangan tenaga kerja dan hubungan industrial",
+      "Align development planning with project objectives": "Selaraskan perencanaan pembangunan daerah dengan tujuan proyek",
       "Build strong relationship, involve in key decisions, maintain regular communication": "Bangun hubungan kuat, libatkan dalam keputusan penting, jaga komunikasi rutin",
       "Keep informed, manage expectations, address concerns proactively": "Beri informasi secara berkala, kelola ekspektasi, tanggapi kekhawatiran secara proaktif",
       "Monitor attitude, provide basic information, maintain minimal contact": "Pantau sikap, berikan informasi dasar, jaga kontak minimal"

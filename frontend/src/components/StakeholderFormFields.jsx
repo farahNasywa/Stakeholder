@@ -367,7 +367,7 @@ export default function StakeholderFormFields({
           <option value="">{t("stakeholderForm.placeholders.selectStrategy")}</option>
           {strategies.map((strategy) => (
             <option key={strategy._id} value={strategy._id}>
-              {t(`engagementPriority.strategies.${strategy.strategy}`, strategy.strategy)}
+              {t(`deepAnalysist.strategyText.${strategy.strategy}`, t(`engagementPriority.strategies.${strategy.strategy}`, strategy.strategy))}
             </option>
           ))}
         </select>

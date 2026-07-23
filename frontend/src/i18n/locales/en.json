@@ -273,9 +273,18 @@
   },
   "deepAnalysist": {
     "frequencies": {
+      "Weekly": "Weekly",
+      "Bi-weekly": "Bi-weekly",
       "Monthly": "Monthly",
+      "Every 6 Weeks": "Every 6 Weeks",
       "Quarterly": "Quarterly",
-      "Annually": "Annually"
+      "Bi-annually (Every 6 months)": "Bi-annually (Every 6 months)",
+      "Annually": "Annually",
+      "Ad-hoc / As Needed": "Ad-hoc / As Needed",
+      "Aligned with Project Milestones": "Aligned with Project Milestones",
+      "During Regulatory Submissions": "During Regulatory Submissions",
+      "During Crisis or Emergency Events": "During Crisis or Emergency Events",
+      "Ongoing / Continuous": "Ongoing / Continuous"
     },
     "keyConcerns": {
       "Environmental Impact: Concerns over habitat destruction, water contamination, and air pollution.": "Environmental Impact: Concerns over habitat destruction, water contamination, and air pollution.",
@@ -400,6 +409,15 @@
     "defaultFrequencyDescription": "Standard for local government, impacted communities, contractors, and labor groups.",
     "strategyText": {
       "Manage legal/regulatory risk, align with national development priorities, maintain strategic alignment": "Manage legal/regulatory risk, align with national development priorities, maintain strategic alignment",
+      "Manage and reduce operational risks through stakeholder early-warning inputs": "Manage and reduce operational risks through stakeholder early-warning inputs",
+      "Maintain security coordination and protect strategic assets": "Maintain security coordination and protect strategic assets",
+      "Engage in policy alignment and political advocacy": "Engage in policy alignment and political advocacy",
+      "Coordinate on economic, natural resources, and environmental policies": "Coordinate on economic, natural resources, and environmental policies",
+      "Support financial oversight and investment alignment": "Support financial oversight and investment alignment",
+      "Ensure compliance and support energy sector development": "Ensure compliance and support energy sector development",
+      "Monitor environmental compliance and sustainability": "Monitor environmental compliance and sustainability",
+      "Support workforce development and labor relations": "Support workforce development and labor relations",
+      "Align development planning with project objectives": "Align development planning with project objectives",
       "Build strong relationship, involve in key decisions, maintain regular communication": "Build strong relationship, involve in key decisions, maintain regular communication",
       "Keep informed, manage expectations, address concerns proactively": "Keep informed, manage expectations, address concerns proactively",
       "Monitor attitude, provide basic information, maintain minimal contact": "Monitor attitude, provide basic information, maintain minimal contact"
