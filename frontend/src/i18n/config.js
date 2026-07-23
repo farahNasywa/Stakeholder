@@ -1,3 +1,7 @@
+/**
+ * i18n Configuration Module
+ * Manages internationalization (ID/EN) for Stakeholder Analysis System.
+ */
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import en from './locales/en.json';
