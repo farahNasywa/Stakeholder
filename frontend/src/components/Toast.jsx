@@ -35,7 +35,7 @@ const Toast = ({ message, type = 'info', duration = 3000, onClose }) => {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -50, scale: 0.9 }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
-          className={`fixed top-4 right-4 z-50 px-6 py-4 rounded-lg shadow-lg border-l-4 ${typeStyles[type]} min-w-80 max-w-md`}
+          className={`fixed top-28 sm:top-20 right-4 z-[1100] px-6 py-4 rounded-lg shadow-lg border-l-4 ${typeStyles[type]} min-w-80 max-w-md`}
         >
           <div className="flex items-center">
             <span className="mr-3 text-lg font-bold">{icons[type]}</span>
@@ -72,7 +72,7 @@ export const useToast = () => {
   };
 
   const ToastContainer = () => (
-    <div className="fixed top-4 right-4 z-50 space-y-2">
+    <div className="fixed top-28 sm:top-20 right-4 z-[1100] space-y-2">
       {toasts.map(toast => (
         <Toast
           key={toast.id}
